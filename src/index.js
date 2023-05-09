@@ -2,12 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+//components
 import LoginForm from './components/login/LoginForm';
+import HomeViewAdmin from './components/home/homeViewAdmin';
+import HomeViewEmployee from './components/home/homeViewEmployee';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <LoginForm />
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginForm />} /> 
+        <Route path="/home-admin" element={<HomeViewAdmin />} /> 
+        <Route path="/home-employee" element={<HomeViewEmployee />} />
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
 

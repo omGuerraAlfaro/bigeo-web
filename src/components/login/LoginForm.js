@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./LoginForm.css";
 
+import { useNavigate } from 'react-router-dom';
+import HomeViewAdmin from "../home/homeViewAdmin";
+import HomeViewEmployee from "../home/homeViewEmployee";
+
 function LoginForm(props) {
   const [credentials, setCredentials] = useState({ user: "", password: "" });
+  const navigate = useNavigate();
 
   function handleChange(event) {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
@@ -27,6 +32,18 @@ function LoginForm(props) {
       if (response && response.data) {
         console.log('Login response:', response.data);
         // console.log('Access token:', accessToken); // definir 'accessToken'
+
+        //Seleccion de usuario
+        if (response.data.userRole === 'admin') {
+          navigate('/home-admin');
+        }
+        else if (response.data.userRole === 'user') {
+          navigate('/home-employee');
+        }
+        else {
+          console.error('El rol del usuario no es válido');
+        }
+        
       } else {
         console.error('La respuesta no contiene datos');
       }
