@@ -3,8 +3,6 @@ import axios from "axios";
 import "./LoginForm.css";
 
 import { useNavigate } from 'react-router-dom';
-import HomeViewAdmin from "../home/homeViewAdmin";
-import HomeViewEmployee from "../home/homeViewEmployee";
 
 function LoginForm(props) {
   const [credentials, setCredentials] = useState({ user: "", password: "" });
