@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./LoginForm.css";
-
 import { useNavigate } from 'react-router-dom';
 
 function LoginForm(props) {
@@ -67,6 +66,9 @@ function LoginForm(props) {
           <button type="submit">Iniciar Sesión</button>
         </form>
         <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Olvido su Contraseña? Click Aquí.</button>
+      </div>
+      <div>
+        
       </div>
     </div>
   );
