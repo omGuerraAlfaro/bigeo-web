@@ -4,7 +4,7 @@ import "./LoginForm.css";
 import { useNavigate } from 'react-router-dom';
 
 function LoginForm(props) {
-  const [credentials, setCredentials] = useState({ user: "", password: "" });
+  const [credentials, setCredentials] = useState({ username: "", password: "" });
   const navigate = useNavigate();
 
   function handleChange(event) {
@@ -17,7 +17,7 @@ function LoginForm(props) {
     console.log('Credentials:', credentials);
   
     try {
-      const url = 'http://localhost:3001/users/login';
+      const url = 'http://localhost:3000/auth/login';
       const config = {
         headers: {
           'Content-Type': 'application/json',
@@ -29,9 +29,11 @@ function LoginForm(props) {
       if (response && response.data) {
         console.log('Login response:', response.data);
         // console.log('Access token:', accessToken); // definir 'accessToken'
-
+        console.log('Refresh token:', response.data.token); // 
         //Seleccion de usuario
         if (response.data.userRole === 'admin') {
+          localStorage.setItem('token', response.data.token);
+          
           navigate('/home-admin');
         }
         else if (response.data.userRole === 'user') {
@@ -59,8 +61,8 @@ function LoginForm(props) {
         <div id="logo"></div>
         <h2>Inicio Sesión</h2>
         <form className="login-form" onSubmit={handleSubmit}>
-          <label htmlFor="user">Usuario</label>
-          <input value={credentials.user} onChange={handleChange} type="text" placeholder="Ingresa tu Usuario" id="user" name="user" />
+          <label htmlFor="username">Usuario</label>
+          <input value={credentials.username} onChange={handleChange} type="text" placeholder="Ingresa tu Usuario" id="username" name="username" />
           <label htmlFor="password">Contraseña</label>
           <input value={credentials.password} onChange={handleChange} type="password" placeholder="********" id="password" name="password" />
           <button type="submit">Iniciar Sesión</button>
