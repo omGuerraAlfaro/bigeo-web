@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 //components
 import LoginForm from './components/login/LoginForm';
-import HomeViewAdmin from './components/home/homeViewAdmin';
+import HomeViewAdmin from './components/home/home';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
