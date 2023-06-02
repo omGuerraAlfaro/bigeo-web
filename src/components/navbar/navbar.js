@@ -2,7 +2,8 @@ import './navbar.css';
 import React from "react";
 import logo from "../../assets/img/LogoBIGEO.png";
 
-const Navbar = () => {
+const Navbar = ({ nombreUser }) => {
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="#">
@@ -23,49 +24,32 @@ const Navbar = () => {
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
-            <a className="nav-link" href="#">
-              Home <span className="sr-only">(current)</span>
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
-              Link
-            </a>
-          </li>
           <li className="nav-item dropdown">
             <a
               className="nav-link dropdown-toggle"
               href="#"
               id="navbarDropdown"
               role="button"
-              data-toggle="dropdown"
+              data-bs-toggle="dropdown" // Cambiado "data-toggle" a "data-bs-toggle"
               aria-haspopup="true"
               aria-expanded="false"
             >
-              Dropdown
+              Hola, {nombreUser}
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
               <a className="dropdown-item" href="#">
-                Action
-              </a>
-              <a className="dropdown-item" href="#">
-                Another action
+                Perfil
               </a>
               <div className="dropdown-divider"></div>
               <a className="dropdown-item" href="#">
-                Something else here
+                Cerrar Sesión
               </a>
             </div>
           </li>
-          <li className="nav-item">
-            <a className="nav-link disabled" href="#">
-              Disabled
-            </a>
-          </li>
         </ul>
+
         <button type="button" className="btn btn-primary">
-          Notifications <span className="badge badge-light">4</span>
+          Notificaciones <span className="badge badge-light">4</span>
         </button>
       </div>
     </nav>

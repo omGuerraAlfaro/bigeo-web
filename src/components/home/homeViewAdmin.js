@@ -9,13 +9,15 @@ import "./home.css";
 import Footer from "../footer/footer";
 
 function HomeViewAdmin(props) {
+  const nombreUser = localStorage.getItem('name_user');
+  console.log(nombreUser);
   const handleClick = () => {
     console.log("click");
   };
 
   return (
     <div>
-      <Navbar />
+      <Navbar nombreUser={nombreUser}/>
 
       <img src={fondo} className="fondo"></img>
       <div className="container data-table">

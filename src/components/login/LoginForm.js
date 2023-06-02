@@ -4,7 +4,7 @@ import "./LoginForm.css";
 import { useNavigate } from 'react-router-dom';
 
 function LoginForm(props) {
-  const [credentials, setCredentials] = useState({ user: "", password: "" });
+  const [credentials, setCredentials] = useState({ username: "", password: "" });
   const navigate = useNavigate();
 
   function handleChange(event) {
@@ -17,7 +17,8 @@ function LoginForm(props) {
     console.log('Credentials:', credentials);
   
     try {
-      const url = 'http://localhost:3001/users/login';
+      // Fijarse en N° de puerto al momento de correr archivos. Tanto este como bigeo-api. Dependiendo del orden, cambiar línea 21
+      const url = 'http://localhost:3000/auth/login';
       const config = {
         headers: {
           'Content-Type': 'application/json',
@@ -30,12 +31,15 @@ function LoginForm(props) {
         console.log('Login response:', response.data);
         // console.log('Access token:', accessToken); // definir 'accessToken'
 
+        console.log(response.data.token);
+
+        console.log(response.data.userExist.username);
+
         //Seleccion de usuario
-        if (response.data.userRole === 'admin') {
+        if (response.data.userExist != null) {
+          localStorage.setItem('name_user', response.data.userExist.name)
+          localStorage.setItem('token', response.data.token)
           navigate('/home-admin');
-        }
-        else if (response.data.userRole === 'user') {
-          navigate('/home-employee');
         }
         else {
           console.error('El rol del usuario no es válido');
@@ -59,11 +63,11 @@ function LoginForm(props) {
         <div id="logo"></div>
         <h2>Inicio Sesión</h2>
         <form className="login-form" onSubmit={handleSubmit}>
-          <label htmlFor="user">Usuario</label>
-          <input value={credentials.user} onChange={handleChange} type="text" placeholder="Ingresa tu Usuario" id="user" name="user" />
+          <label htmlFor="username">Usuario</label>
+          <input value={credentials.username} onChange={handleChange} type="text" placeholder="Ingresa tu Usuario" id="username" name="username" />
           <label htmlFor="password">Contraseña</label>
           <input value={credentials.password} onChange={handleChange} type="password" placeholder="********" id="password" name="password" />
-          <button type="submit">Iniciar Sesión</button>
+          <button className="button" type="submit">Iniciar Sesión</button>
         </form>
         <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Olvido su Contraseña? Click Aquí.</button>
       </div>
