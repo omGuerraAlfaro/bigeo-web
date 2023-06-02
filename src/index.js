@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 //components
 import LoginForm from './components/login/LoginForm';
 import HomeViewAdmin from './components/home/homeViewAdmin';
-import HomeViewEmployee from './components/home/homeViewEmployee';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,7 +14,6 @@ root.render(
       <Routes>
         <Route path="/" element={<LoginForm />} /> 
         <Route path="/home-admin" element={<HomeViewAdmin />} /> 
-        <Route path="/home-employee" element={<HomeViewEmployee />} />
       </Routes>
     </Router>
   </React.StrictMode>
