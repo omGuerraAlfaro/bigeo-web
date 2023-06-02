@@ -17,6 +17,10 @@ function LoginForm(props) {
     console.log('Credentials:', credentials);
   
     try {
+<<<<<<< HEAD
+=======
+      // Fijarse en N° de puerto al momento de correr archivos. Tanto este como bigeo-api. Dependiendo del orden, cambiar línea 21
+>>>>>>> d60c2e756ce72f3a7e97014afb809686cc9a2a03
       const url = 'http://localhost:3000/auth/login';
       const config = {
         headers: {
@@ -29,15 +33,24 @@ function LoginForm(props) {
       if (response && response.data) {
         console.log('Login response:', response.data);
         // console.log('Access token:', accessToken); // definir 'accessToken'
+<<<<<<< HEAD
         console.log('Refresh token:', response.data.token); // 
         //Seleccion de usuario
         if (response.data.userRole === 'admin') {
           localStorage.setItem('token', response.data.token);
           
+=======
+
+        console.log(response.data.token);
+
+        console.log(response.data.userExist.username);
+
+        //Seleccion de usuario
+        if (response.data.userExist != null) {
+          localStorage.setItem('name_user', response.data.userExist.name)
+          localStorage.setItem('token', response.data.token)
+>>>>>>> d60c2e756ce72f3a7e97014afb809686cc9a2a03
           navigate('/home-admin');
-        }
-        else if (response.data.userRole === 'user') {
-          navigate('/home-employee');
         }
         else {
           console.error('El rol del usuario no es válido');
@@ -65,7 +78,7 @@ function LoginForm(props) {
           <input value={credentials.username} onChange={handleChange} type="text" placeholder="Ingresa tu Usuario" id="username" name="username" />
           <label htmlFor="password">Contraseña</label>
           <input value={credentials.password} onChange={handleChange} type="password" placeholder="********" id="password" name="password" />
-          <button type="submit">Iniciar Sesión</button>
+          <button className="button" type="submit">Iniciar Sesión</button>
         </form>
         <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Olvido su Contraseña? Click Aquí.</button>
       </div>
