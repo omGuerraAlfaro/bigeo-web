@@ -17,10 +17,6 @@ function LoginForm(props) {
     console.log('Credentials:', credentials);
   
     try {
-<<<<<<< HEAD
-=======
-      // Fijarse en N° de puerto al momento de correr archivos. Tanto este como bigeo-api. Dependiendo del orden, cambiar línea 21
->>>>>>> d60c2e756ce72f3a7e97014afb809686cc9a2a03
       const url = 'http://localhost:3000/auth/login';
       const config = {
         headers: {
@@ -33,13 +29,6 @@ function LoginForm(props) {
       if (response && response.data) {
         console.log('Login response:', response.data);
         // console.log('Access token:', accessToken); // definir 'accessToken'
-<<<<<<< HEAD
-        console.log('Refresh token:', response.data.token); // 
-        //Seleccion de usuario
-        if (response.data.userRole === 'admin') {
-          localStorage.setItem('token', response.data.token);
-          
-=======
 
         console.log(response.data.token);
 
@@ -49,7 +38,6 @@ function LoginForm(props) {
         if (response.data.userExist != null) {
           localStorage.setItem('name_user', response.data.userExist.name)
           localStorage.setItem('token', response.data.token)
->>>>>>> d60c2e756ce72f3a7e97014afb809686cc9a2a03
           navigate('/home-admin');
         }
         else {
