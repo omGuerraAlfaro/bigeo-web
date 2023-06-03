@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { Modal, Button, Tabs, Tab, Form, Dropdown } from "react-bootstrap";
+import axios from "axios";
 import "./buttonG.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export function ButtonG(props) {
 
   //states
   const [estado, setEstado] = useState('No Leído');
+  const [formData, setFormData] = useState(null);
 
   const marcarLeido = () => {
     setEstado('Leído');
@@ -23,6 +27,28 @@ export function ButtonG(props) {
   const [activeTab, setActiveTab] = useState('datos');
   const [opcionSeleccionada, setOpcionSeleccionada] = useState('');
   const [textoInput, setTextoInput] = useState('');
+
+  useEffect(() => {
+    const url = 'http://localhost:3000/forms';
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(url, config); ///////falta apiiiii
+        const data = response;
+        console.log(data);
+        return data;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleTabSelect = (tabName) => {
     setActiveTab(tabName);
@@ -60,10 +86,37 @@ export function ButtonG(props) {
   };
 
 
+  const [fechaInicio, setFechaInicio] = useState(null);
+  const [fechaFin, setFechaFin] = useState(null);
+  const [diasEntreFechas, setDiasEntreFechas] = useState(0);
+
+  const handleFechaInicioChange = (date) => {
+    setFechaInicio(date);
+    calcularDiasEntreFechas(date, fechaFin);
+  };
+
+  const handleFechaFinChange = (date) => {
+    setFechaFin(date);
+    calcularDiasEntreFechas(fechaInicio, date);
+  };
+
+  const calcularDiasEntreFechas = (inicio, fin) => {
+    if (inicio && fin) {
+      const diferencia = Math.abs(fin - inicio);
+      const dias = Math.ceil(diferencia / (1000 * 60 * 60 * 24));
+      setDiasEntreFechas(dias);
+    } else {
+      setDiasEntreFechas(0);
+    }
+  };
+
+
   const handleGuardarAsignar = () => {
     // Aquí puedes realizar la lógica para guardar y asignar la tarea
     console.log("Guardar y asignar tarea:", opcionSeleccionada, textoInput);
     closeModal();
+
+
 
   };
 
@@ -109,8 +162,9 @@ export function ButtonG(props) {
         onHide={closeModal}
         centered
         size="lg">
+
         <Modal.Header closeButton>
-          <Modal.Title>Modal de ejemplo</Modal.Title>
+          <Modal.Title>Formulario</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Tabs
@@ -119,13 +173,32 @@ export function ButtonG(props) {
             className="mb-3"
           >
             <Tab eventKey="datos" title="Datos">
-              <p>Contenido de la pestaña Datos</p>
+              {formData && (
+                <div>
+                  <p>Nombre: {formData.nombre}</p>
+                  <p>Edad: {formData.edad}</p>
+                  {/* Agrega aquí más campos del formulario */}
+                </div>
+              )}
             </Tab>
+
             <Tab eventKey="ubicacion" title="Ubicación">
-              <p>Contenido de la pestaña Ubicación</p>
+              {formData && (
+                <div>
+                  <p>Ubicación: {formData.ubicacion}</p>
+                  {/* Agrega aquí más campos de ubicación */}
+                </div>
+              )}
             </Tab>
+
             <Tab eventKey="imagen" title="Imagen">
-              <p>Contenido de la pestaña Imagen</p>
+              {formData && (
+                <div>
+                  <img src={formData.imagen} alt="Imagen del formulario" />
+                  <p>Nombre del formulario: {formData.nombreFormulario}</p>
+                  <p>Estado: {formData.estado}</p>
+                </div>
+              )}
             </Tab>
           </Tabs>
         </Modal.Body>
@@ -138,14 +211,21 @@ export function ButtonG(props) {
 
       <Modal show={showModal2} onHide={closeModal2} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Asignar tarea</Modal.Title>
+          <Modal.Title>Asignar Tarea</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group controlId="formOpcionesDesplegables">
-              <Form.Label>Opciones desplegables</Form.Label>
+              <Form.Label>Ejecutor</Form.Label>
               <Dropdown onSelect={handleOpcionSeleccionada}>
-                <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                <Dropdown.Toggle
+                  variant="secondary"
+                  id="dropdown-basic"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  setTextoInput="Seleccione Fecha"
+                >
                   {opcionSeleccionada ? opcionSeleccionada : "Seleccionar opción"}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
@@ -154,11 +234,44 @@ export function ButtonG(props) {
                   <Dropdown.Item eventKey="Opción 3">Opción 3</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
+              <Form.Label>Plazo</Form.Label>
+              <DatePicker
+                selected={fechaInicio}
+                onChange={handleFechaInicioChange}
+                dateFormat="dd/MM/yyyy"
+                className="form-control"
+              />
+              <DatePicker
+                selected={fechaFin}
+                onChange={handleFechaFinChange}
+                dateFormat="dd/MM/yyyy"
+                className="form-control"
+              /><Form.Label>Total de Días: {diasEntreFechas}</Form.Label>
+
+
+              <Form.Label>Prioridad</Form.Label>
+              <Dropdown onSelect={handleOpcionSeleccionada}>
+                <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                  {opcionSeleccionada ? opcionSeleccionada : "Seleccionar opción"}
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item eventKey="Opción Alta">Alta</Dropdown.Item>
+                  <Dropdown.Item eventKey="Opción Media">Media</Dropdown.Item>
+                  <Dropdown.Item eventKey="Opción Baja">Baja</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </Form.Group>
 
             <Form.Group controlId="formTextoInput">
-              <Form.Label>Texto de la tarea</Form.Label>
-              <Form.Control type="text" placeholder="Ingrese el texto de la tarea" value={textoInput} onChange={handleTextoInputChange} />
+              <Form.Label>Observaciones</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Escriba el texto aqui"
+                value={textoInput}
+                onChange={handleTextoInputChange}
+                as="textarea"
+                rows={3}
+              />
             </Form.Group>
           </Form>
         </Modal.Body>

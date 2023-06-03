@@ -20,37 +20,11 @@ function HomeViewAdmin(props) {
       <Navbar nombreUser={nombreUser}/>
 
       <img src={fondo} className="fondo"></img>
-      <div className="container data-table">
-        <div className="container d-flex g-3 justify-content-end">
-          <div className="border rounded p-1">
-            <h6 className="text-center">Filtrar por:</h6>
-            <ButtonFilter
-              clase="mx-1"
-              nombre="Tipo"
-              color="danger"
-              tamaño="sm"
-              onClick={handleClick}
-            />
-            <ButtonFilter
-              clase="mx-1"
-              nombre="Encargado"
-              color="secondary"
-              tamaño="sm"
-              onClick={handleClick}
-            />
-            <ButtonFilter
-              clase="mx-1"
-              nombre="Fecha"
-              color="secondary"
-              tamaño="sm"
-              onClick={handleClick}
-            />
-          </div>
-        </div>
+      <div className="container data-table">        
         <h1 className="titulo">Lista Tareas</h1>
         <div class="table-responsive">
           <div className="scroll">
-            <table className="table table-striped table-responsive">
+            <table className="table table-striped table-responsive border">
               <thead>
                 <tr>
                   <th scope="col">ID Formulario</th>
@@ -96,6 +70,32 @@ function HomeViewAdmin(props) {
                 </tr>
               </tbody>
             </table>
+            <div className="container d-flex g-3 justify-content-end">
+          <div className="border rounded p-1">
+            <h6 className="text-center">Filtrar por:</h6>
+            <ButtonFilter
+              clase="mx-1"
+              nombre="Tipo"
+              color="danger"
+              tamaño="sm"
+              onClick={handleClick}
+            />
+            <ButtonFilter
+              clase="mx-1"
+              nombre="Encargado"
+              color="secondary"
+              tamaño="sm"
+              onClick={handleClick}
+            />
+            <ButtonFilter
+              clase="mx-1"
+              nombre="Fecha"
+              color="secondary"
+              tamaño="sm"
+              onClick={handleClick}
+            />
+          </div>
+        </div>
           </div>
         </div>
       </div>
