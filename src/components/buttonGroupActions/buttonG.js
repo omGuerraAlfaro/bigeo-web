@@ -38,7 +38,7 @@ export function ButtonG(props) {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(url, config); ///////falta apiiiii
+        const response = await axios.get(url, config); ///////falta apiiiii   ->    ahora noooo !!! jajajajjaja
         const data = response;
         console.log(data);
         return data;
