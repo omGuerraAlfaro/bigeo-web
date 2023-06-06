@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import "bootstrap/dist/css/bootstrap.css";
+import axios from "axios";
 import { ButtonG } from "../buttonGroupActions/buttonG";
-import { Table } from "../table/table";
 import ButtonFilter from "../buttonFilter/buttonFilter";
-import logo from "../../assets/img/LogoBIGEO.png";
 import fondo from "../../assets/img/fondoPalta.jpg";
 import Navbar from "../navbar/navbar";
 import "./home.css";
@@ -58,25 +57,23 @@ function HomeViewAdmin(props) {
 ]
 ;
 
-  const startIndex = currentPage * elementsPerPage;
-  const endIndex = startIndex + elementsPerPage;
-  const displayedData = data.slice(startIndex, endIndex);
+  // const startIndex = currentPage * elementsPerPage;
+  // const endIndex = startIndex + elementsPerPage;
+  // const displayedData = data.slice(startIndex, endIndex);
   const [tableData, setTableData] = useState([]);
 
   const fetchTableData = async () => {
     try {
-      const url = 'http://localhost:3000/auth/login';
+      const url = 'http://localhost:3000/forms';
       const config = {
         headers: {
           'Content-Type': 'application/json',
         },
       };
   
-      const response = await axios.post(url, credentials, config);
-      console.log(response);
-      const data = response;
-      return data;
-      console.log(data);
+      const response = await axios.get(url, config);
+      setTableData(response.data);
+      console.log(response.data);
     } catch (error) {
       console.log("Error al obtener los datos de la tabla:", error);
     }
