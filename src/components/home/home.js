@@ -12,6 +12,7 @@ import Footer from "../footer/footer";
 function HomeViewAdmin(props) {
   const [currentPage, setCurrentPage] = useState(0);
   const elementsPerPage = 15;
+  const nombreUser = localStorage.getItem('name_user');
 
   const handleClick = () => {
     console.log("click");
@@ -84,7 +85,7 @@ function HomeViewAdmin(props) {
 
   return (
     <div>
-      <Navbar />
+      <Navbar nombreUser={nombreUser}/>
 
       <img src={fondo} className="fondo"></img>
       <div className="container data-table">
