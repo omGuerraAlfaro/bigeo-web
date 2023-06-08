@@ -11,7 +11,7 @@ import Footer from "../footer/footer";
 
 function HomeViewAdmin(props) {
   const [currentPage, setCurrentPage] = useState(0);
-  const elementsPerPage = 3;
+  const elementsPerPage = 5;
   const nombreUser = localStorage.getItem('name_user');
 
   const handleClick = () => {
