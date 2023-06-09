@@ -4,6 +4,7 @@ import axios from "axios";
 import "./buttonG.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import MapComponent from "../geolocation/geolocation";
 
 export function ButtonG({ data, onButtonClick }) {
   //states
@@ -209,6 +210,7 @@ export function ButtonG({ data, onButtonClick }) {
                         return (
                           <div>
                             <p>Ubicación: Latitud: {lat}, Longitud: {lon}</p>
+                            <MapComponent lat={lat} lon ={lon}/>
                           </div>
                         );
                       })()
