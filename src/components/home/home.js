@@ -35,6 +35,7 @@ function HomeViewAdmin(props) {
 
       const response = await axios.get(url, config);
       setTableData(response.data);
+      console.log(response.data);
     } catch (error) {
       setError("Error al obtener los datos de la tabla: " + error);
       console.error(error);
@@ -45,7 +46,6 @@ function HomeViewAdmin(props) {
     fetchTableData();
   }, []);
 
-  // calculate displayedData based on current page
   const displayedData = (tableData || []).slice(currentPage * elementsPerPage, (currentPage * elementsPerPage) + elementsPerPage);
 
   return (
@@ -106,7 +106,7 @@ function HomeViewAdmin(props) {
                       <td>{item.geometry.gid}</td>
                       <td>{item.geometry.type}</td>
                       <td className="text-center">
-                        <ButtonG />
+                        <ButtonG data={item} onButtonClick={(selectedItem) => console.log(selectedItem)} />
                       </td>
                     </tr>
                   ))}
@@ -131,7 +131,7 @@ function HomeViewAdmin(props) {
 
         </div>
       </div>
-        <Footer  className="footer"/>
+      <Footer className="footer" />
     </div>
   );
 }

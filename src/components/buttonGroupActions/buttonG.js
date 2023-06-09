@@ -5,11 +5,11 @@ import "./buttonG.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-export function ButtonG(props) {
-
+export function ButtonG({ data, onButtonClick }) {
   //states
+  
   const [estado, setEstado] = useState('No Leído');
-  const [formData, setFormData] = useState(null);
+  const formData = data.data;
 
   const marcarLeido = () => {
     setEstado('Leído');
@@ -38,7 +38,7 @@ export function ButtonG(props) {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(url, config); ///////falta apiiiii   ->    ahora noooo !!! jajajajjaja
+        const response = await axios.get(url, config); 
         const data = response;
         console.log(data);
         return data;
@@ -130,6 +130,7 @@ export function ButtonG(props) {
           onClick={() => {
             marcarLeido();
             openModal();
+            onButtonClick(data);
           }}
           disabled={estado === 'Leído' | estado === 'Asignado y en Proceso'}
         >
