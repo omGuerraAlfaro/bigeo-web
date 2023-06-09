@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Button, Tabs, Tab, Form, Dropdown } from "react-bootstrap";
 import axios from "axios";
 import "./buttonG.css";
@@ -7,9 +7,9 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export function ButtonG({ data, onButtonClick }) {
   //states
-  
+
   const [estado, setEstado] = useState('No Leído');
-  const formData = data.data;
+  const formData = data;
 
   const marcarLeido = () => {
     setEstado('Leído');
@@ -30,15 +30,15 @@ export function ButtonG({ data, onButtonClick }) {
 
   useEffect(() => {
     const url = 'http://localhost:3000/forms';
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(url, config); 
+        const response = await axios.get(url, config);
         const data = response;
         console.log(data);
         return data;
@@ -174,12 +174,28 @@ export function ButtonG({ data, onButtonClick }) {
             className="mb-3"
           >
             <Tab eventKey="datos" title="Datos">
+              <h1>Formulario</h1>
               {formData && (
-                <div>
-                  <p>Nombre: {formData.nombre}</p>
-                  <p>Edad: {formData.edad}</p>
-                  {/* Agrega aquí más campos del formulario */}
-                </div>
+                <table className="table table-striped table-responsive">
+                  <thead>
+                    <tr>
+                      <th scope="col">ID Formulario</th>
+                      <th scope="col">Tipo</th>
+                      <th scope="col">Fecha y Hora</th>
+                      <th scope="col">Sector</th>
+                      <th scope="col">Tipo Sector</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr key={formData.id}>
+                      <th scope="row">{formData.form_id}</th>
+                      <td>{formData.type}</td>
+                      <td>{formData.properties.dateTime}</td>
+                      <td>{formData.geometry.gid}</td>
+                      <td>{formData.geometry.type}</td>
+                    </tr>
+                  </tbody>
+                </table>
               )}
             </Tab>
 
