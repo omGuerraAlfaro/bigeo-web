@@ -202,8 +202,7 @@ export function ButtonG({ data, onButtonClick }) {
             <Tab eventKey="ubicacion" title="Ubicación">
               {formData && (
                 <div>
-                  <p>Ubicación: {formData.ubicacion}</p>
-                  {/* Agrega aquí más campos de ubicación */}
+                  <p>Ubicación: {formData.geometry.coordinates}</p>
                 </div>
               )}
             </Tab>
