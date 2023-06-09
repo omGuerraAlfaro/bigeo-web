@@ -200,11 +200,23 @@ export function ButtonG({ data, onButtonClick }) {
             </Tab>
 
             <Tab eventKey="ubicacion" title="Ubicación">
-              {formData && (
-                <div>
-                  <p>Ubicación: {formData.geometry.coordinates}</p>
-                </div>
-              )}
+              {
+                formData && (
+                  <>
+                    {
+                      (() => {
+                        let [lat, lon] = formData.geometry.coordinates;
+                        return (
+                          <div>
+                            <p>Ubicación: Latitud: {lat}, Longitud: {lon}</p>
+                          </div>
+                        );
+                      })()
+                    }
+                  </>
+                )
+              }
+
             </Tab>
 
             <Tab eventKey="imagen" title="Imagen">
