@@ -208,9 +208,8 @@ export function ButtonG({ data, onButtonClick }) {
                       (() => {
                         let [lat, lon] = formData.geometry.coordinates;
                         return (
-                          <div>
-                            <p>Ubicación: Latitud: {lat}, Longitud: {lon}</p>
-                            <MapComponent lat={lat} lon ={lon}/>
+                          <div className="mapbox-container">
+                            <MapComponent lat={lon} lon={lat} />
                           </div>
                         );
                       })()

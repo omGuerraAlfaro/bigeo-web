@@ -1,27 +1,30 @@
 import React from 'react';
 import mapboxgl from 'mapbox-gl';
+import './geolocation.css';
 
-mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
+mapboxgl.accessToken = 'pk.eyJ1IjoiY3Jpc3RvYmFsLWdhcnJpZG8iLCJhIjoiY2w5bnBkMmowMDRnYjN1bXd1ZW8yNXZkcCJ9.enFPbRymB4K5HWOIWNxfgA';
 
 class MapComponent extends React.Component {
-  constructor(lat, lon) {
-    const latitude = {lat};
-    const longitude = {lon};
-    this.mapContainerRef = React.createRef();
-    this.map = null;
-  }
+  mapContainerRef = React.createRef();
 
   componentDidMount() {
+    const { lon, lat } = this.props;
+    
+    const lonNum = parseFloat(lon);
+    const latNum = parseFloat(lat);
+
     this.map = new mapboxgl.Map({
       container: this.mapContainerRef.current,
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [this.lat.longitude, this.lon.latitude],
-      zoom: 12
+      style: 'mapbox://styles/mapbox/satellite-v9',
+      center: [lonNum, latNum],
+      zoom: 16,
     });
 
-    new mapboxgl.Marker()
-      .setLngLat([this.long.longitude, this.lat.latitude])
-      .addTo(this.map);
+    this.map.on('load', () => {
+      new mapboxgl.Marker() 
+        .setLngLat([lonNum, latNum]) 
+        .addTo(this.map); 
+    });
   }
 
   componentWillUnmount() {
@@ -31,7 +34,7 @@ class MapComponent extends React.Component {
   }
 
   render() {
-    return <div ref={this.mapContainerRef} style={{ height: '400px' }} />;
+    return <div ref={this.mapContainerRef} className="map-container" />;
   }
 }
 

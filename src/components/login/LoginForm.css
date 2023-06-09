@@ -76,3 +76,8 @@ input {
     color: white;
     text-decoration: underline;
 }
+
+
+.mapboxgl-ctrl-attrib {
+    display: none;
+}
