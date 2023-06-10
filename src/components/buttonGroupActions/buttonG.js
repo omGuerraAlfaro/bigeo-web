@@ -26,36 +26,20 @@ export function ButtonG({ data, onButtonClick }) {
 
   //tabs
   const [activeTab, setActiveTab] = useState('datos');
-  const [opcionSeleccionada, setOpcionSeleccionada] = useState('');
   const [textoInput, setTextoInput] = useState('');
 
-  useEffect(() => {
-    const url = 'http://localhost:3000/forms';
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
+  const [opcionSeleccionada1, setOpcionSeleccionada1] = useState('');
+  const [opcionSeleccionada2, setOpcionSeleccionada2] = useState('');
 
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(url, config);
-        const data = response;
-        console.log(data);
-        return data;
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const handleTabSelect = (tabName) => {
     setActiveTab(tabName);
   };
-  const handleOpcionSeleccionada = (opcion) => {
-    setOpcionSeleccionada(opcion);
+  const handleOpcionSeleccionada1 = (opcion) => {
+    setOpcionSeleccionada1(opcion);
+  };
+  const handleOpcionSeleccionada2 = (opcion) => {
+    setOpcionSeleccionada2(opcion);
   };
 
   const handleTextoInputChange = (event) => {
@@ -162,7 +146,7 @@ export function ButtonG({ data, onButtonClick }) {
       <Modal
         show={showModal}
         onHide={closeModal}
-        centered
+        centered-top
         size="lg">
 
         <Modal.Header closeButton>
@@ -175,28 +159,63 @@ export function ButtonG({ data, onButtonClick }) {
             className="mb-3"
           >
             <Tab eventKey="datos" title="Datos">
-              <h1>Formulario</h1>
               {formData && (
-                <table className="table table-striped table-responsive">
-                  <thead>
-                    <tr>
-                      <th scope="col">ID Formulario</th>
-                      <th scope="col">Tipo</th>
-                      <th scope="col">Fecha y Hora</th>
-                      <th scope="col">Sector</th>
-                      <th scope="col">Tipo Sector</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr key={formData.id}>
-                      <th scope="row">{formData.form_id}</th>
-                      <td>{formData.type}</td>
-                      <td>{formData.properties.dateTime}</td>
-                      <td>{formData.geometry.gid}</td>
-                      <td>{formData.geometry.type}</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div className="container border rounded">
+                  <table className="table table-striped table-responsive">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID Formulario</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Fecha y Hora</th>
+                        <th scope="col">Sector</th>
+                        <th scope="col">Tipo Sector</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">{formData.form_id}</th>
+                        <td>{formData.type}</td>
+                        <td>{formData.properties.dateTime}</td>
+                        <td>{formData.geometry.gid}</td>
+                        <td>{formData.geometry.type}</td>
+                      </tr>
+                    </tbody>
+                    <br></br>
+                    <thead>
+                      <tr>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">ID Aspersor</th>
+                        <th scope="col">Codigo Aspersor</th>
+                        <th scope="col">Defecto</th>
+                        <th scope="col">Reparado</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">{formData.properties.userId}</th>
+                        <td>{formData.properties.formSprinkler.spid}</td>
+                        <td>{formData.properties.formSprinkler.spcode}</td>
+                        <td>{formData.properties.formSprinkler.defect}</td>
+                        <td>{formData.properties.formSprinkler.repaired}</td>
+                      </tr>
+                    </tbody>
+                    <br></br>
+                    <thead>
+                      <tr>
+                        <th scope="col">ID Ubicacion</th>
+                        <th scope="col">Coodenadas</th>
+                        <th scope="col">Tipo Ubicacion</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">{formData.properties.formSprinkler.spid}</th>
+                        <td>{formData.geometry.gid}</td>
+                        <td>{formData.geometry.coordinates.join(", ")}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               )}
             </Tab>
 
@@ -238,15 +257,17 @@ export function ButtonG({ data, onButtonClick }) {
         </Modal.Footer>
       </Modal>
 
-      <Modal show={showModal2} onHide={closeModal2} centered>
+      <Modal show={showModal2}
+        onHide={closeModal2}
+        centered-top>
         <Modal.Header closeButton>
           <Modal.Title>Asignar Tarea</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group controlId="formOpcionesDesplegables">
-              <Form.Label>Ejecutor</Form.Label>
-              <Dropdown onSelect={handleOpcionSeleccionada}>
+              <Form.Label><h4>Ejecutor</h4></Form.Label>
+              <Dropdown onSelect={handleOpcionSeleccionada1}>
                 <Dropdown.Toggle
                   variant="secondary"
                   id="dropdown-basic"
@@ -255,7 +276,7 @@ export function ButtonG({ data, onButtonClick }) {
                   aria-expanded="false"
                   setTextoInput="Seleccione Fecha"
                 >
-                  {opcionSeleccionada ? opcionSeleccionada : "Seleccionar opción"}
+                  {opcionSeleccionada1 ? opcionSeleccionada1 : "Seleccionar opción"}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item eventKey="Opción 1">Opción 1</Dropdown.Item>
@@ -263,26 +284,36 @@ export function ButtonG({ data, onButtonClick }) {
                   <Dropdown.Item eventKey="Opción 3">Opción 3</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-              <Form.Label>Plazo</Form.Label>
-              <DatePicker
-                selected={fechaInicio}
-                onChange={handleFechaInicioChange}
-                dateFormat="dd/MM/yyyy"
-                className="form-control"
-              />
-              <DatePicker
-                selected={fechaFin}
-                onChange={handleFechaFinChange}
-                dateFormat="dd/MM/yyyy"
-                className="form-control"
-              /><Form.Label>Total de Días: {diasEntreFechas}</Form.Label>
-
-
-              <Form.Label>Prioridad</Form.Label>
-              <Dropdown onSelect={handleOpcionSeleccionada}>
+              <Form.Label><h4>Plazo</h4></Form.Label>
+              <div className="date-pickers-container">
+                <div>
+                  <span>Desde:</span>
+                  <DatePicker
+                    selected={fechaInicio}
+                    onChange={handleFechaInicioChange}
+                    dateFormat="dd/MM/yyyy"
+                    className="form-control datepicker-sm"
+                  />
+                </div>
+                <div>
+                  <span>Hasta:</span>
+                  <DatePicker
+                    selected={fechaFin}
+                    onChange={handleFechaFinChange}
+                    dateFormat="dd/MM/yyyy"
+                    className="form-control datepicker-sm ml-2"
+                  />
+                </div>
+                <div className="total-days">
+                  <span>Total de Días: {diasEntreFechas}</span>
+                </div>
+              </div>
+              <Form.Label><h4>Prioridad</h4></Form.Label>
+              <Dropdown onSelect={handleOpcionSeleccionada2}>
                 <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                  {opcionSeleccionada ? opcionSeleccionada : "Seleccionar opción"}
+                  {opcionSeleccionada2 ? opcionSeleccionada2 : "Seleccionar opción"}
                 </Dropdown.Toggle>
+
                 <Dropdown.Menu>
                   <Dropdown.Item eventKey="Opción Alta">Alta</Dropdown.Item>
                   <Dropdown.Item eventKey="Opción Media">Media</Dropdown.Item>
@@ -292,7 +323,7 @@ export function ButtonG({ data, onButtonClick }) {
             </Form.Group>
 
             <Form.Group controlId="formTextoInput">
-              <Form.Label>Observaciones</Form.Label>
+              <Form.Label><h4>Observaciones</h4></Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Escriba el texto aqui"

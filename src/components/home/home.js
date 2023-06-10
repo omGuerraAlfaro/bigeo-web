@@ -12,7 +12,7 @@ import Footer from "../footer/footer";
 function HomeViewAdmin(props) {
   const [currentPage, setCurrentPage] = useState(0);
   const elementsPerPage = 5;
-  const nombreUser = localStorage.getItem('name_user');
+  const nombreUser = localStorage.getItem("name_user");
 
   const handleClick = () => {
     console.log("click");
@@ -24,35 +24,39 @@ function HomeViewAdmin(props) {
   const [tableData, setTableData] = useState([]);
   const [error, setError] = useState(null);
 
-  const fetchTableData = async () => {
-    try {
-      const url = 'http://localhost:3400/forms';
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-
-      const response = await axios.get(url, config);
-      setTableData(response.data);
-      console.log(response.data);
-    } catch (error) {
-      setError("Error al obtener los datos de la tabla: " + error);
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
-    fetchTableData();
+    const url = "http://localhost:3400/forms";
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(url, config);
+        const data = response.data;
+        setTableData(data);
+        // Hacer algo con los datos
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setError(error.message);
+      }
+    };
+
+    fetchData();
   }, []);
 
-  const displayedData = (tableData || []).slice(currentPage * elementsPerPage, (currentPage * elementsPerPage) + elementsPerPage);
+  const displayedData = (tableData || []).slice(
+    currentPage * elementsPerPage,
+    currentPage * elementsPerPage + elementsPerPage
+  );
 
   return (
     <div>
       <Navbar nombreUser={nombreUser} />
 
-      <img src={fondo} className="fondo"></img>
+      <img src={fondo} className="fondo" alt="background" />
       <div className="container data-table">
         <div className="container-rounded">
           <div className="container d-flex g-3 justify-content-end">
@@ -82,7 +86,7 @@ function HomeViewAdmin(props) {
             </div>
           </div>
           <h1 className="titulo">Lista Tareas</h1>
-          <div class="table-responsive">
+          <div className="table-responsive">
             <div className="scroll">
               <table className="table table-striped table-responsive">
                 <thead>
@@ -92,7 +96,7 @@ function HomeViewAdmin(props) {
                     <th scope="col">Fecha y Hora</th>
                     <th scope="col">Sector</th>
                     <th scope="col">Tipo Sector</th>
-                    <th scope="col" class="text-center">
+                    <th scope="col" className="text-center">
                       Acciones
                     </th>
                   </tr>
@@ -128,7 +132,6 @@ function HomeViewAdmin(props) {
             subContainerClassName={"pages pagination"}
             activeClassName={"active"}
           />
-
         </div>
       </div>
       <Footer className="footer" />
