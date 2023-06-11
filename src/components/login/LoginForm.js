@@ -32,11 +32,11 @@ function LoginForm(props) {
 
         console.log(response.data.token);
 
-        console.log(response.data.userExist.username);
+        console.log(response.data.user.username);
 
         //Seleccion de usuario
-        if (response.data.userExist != null) {
-          localStorage.setItem('name_user', response.data.userExist.name)
+        if (response.data.user != null) {
+          localStorage.setItem('name_user', response.data.user.name)
           localStorage.setItem('token', response.data.token)
           navigate('/home-admin');
         }
