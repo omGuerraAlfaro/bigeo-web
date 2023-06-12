@@ -145,7 +145,7 @@ export function ButtonG({ data, onButtonClick }) {
       <Modal
         show={showModal}
         onHide={closeModal}
-        centered-top
+        centered-top="true"
         size="lg">
 
         <Modal.Header closeButton>
@@ -159,64 +159,75 @@ export function ButtonG({ data, onButtonClick }) {
           >
             <Tab eventKey="datos" title="Datos">
               {formData && (
-                <div className="container border rounded">
-                  <table className="table table-striped table-responsive">
-                    <thead>
-                      <tr>
-                        <th scope="col">ID Formulario</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Fecha y Hora</th>
-                        <th scope="col">Sector</th>
-                        <th scope="col">Tipo Sector</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">{formData.form_id}</th>
-                        <td>{formData.type}</td>
-                        <td>{formData.properties.dateTime}</td>
-                        <td>{formData.geometry.gid}</td>
-                        <td>{formData.geometry.type}</td>
-                      </tr>
-                    </tbody>
-                    <br></br>
-                    <thead>
-                      <tr>
-                        <th scope="col">Usuario</th>
-                        <th scope="col">ID Aspersor</th>
-                        <th scope="col">Codigo Aspersor</th>
-                        <th scope="col">Defecto</th>
-                        <th scope="col">Reparado</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">{formData.properties.userId}</th>
-                        <td>{formData.properties.formSprinkler.spid}</td>
-                        <td>{formData.properties.formSprinkler.spcode}</td>
-                        <td>{formData.properties.formSprinkler.defect}</td>
-                        <td>{formData.properties.formSprinkler.repaired}</td>
-                      </tr>
-                    </tbody>
-                    <br></br>
-                    <thead>
-                      <tr>
-                        <th scope="col">ID Ubicacion</th>
-                        <th scope="col">Coodenadas</th>
-                        <th scope="col">Tipo Ubicacion</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">{formData.properties.formSprinkler.spid}</th>
-                        <td>{formData.geometry.gid}</td>
-                        <td>{formData.geometry.coordinates.join(", ")}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                <>
+                  <div className="container border rounded table-separate">
+                    <table className="table table-striped table-responsive">
+                      <thead>
+                        <tr>
+                          <th scope="col">ID Formulario</th>
+                          <th scope="col">Tipo</th>
+                          <th scope="col">Fecha y Hora</th>
+                          <th scope="col">Sector</th>
+                          <th scope="col">Tipo Sector</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">{formData.form_id}</th>
+                          <td>{formData.type}</td>
+                          <td>{formData.properties.dateTime}</td>
+                          <td>{formData.geometry.gid}</td>
+                          <td>{formData.geometry.type}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div className="container border rounded table-separate">
+                    <table className="table table-striped table-responsive">
+                      <thead>
+                        <tr>
+                          <th scope="col">Usuario</th>
+                          <th scope="col">ID Aspersor</th>
+                          <th scope="col">Codigo Aspersor</th>
+                          <th scope="col">Defecto</th>
+                          <th scope="col">Reparado</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">{formData.properties.userId}</th>
+                          <td>{formData.properties.formSprinkler.spid}</td>
+                          <td>{formData.properties.formSprinkler.spcode}</td>
+                          <td>{formData.properties.formSprinkler.defect}</td>
+                          <td>{formData.properties.formSprinkler.repaired}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div className="container border rounded table-separate">
+                    <table className="table table-striped table-responsive">
+                      <thead>
+                        <tr>
+                          <th scope="col">ID Ubicacion</th>
+                          <th scope="col">Coodenadas</th>
+                          <th scope="col">Tipo Ubicacion</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">{formData.properties.formSprinkler.spid}</th>
+                          <td>{formData.geometry.gid}</td>
+                          <td>{formData.geometry.coordinates.join(", ")}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </>
               )}
             </Tab>
+
 
             <Tab eventKey="ubicacion" title="Ubicación">
               {
@@ -258,7 +269,7 @@ export function ButtonG({ data, onButtonClick }) {
 
       <Modal show={showModal2}
         onHide={closeModal2}
-        centered-top>
+        centered-top="true">
         <Modal.Header closeButton>
           <Modal.Title>Asignar Tarea</Modal.Title>
         </Modal.Header>
