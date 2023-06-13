@@ -35,13 +35,8 @@ const ButtonFilter = (props) => {
   };
 
   return (
-    <div>
-      <button
-        onClick={() => handleClick(filtro)}
-        className={`btn btn-${color} btn-${tamaño} ${clase} ${activeButton === filtro ? 'active' : ''}`}
-      >
-        {nombre}
-      </button>
+    <div className="row mx-3">
+      <button onClick={() => handleClick(filtro)}className={`btn btn-${color} btn-${tamaño} ${clase} ${activeButton === filtro ? 'active' : ''}`}>{nombre}</button>
       {renderForm()}
     </div>
   );
