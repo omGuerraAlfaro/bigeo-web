@@ -1,0 +1,14 @@
+.active {
+    background-color: rgb(57, 126, 74) !important;
+    color: white;
+}
+
+button{
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 5px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}

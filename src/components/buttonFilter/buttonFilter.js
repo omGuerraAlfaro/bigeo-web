@@ -5,32 +5,42 @@ import { FormUser } from "./formFindFilter/formUser";
 import { FormDate } from "./formFindFilter/formDate";
 
 const ButtonFilter = (props) => {
-  const { clase, nombre, color, tamaño, onClick } = props;
+  const { clase, nombre, color, tamaño, filtro } = props;
 
   const [activeButton, setActiveButton] = useState(null);
 
-  const handleClick = (nombre) => {
-    setActiveButton(nombre);
+  const handleClick = (filtro) => {
+    if (activeButton === filtro) {
+      setActiveButton(null); // desactivar si ya está activo
+    } else {
+      setActiveButton(filtro); // activar si no está activo
+    }
+    console.log(filtro);
   };
 
   const renderForm = () => {
-    switch (activeButton) {
-      case 'Tipo':
-        return <FormType />;
-      case 'Encargado':
-        return <FormUser />;
-      case 'Fecha':
-        return <FormDate />;
-      default:
-        return null;
+    if (activeButton === filtro) {
+      switch (filtro) {
+        case 'tipo':
+          return <FormType />;
+        case 'user':
+          return <FormUser />;
+        case 'fecha':
+          return <FormDate />;
+        default:
+          return null;
+      }
     }
+    return null;
   };
 
   return (
     <div>
       <button
-        className={`btn btn-${color} btn-${tamaño} ${clase}`}
-        onClick={handleClick}>{nombre}
+        onClick={() => handleClick(filtro)}
+        className={`btn btn-${color} btn-${tamaño} ${clase} ${activeButton === filtro ? 'active' : ''}`}
+      >
+        {nombre}
       </button>
       {renderForm()}
     </div>
@@ -38,4 +48,3 @@ const ButtonFilter = (props) => {
 };
 
 export default ButtonFilter;
-

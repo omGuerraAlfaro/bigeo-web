@@ -27,9 +27,7 @@ function HomeViewAdmin(props) {
   const elementsPerPage = 5;
   const nombreUser = localStorage.getItem("name_user");
 
-  const handleClick = () => {
-    console.log("click");
-  };
+
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
   };
@@ -148,24 +146,24 @@ function HomeViewAdmin(props) {
                   <h4 className="text-center">Filtros</h4>
                   <ButtonFilter
                     clase="mx-1"
-                    nombre="Tipo"
-                    color="danger"
+                    nombre="Tipo Formulario"
+                    color="secondary"
                     tamaño="sm"
-                    onClick={handleClick}
+                    filtro="tipo"
                   />
                   <ButtonFilter
                     clase="mx-1"
-                    nombre="Encargado"
+                    nombre="Usuario"
                     color="secondary"
                     tamaño="sm"
-                    onClick={handleClick}
+                    filtro="user"
                   />
                   <ButtonFilter
                     clase="mx-1"
                     nombre="Fecha"
                     color="secondary"
                     tamaño="sm"
-                    onClick={handleClick}
+                    filtro="fecha"
                   />
                 </div>
               </div>
