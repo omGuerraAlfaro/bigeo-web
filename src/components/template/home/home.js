@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
-import { ButtonG } from "../buttonGroupActions/buttonG";
-import ButtonFilter from "../buttonFilter/buttonFilter";
+import { ButtonG } from "../../buttonState/buttonState";
+import ButtonFilter from "../../buttonFilter/buttonFilter";
 import fondo from "../../assets/img/fondoPalta.jpg";
-import Navbar from "../navbar/navbar";
+import Navbar from "../../theme/navbar/navbar";
 import "./home.css";
-import Footer from "../footer/footer";
+import Footer from "../../theme/footer/footer";
 
 
 function HomeViewAdmin(props) {

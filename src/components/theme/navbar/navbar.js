@@ -1,12 +1,12 @@
 import './navbar.css';
 import React from "react";
-import logo from "../../assets/img/LogoBIGEO.png";
+import logo from "../../../assets/img/LogoBIGEO.png";
 
 const Navbar = ({ nombreUser }) => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="#">
+      <a className="navbar-brand" href="localhost">
         <img src={logo} width="150px" className="logo" alt="Logo" />
       </a>
 
@@ -27,7 +27,7 @@ const Navbar = ({ nombreUser }) => {
           <li className="nav-item dropdown">
             <a
               className="nav-link dropdown-toggle"
-              href="#"
+              href="localhost"
               id="navbarDropdown"
               role="button"
               data-bs-toggle="dropdown" // Cambiado "data-toggle" a "data-bs-toggle"
@@ -37,11 +37,11 @@ const Navbar = ({ nombreUser }) => {
               Hola, {nombreUser}
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="#">
+              <a className="dropdown-item" href="localhost">
                 Perfil
               </a>
               <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="#">
+              <a className="dropdown-item" href="localhost">
                 Cerrar Sesión
               </a>
             </div>
