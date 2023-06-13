@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
     color: white;
-    background-image: url(../../assets/img/fondo.jpg);
+    background-image: url(../../../assets/img/fondo.jpg);
     background-repeat: no-repeat;
     background-position: center-center;
     background-attachment: fixed;
@@ -20,7 +20,7 @@
 }
 
 #logo {
-    background-image: url(../../assets/img/LogoBIGEO.png);
+    background-image: url(../../../assets/img/LogoBIGEO.png);
     background-size: 235px;
     background-position: center;
     object-position: top left;

@@ -5,10 +5,10 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 //components
-import LoginForm from './components/login/LoginForm';
-import HomeViewAdmin from './components/home/home';
+import LoginForm from '../src/components/template/login/LoginForm';
+import HomeViewAdmin from '../src/components/template/home/home';
 
-// Agrega el enlace al archivo CSS de Mapbox aquí
+// Mapbox
 const link = document.createElement('link');
 link.href = 'https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css';
 link.rel = 'stylesheet';

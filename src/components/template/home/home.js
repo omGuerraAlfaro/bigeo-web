@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
 import { ButtonG } from "../../buttonState/buttonState";
 import ButtonFilter from "../../buttonFilter/buttonFilter";
-import fondo from "../../assets/img/fondoPalta.jpg";
+import fondo from "../../../assets/img/fondoPalta.jpg";
 import Navbar from "../../theme/navbar/navbar";
 import "./home.css";
 import Footer from "../../theme/footer/footer";

@@ -20,7 +20,7 @@
 }
 
 .fondo {
-    background-image: url(../../assets/img/fondoPalta.jpg);
+    background-image: url(../../../assets/img/fondoPalta.jpg);
     position: absolute;
     background-position: top left;
     background-repeat: no-repeat;
