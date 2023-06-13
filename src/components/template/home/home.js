@@ -70,103 +70,110 @@ function HomeViewAdmin(props) {
       <Navbar nombreUser={nombreUser} />
 
       <img src={fondo} className="fondo" alt="background" />
-      <div className="container data-table">
+      <div className="container-flow mx-5 data-table">
         <div className="container-rounded">
-          <div className="container d-flex g-3 justify-content-end">
-            <div className="border rounded p-1">
-              <h6 className="text-center">Filtrar por:</h6>
-              <ButtonFilter
-                clase="mx-1"
-                nombre="Tipo"
-                color="danger"
-                tamaño="sm"
-                onClick={handleClick}
-              />
-              <ButtonFilter
-                clase="mx-1"
-                nombre="Encargado"
-                color="secondary"
-                tamaño="sm"
-                onClick={handleClick}
-              />
-              <ButtonFilter
-                clase="mx-1"
-                nombre="Fecha"
-                color="secondary"
-                tamaño="sm"
-                onClick={handleClick}
-              />
-            </div>
-          </div>
-          <h1 className="titulo">Lista Tareas</h1>
-          <div className="table-responsive">
-            <div className="scroll">
-              <table className="table table-striped table-responsive">
-                <thead>
-                  <tr>
-                    <th scope="col" className="text-center">Acciones</th>
-                    <th scope="col">Usuario Responsable</th>
-                    <th scope="col">Fecha y Hora</th>
-                    <th scope="col" className="text-center">Datos Formularios</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {displayedData.map((item) => {
-                    let formComponent;
-
-                    if (item.properties.formSprinkler) {
-                      formComponent = <HomeSprinklerForm formData={item} nameForm={"Aspersor"} />;
-                    } else if (item.properties.formCompaction) {
-                      formComponent = <HomeCompactionForm formData={item} nameForm={"Compactación"} />;
-                    } else if (item.properties.formCount) {
-                      formComponent = <HomeCountForm formData={item} nameForm={"Conteo"} />;
-                    } else if (item.properties.formDamage) {
-                      formComponent = <HomeDamageForm formData={item} nameForm={"Daño"} />;
-                    } else if (item.properties.formDiseases) {
-                      formComponent = <HomeDiseasesForm formData={item} nameForm={"Enfermedades"} />;
-                    } else if (item.properties.formFauna) {
-                      formComponent = <HomeFaunaForm formData={item} nameForm={"Fauna"} />;
-                    } else if (item.properties.formGirdling) {
-                      formComponent = <HomeGirdlingForm formData={item} nameForm={"Anillado"} />;
-                    } else if (item.properties.formHumidity) {
-                      formComponent = <HomeHumidityForm formData={item} nameForm={"Humedad"} />;
-                    } else if (item.properties.formPlague) {
-                      formComponent = <HomePlagueForm formData={item} nameForm={"Plaga"} />;
-                    }
-
-                    return (
-                      <tr key={item.id}>
-                        <th scope="row" className="text-center">
-                          <ButtonState data={item} onButtonClick={(item) => console.log(item)} />
-                        </th>
-                        <th scope="row">{item.properties.userId}</th>
-                        <td>{item.properties.dateTime}</td>
-                        <td>
-                          {formComponent}
-                        </td>
+          <div className="row">
+            <div className="col-10">
+              <h1 className="titulo">Lista Tareas</h1>
+              <div className="table-responsive">
+                <div className="scroll">
+                  <table className="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col" className="text-center">Acciones</th>
+                        <th scope="col">Usuario Responsable</th>
+                        <th scope="col">Fecha y Hora</th>
+                        <th scope="col" className="text-center">Datos Formularios</th>
                       </tr>
-                    )
-                  })}
-                </tbody>
-              </table>
-              {error && <p>Error: {error}</p>}
+                    </thead>
+                    <tbody>
+                      {displayedData.map((item) => {
+                        let formComponent;
+
+                        if (item.properties.formSprinkler) {
+                          formComponent = <HomeSprinklerForm formData={item} nameForm={"Aspersor"} />;
+                        } else if (item.properties.formCompaction) {
+                          formComponent = <HomeCompactionForm formData={item} nameForm={"Compactación"} />;
+                        } else if (item.properties.formCount) {
+                          formComponent = <HomeCountForm formData={item} nameForm={"Conteo"} />;
+                        } else if (item.properties.formDamage) {
+                          formComponent = <HomeDamageForm formData={item} nameForm={"Daño"} />;
+                        } else if (item.properties.formDiseases) {
+                          formComponent = <HomeDiseasesForm formData={item} nameForm={"Enfermedades"} />;
+                        } else if (item.properties.formFauna) {
+                          formComponent = <HomeFaunaForm formData={item} nameForm={"Fauna"} />;
+                        } else if (item.properties.formGirdling) {
+                          formComponent = <HomeGirdlingForm formData={item} nameForm={"Anillado"} />;
+                        } else if (item.properties.formHumidity) {
+                          formComponent = <HomeHumidityForm formData={item} nameForm={"Humedad"} />;
+                        } else if (item.properties.formPlague) {
+                          formComponent = <HomePlagueForm formData={item} nameForm={"Plaga"} />;
+                        }
+
+                        return (
+                          <tr key={item.id}>
+                            <th scope="row" className="text-center">
+                              <ButtonState data={item} onButtonClick={(item) => console.log(item)} />
+                            </th>
+                            <th scope="row">{item.properties.userId}</th>
+                            <td>{item.properties.dateTime}</td>
+                            <td>
+                              {formComponent}
+                            </td>
+                          </tr>
+                        )
+                      })}
+                    </tbody>
+                  </table>
+                  {error && <p>Error: {error}</p>}
+                </div>
+              </div>
+              <ReactPaginate
+                previousLabel={"Anterior"}
+                nextLabel={"Siguiente"}
+                breakLabel={"..."}
+                breakClassName={"break-me"}
+                pageCount={Math.ceil((tableData?.length || 0) / elementsPerPage)}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={handlePageChange}
+                containerClassName={"pagination"}
+                subContainerClassName={"pages pagination"}
+                activeClassName={"active"}
+              />
+            </div>
+            <div className="col-2">
+              <div className="container d-flex justify-content-center py-5">
+                <div className="border rounded p-1">
+                  <h4 className="text-center">Filtros</h4>
+                  <ButtonFilter
+                    clase="mx-1"
+                    nombre="Tipo"
+                    color="danger"
+                    tamaño="sm"
+                    onClick={handleClick}
+                  />
+                  <ButtonFilter
+                    clase="mx-1"
+                    nombre="Encargado"
+                    color="secondary"
+                    tamaño="sm"
+                    onClick={handleClick}
+                  />
+                  <ButtonFilter
+                    clase="mx-1"
+                    nombre="Fecha"
+                    color="secondary"
+                    tamaño="sm"
+                    onClick={handleClick}
+                  />
+                </div>
+              </div>
             </div>
           </div>
-          <ReactPaginate
-            previousLabel={"Anterior"}
-            nextLabel={"Siguiente"}
-            breakLabel={"..."}
-            breakClassName={"break-me"}
-            pageCount={Math.ceil((tableData?.length || 0) / elementsPerPage)}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
-            onPageChange={handlePageChange}
-            containerClassName={"pagination"}
-            subContainerClassName={"pages pagination"}
-            activeClassName={"active"}
-          />
         </div>
       </div>
+
       <Footer className="footer" />
     </div>
   );

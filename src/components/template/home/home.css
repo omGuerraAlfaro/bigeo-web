@@ -7,7 +7,7 @@
 }
 
 .data-table {
-    margin-top: 80px;
+    margin-top: 40px;
 }
 
 .scroll {
@@ -28,7 +28,7 @@
     opacity: 0.5;
     width: 100%;
     z-index: -1;
-    height: 90vh;
+    height: 80vh;
 }
 
 
@@ -84,6 +84,6 @@
     height: 600px;
     overflow-y: auto;
     flex: 1;
-    margin-bottom: 80px;
+    margin-bottom: 20px;
 }
 
