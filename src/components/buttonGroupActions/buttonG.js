@@ -5,6 +5,17 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import MapComponent from "../geolocation/geolocation";
 
+//filter forms
+import { FaunaForm } from "../filterTable/formFauna";
+import { GirdlingForm } from "../filterTable/formGirdling";
+import { HumidityForm } from "../filterTable/formHumidity";
+import { PlagueForm } from "../filterTable/formPlague";
+import { SprinklerForm } from "../filterTable/formSprinkler";
+import { CompactionForm } from "../filterTable/formCompaction";
+import { DiseasesForm } from "../filterTable/formDiseases";
+import { CountForm } from "../filterTable/formCount";
+import { DamageForm } from "../filterTable/formDamage";
+
 export function ButtonG({ data, onButtonClick }) {
   //states
 
@@ -183,41 +194,46 @@ export function ButtonG({ data, onButtonClick }) {
                     </table>
                   </div>
 
-                  <div className="container border rounded table-separate">
-                    <table className="table table-striped table-responsive">
-                      <thead>
-                        <tr>
-                          <th scope="col">Usuario</th>
-                          <th scope="col">ID Aspersor</th>
-                          <th scope="col">Codigo Aspersor</th>
-                          <th scope="col">Defecto</th>
-                          <th scope="col">Reparado</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">{formData.properties.userId}</th>
-                          <td>{formData.properties.formSprinkler.spid}</td>
-                          <td>{formData.properties.formSprinkler.spcode}</td>
-                          <td>{formData.properties.formSprinkler.defect}</td>
-                          <td>{formData.properties.formSprinkler.repaired}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+                  {
+                    formData.properties.formCompaction && <CompactionForm formData={formData} nameForm={"Compactación"} />
+                  }
+                  {
+                    formData.properties.formCount && <CountForm formData={formData} nameForm={"Conteo"} />
+                  }
+                  {
+                    formData.properties.formDamage && <DamageForm formData={formData} nameForm={"Daño"} />
+                  }
+                  {
+                    formData.properties.formDiseases && <DiseasesForm formData={formData} nameForm={"Enfermedades"} />
+                  }
+                  {
+                    formData.properties.formFauna && <FaunaForm formData={formData} nameForm={"Fauna"} />
+                  }
+                  {
+                    formData.properties.formGirdling && <GirdlingForm formData={formData} nameForm={"Anillado"} />
+                  }
+                  {
+                    formData.properties.formHumidity && <HumidityForm formData={formData} nameForm={"Humedad"} />
+                  }
+                  {
+                    formData.properties.formPlague && <PlagueForm formData={formData} nameForm={"Plaga"} />
+                  }
+                  {
+                    formData.properties.formSprinkler && <SprinklerForm formData={formData} nameForm={"Aspersor"} />
+                  }
 
                   <div className="container border rounded table-separate">
                     <table className="table table-striped table-responsive">
                       <thead>
                         <tr>
-                          <th scope="col">ID Ubicacion</th>
+                          <th scope="col"></th>
                           <th scope="col">Coodenadas</th>
                           <th scope="col">Tipo Ubicacion</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <th scope="row">{formData.properties.formSprinkler.spid}</th>
+                          <th scope="row">{formData.properties.userId}</th>
                           <td>{formData.geometry.gid}</td>
                           <td>{formData.geometry.coordinates.join(", ")}</td>
                         </tr>

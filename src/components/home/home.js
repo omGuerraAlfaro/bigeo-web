@@ -9,6 +9,7 @@ import Navbar from "../navbar/navbar";
 import "./home.css";
 import Footer from "../footer/footer";
 
+
 function HomeViewAdmin(props) {
   const [currentPage, setCurrentPage] = useState(0);
   const elementsPerPage = 5;
