@@ -6,17 +6,17 @@ import "react-datepicker/dist/react-datepicker.css";
 import MapComponent from "../geolocation/geolocation";
 
 //filter forms
-import { FaunaForm } from "../filterTable/formFauna";
-import { GirdlingForm } from "../filterTable/formGirdling";
-import { HumidityForm } from "../filterTable/formHumidity";
-import { PlagueForm } from "../filterTable/formPlague";
-import { SprinklerForm } from "../filterTable/formSprinkler";
-import { CompactionForm } from "../filterTable/formCompaction";
-import { DiseasesForm } from "../filterTable/formDiseases";
-import { CountForm } from "../filterTable/formCount";
-import { DamageForm } from "../filterTable/formDamage";
+import { FaunaForm } from "../filterTableModal/formFauna";
+import { GirdlingForm } from "../filterTableModal/formGirdling";
+import { HumidityForm } from "../filterTableModal/formHumidity";
+import { PlagueForm } from "../filterTableModal/formPlague";
+import { SprinklerForm } from "../filterTableModal/formSprinkler";
+import { CompactionForm } from "../filterTableModal/formCompaction";
+import { DiseasesForm } from "../filterTableModal/formDiseases";
+import { CountForm } from "../filterTableModal/formCount";
+import { DamageForm } from "../filterTableModal/formDamage";
 
-export function ButtonG({ data, onButtonClick }) {
+export function ButtonState({ data, onButtonClick }) {
   //states
 
   const [estado, setEstado] = useState('No Leído');

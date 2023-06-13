@@ -2,12 +2,24 @@ import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
-import { ButtonG } from "../../buttonState/buttonState";
+import { ButtonState } from "../../buttonState/buttonState";
 import ButtonFilter from "../../buttonFilter/buttonFilter";
 import fondo from "../../../assets/img/fondoPalta.jpg";
 import Navbar from "../../theme/navbar/navbar";
 import "./home.css";
 import Footer from "../../theme/footer/footer";
+
+//Formularios
+import { HomeSprinklerForm } from "../../filterTableHome/HomeformSprinkler";
+import { HomeFaunaForm } from "../../filterTableHome/HomeformFauna";
+import { HomeCountForm } from "../../filterTableHome/HomeformCount";
+import { HomeHumidityForm } from "../../filterTableHome/HomeformHumidity";
+import { HomePlagueForm } from "../../filterTableHome/HomeformPlague";
+import { HomeGirdlingForm } from "../../filterTableHome/HomeformGirdling";
+import { HomeDiseasesForm } from "../../filterTableHome/HomeformDiseases";
+import { HomeDamageForm } from "../../filterTableHome/HomeformDamage";
+import { HomeCompactionForm } from "../../filterTableHome/HomeformCompaction";
+
 
 
 function HomeViewAdmin(props) {
@@ -92,29 +104,49 @@ function HomeViewAdmin(props) {
               <table className="table table-striped table-responsive">
                 <thead>
                   <tr>
-                    <th scope="col">ID Formulario</th>
-                    <th scope="col">Tipo</th>
+                    <th scope="col" className="text-center">Acciones</th>
+                    <th scope="col">Usuario Responsable</th>
                     <th scope="col">Fecha y Hora</th>
-                    <th scope="col">Sector</th>
-                    <th scope="col">Tipo Sector</th>
-                    <th scope="col" className="text-center">
-                      Acciones
-                    </th>
+                    <th scope="col" className="text-center">Datos Formularios</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {displayedData.map((item) => (
-                    <tr key={item.id}>
-                      <th scope="row">{item.form_id}</th>
-                      <td>{item.type}</td>
-                      <td>{item.properties.dateTime}</td>
-                      <td>{item.geometry.gid}</td>
-                      <td>{item.geometry.type}</td>
-                      <td className="text-center">
-                        <ButtonG data={item} onButtonClick={(selectedItem) => console.log(selectedItem)} />
-                      </td>
-                    </tr>
-                  ))}
+                  {displayedData.map((item) => {
+                    let formComponent;
+
+                    if (item.properties.formSprinkler) {
+                      formComponent = <HomeSprinklerForm formData={item} nameForm={"Aspersor"} />;
+                    } else if (item.properties.formCompaction) {
+                      formComponent = <HomeCompactionForm formData={item} nameForm={"Compactación"} />;
+                    } else if (item.properties.formCount) {
+                      formComponent = <HomeCountForm formData={item} nameForm={"Conteo"} />;
+                    } else if (item.properties.formDamage) {
+                      formComponent = <HomeDamageForm formData={item} nameForm={"Daño"} />;
+                    } else if (item.properties.formDiseases) {
+                      formComponent = <HomeDiseasesForm formData={item} nameForm={"Enfermedades"} />;
+                    } else if (item.properties.formFauna) {
+                      formComponent = <HomeFaunaForm formData={item} nameForm={"Fauna"} />;
+                    } else if (item.properties.formGirdling) {
+                      formComponent = <HomeGirdlingForm formData={item} nameForm={"Anillado"} />;
+                    } else if (item.properties.formHumidity) {
+                      formComponent = <HomeHumidityForm formData={item} nameForm={"Humedad"} />;
+                    } else if (item.properties.formPlague) {
+                      formComponent = <HomePlagueForm formData={item} nameForm={"Plaga"} />;
+                    }
+
+                    return (
+                      <tr key={item.id}>
+                        <th scope="row" className="text-center">
+                          <ButtonState data={item} onButtonClick={(item) => console.log(item)} />
+                        </th>
+                        <th scope="row">{item.properties.userId}</th>
+                        <td>{item.properties.dateTime}</td>
+                        <td>
+                          {formComponent}
+                        </td>
+                      </tr>
+                    )
+                  })}
                 </tbody>
               </table>
               {error && <p>Error: {error}</p>}
