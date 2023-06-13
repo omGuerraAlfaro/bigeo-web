@@ -1,5 +1,3 @@
-import { ButtonState } from "../buttonState/buttonState";
-
 export function HomeHumidityForm({ formData, nameForm }) {
     return (
         <div className="container border rounded table-separate">
@@ -13,9 +11,6 @@ export function HomeHumidityForm({ formData, nameForm }) {
                         <td>{formData.properties.formHumidity.moisture60}</td>
                         <td>{formData.properties.formHumidity.roots}</td>
                         <td>{formData.properties.formHumidity.observation}</td>
-                        <td className="text-center">
-                            <ButtonState data={formData} onButtonClick={(formData) => console.log(formData)} />
-                        </td>
                     </tr>
                 </tbody>
             </table>

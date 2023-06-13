@@ -1,5 +1,3 @@
-import { ButtonState } from "../buttonState/buttonState";
-
 export function HomePlagueForm({ formData, nameForm }) {
     return (
         <div className="container border rounded table-separate">
@@ -12,9 +10,6 @@ export function HomePlagueForm({ formData, nameForm }) {
                         <td>{formData.properties.formPlague.level}</td>
                         <td>{formData.properties.formPlague.population}</td>
                         <td>{formData.properties.formPlague.observation}</td>
-                        <td className="text-center">
-                            <ButtonState data={formData} onButtonClick={(formData) => console.log(formData)} />
-                        </td>
                     </tr>
                 </tbody>
             </table>

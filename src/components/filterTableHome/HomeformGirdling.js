@@ -1,5 +1,3 @@
-import { ButtonState } from "../buttonState/buttonState";
-
 export function HomeGirdlingForm({ formData, nameForm }) {
     return (
         <div className="container border rounded table-separate">
@@ -19,9 +17,6 @@ export function HomeGirdlingForm({ formData, nameForm }) {
                         <td>{formData.properties.formGirdling.cantGirdling}</td>
                         <td>{formData.properties.formGirdling.injectedTree}</td>
                         <td>{formData.properties.formGirdling.observation}</td>
-                        <td className="text-center">
-                            <ButtonState data={formData} onButtonClick={(formData) => console.log(formData)} />
-                        </td>
                     </tr>
                 </tbody>
             </table>

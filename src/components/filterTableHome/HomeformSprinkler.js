@@ -1,5 +1,3 @@
-import { ButtonState } from "../buttonState/buttonState";
-
 export function HomeSprinklerForm({ formData, nameForm }) {
     return (
         <div className="container border rounded table-separate">
@@ -24,8 +22,6 @@ export function HomeSprinklerForm({ formData, nameForm }) {
                     </tr>
                 </tbody>
             </table>
-
-
         </div>
     );
 }
