@@ -1,12 +1,33 @@
 import './navbar.css';
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/img/LogoBIGEO.png";
 
+
 const Navbar = ({ nombreUser }) => {
+  const [mostrarDropdown, setMostrarDropdown] = useState(false);
+  const navigate = useNavigate();
+
+  const toggleDropdown = () => {
+    setMostrarDropdown(!mostrarDropdown);
+  };
+
+  const logout = () => {
+    localStorage.setItem('token', '');
+    localStorage.setItem('name_user', '');
+    navigate('/');
+  };
+
+  const handleProfileClick = (e) => {
+    e.preventDefault();
+    //  "Perfil"
+  };
+
+
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="localhost">
+      <a className="navbar-brand" href="/home-admin">
         <img src={logo} width="150px" className="logo" alt="Logo" />
       </a>
 
@@ -27,21 +48,22 @@ const Navbar = ({ nombreUser }) => {
           <li className="nav-item dropdown">
             <a
               className="nav-link dropdown-toggle"
-              href="localhost"
               id="navbarDropdown"
               role="button"
-              data-bs-toggle="dropdown" // Cambiado "data-toggle" a "data-bs-toggle"
+              onClick={toggleDropdown}
               aria-haspopup="true"
-              aria-expanded="false"
+              aria-expanded={mostrarDropdown}
             >
               Hola, {nombreUser}
             </a>
-            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="localhost">
+            <div className={`dropdown-menu ${mostrarDropdown ? "show" : ""}`}
+              aria-labelledby="navbarDropdown"
+            >
+              <a className="dropdown-item" href="/home-admin" onClick={handleProfileClick}>
                 Perfil
               </a>
               <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="localhost">
+              <a className="dropdown-item" href="/home-admin" onClick={logout}>
                 Cerrar Sesión
               </a>
             </div>

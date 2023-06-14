@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-//components
 import LoginForm from '../src/components/template/login/LoginForm';
 import HomeViewAdmin from '../src/components/template/home/home';
+import AuthGuard from '../src/auth/authGuard';
 
-// Mapbox
 const link = document.createElement('link');
 link.href = 'https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css';
 link.rel = 'stylesheet';
@@ -20,7 +18,11 @@ root.render(
     <Router>
       <Routes>
         <Route path="/" element={<LoginForm />} /> 
-        <Route path="/home-admin" element={<HomeViewAdmin />} /> 
+        <Route path="/home-admin" element={
+          <AuthGuard>
+            <HomeViewAdmin />
+          </AuthGuard>
+        } />
       </Routes>
     </Router>
   </React.StrictMode>

@@ -109,7 +109,7 @@ function HomeViewAdmin(props) {
                         }
 
                         return (
-                          <tr key={item.id}>
+                          <tr key={item.form_id}>
                             <th scope="row" className="text-center">
                               <ButtonState data={item} onButtonClick={(item) => console.log(item)} />
                             </th>
@@ -145,21 +145,21 @@ function HomeViewAdmin(props) {
                 <div className="border rounded p-1">
                   <h4 className="text-center">Filtros</h4>
                   <ButtonFilter
-                    clase="mx-1"
+                    clase="mx-1 my-2 px-5"
                     nombre="Tipo Formulario"
                     color="secondary"
                     tamaño="sm"
                     filtro="tipo"
                   />
                   <ButtonFilter
-                    clase="mx-1"
+                    clase="mx-1 my-2 px-5"
                     nombre="Usuario"
                     color="secondary"
                     tamaño="sm"
                     filtro="user"
                   />
                   <ButtonFilter
-                    clase="mx-1"
+                    clase="mx-1 my-2 px-5"
                     nombre="Fecha"
                     color="secondary"
                     tamaño="sm"
