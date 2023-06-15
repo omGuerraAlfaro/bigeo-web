@@ -5,7 +5,7 @@ import { FormUser } from "./formFindFilter/formUser";
 import { FormDate } from "./formFindFilter/formDate";
 
 const ButtonFilter = (props) => {
-  const { clase, nombre, color, tamaño, filtro } = props;
+  const { clase, nombre, color, tamaño, filtro, onFilterChange } = props;
 
   const [activeButton, setActiveButton] = useState(null);
 
@@ -22,11 +22,11 @@ const ButtonFilter = (props) => {
     if (activeButton === filtro) {
       switch (filtro) {
         case 'tipo':
-          return <FormType />;
+          return <FormType onFormSubmit={onFilterChange} />;
         case 'user':
-          return <FormUser />;
+          return <FormUser onFormSubmit={onFilterChange} />;
         case 'fecha':
-          return <FormDate />;
+          return <FormDate onFormSubmit={onFilterChange} />;
         default:
           return null;
       }

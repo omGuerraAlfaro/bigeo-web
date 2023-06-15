@@ -16,12 +16,12 @@ export function HumidityForm({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.properties.formHumidity.hmdid}</td>
-                        <td>{formData.properties.formHumidity.moisture20}</td>
-                        <td>{formData.properties.formHumidity.moisture40}</td>
-                        <td>{formData.properties.formHumidity.moisture60}</td>
-                        <td>{formData.properties.formHumidity.roots}</td>
-                        <td>{formData.properties.formHumidity.observation}</td>
+                        <td>{formData.__properties__.formHumidity.hmdid}</td>
+                        <td>{formData.__properties__.formHumidity.moisture20}</td>
+                        <td>{formData.__properties__.formHumidity.moisture40}</td>
+                        <td>{formData.__properties__.formHumidity.moisture60}</td>
+                        <td>{formData.__properties__.formHumidity.roots}</td>
+                        <td>{formData.__properties__.formHumidity.observation}</td>
                     </tr>
                 </tbody>
             </table>

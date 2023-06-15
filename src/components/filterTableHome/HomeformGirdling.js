@@ -5,18 +5,18 @@ export function HomeGirdlingForm({ formData, nameForm }) {
             <table className="table table-sm table-striped table-responsive">
                 <tbody>
                     <tr>
-                        <td>{formData.properties.formGirdling.girid}</td>
-                        <td>{formData.properties.formGirdling.administration}</td>
-                        <td>{formData.properties.formGirdling.area}</td>
-                        <td>{formData.properties.formGirdling.sector}</td>
-                        <td>{formData.properties.formGirdling.percent}</td>
-                        <td>{formData.properties.formGirdling.stuckGirdling}</td>
-                        <td>{formData.properties.formGirdling.deepGirdling}</td>
-                        <td>{formData.properties.formGirdling.heightGirdling}</td>
-                        <td>{formData.properties.formGirdling.markGirdling}</td>
-                        <td>{formData.properties.formGirdling.cantGirdling}</td>
-                        <td>{formData.properties.formGirdling.injectedTree}</td>
-                        <td>{formData.properties.formGirdling.observation}</td>
+                        <td>{formData.__properties__.formGirdling.girid}</td>
+                        <td>{formData.__properties__.formGirdling.administration}</td>
+                        <td>{formData.__properties__.formGirdling.area}</td>
+                        <td>{formData.__properties__.formGirdling.sector}</td>
+                        <td>{formData.__properties__.formGirdling.percent}</td>
+                        <td>{formData.__properties__.formGirdling.stuckGirdling}</td>
+                        <td>{formData.__properties__.formGirdling.deepGirdling}</td>
+                        <td>{formData.__properties__.formGirdling.heightGirdling}</td>
+                        <td>{formData.__properties__.formGirdling.markGirdling}</td>
+                        <td>{formData.__properties__.formGirdling.cantGirdling}</td>
+                        <td>{formData.__properties__.formGirdling.injectedTree}</td>
+                        <td>{formData.__properties__.formGirdling.observation}</td>
                     </tr>
                 </tbody>
             </table>

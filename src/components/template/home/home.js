@@ -27,6 +27,10 @@ function HomeViewAdmin(props) {
   const elementsPerPage = 5;
   const nombreUser = localStorage.getItem("name_user");
 
+  const [filterType, setFilterType] = useState(null);
+  const [filterUser, setFilterUser] = useState(null);
+  const [filterDate, setFilterDate] = useState(null);
+
 
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
@@ -36,7 +40,16 @@ function HomeViewAdmin(props) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const url = "http://localhost:3400/forms";
+    let url = "http://localhost:3400/forms";
+
+    if (filterType) {
+      url += `/type/${filterType}`;
+    } else if (filterUser) {
+      url += `/user/${filterUser}`;
+    } else if (filterDate) {
+      url += `/date/${filterDate}`;
+    }
+
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +61,6 @@ function HomeViewAdmin(props) {
         const response = await axios.get(url, config);
         const data = response.data;
         setTableData(data);
-        // Hacer algo con los datos
       } catch (error) {
         console.error("Error fetching data:", error);
         setError(error.message);
@@ -56,12 +68,13 @@ function HomeViewAdmin(props) {
     };
 
     fetchData();
-  }, []);
+  }, [filterType, filterUser, filterDate]);
 
   const displayedData = (tableData || []).slice(
     currentPage * elementsPerPage,
     currentPage * elementsPerPage + elementsPerPage
   );
+  console.log(displayedData);
 
   return (
     <div>
@@ -79,8 +92,8 @@ function HomeViewAdmin(props) {
                     <thead>
                       <tr>
                         <th scope="col" className="text-center">Acciones</th>
-                        <th scope="col">Usuario Responsable</th>
-                        <th scope="col">Fecha y Hora</th>
+                        <th scope="col" className="text-center">Usuario Responsable</th>
+                        <th scope="col" className="text-center">Fecha y Hora</th>
                         <th scope="col" className="text-center">Datos Formularios</th>
                       </tr>
                     </thead>
@@ -88,33 +101,33 @@ function HomeViewAdmin(props) {
                       {displayedData.map((item) => {
                         let formComponent;
 
-                        if (item.properties.formSprinkler) {
+                        if (item.__properties__.formSprinkler) {
                           formComponent = <HomeSprinklerForm formData={item} nameForm={"Aspersor"} />;
-                        } else if (item.properties.formCompaction) {
+                        } else if (item.__properties__.formCompaction) {
                           formComponent = <HomeCompactionForm formData={item} nameForm={"Compactación"} />;
-                        } else if (item.properties.formCount) {
+                        } else if (item.__properties__.formCount) {
                           formComponent = <HomeCountForm formData={item} nameForm={"Conteo"} />;
-                        } else if (item.properties.formDamage) {
+                        } else if (item.__properties__.formDamage) {
                           formComponent = <HomeDamageForm formData={item} nameForm={"Daño"} />;
-                        } else if (item.properties.formDiseases) {
+                        } else if (item.__properties__.formDiseases) {
                           formComponent = <HomeDiseasesForm formData={item} nameForm={"Enfermedades"} />;
-                        } else if (item.properties.formFauna) {
+                        } else if (item.__properties__.formFauna) {
                           formComponent = <HomeFaunaForm formData={item} nameForm={"Fauna"} />;
-                        } else if (item.properties.formGirdling) {
+                        } else if (item.__properties__.formGirdling) {
                           formComponent = <HomeGirdlingForm formData={item} nameForm={"Anillado"} />;
-                        } else if (item.properties.formHumidity) {
+                        } else if (item.__properties__.formHumidity) {
                           formComponent = <HomeHumidityForm formData={item} nameForm={"Humedad"} />;
-                        } else if (item.properties.formPlague) {
+                        } else if (item.__properties__.formPlague) {
                           formComponent = <HomePlagueForm formData={item} nameForm={"Plaga"} />;
                         }
 
                         return (
                           <tr key={item.form_id}>
-                            <th scope="row" className="text-center">
+                            <th scope="row" className="text-center align-middle">
                               <ButtonState data={item} onButtonClick={(item) => console.log(item)} />
                             </th>
-                            <th scope="row">{item.properties.userId}</th>
-                            <td>{item.properties.dateTime}</td>
+                            <th scope="row" className="text-center align-middle">{item.__properties__.userId}</th>
+                            <td className="text-center align-middle">{new Date(item.__properties__.dateTime).toLocaleDateString()}</td>
                             <td>
                               {formComponent}
                             </td>
@@ -150,6 +163,7 @@ function HomeViewAdmin(props) {
                     color="secondary"
                     tamaño="sm"
                     filtro="tipo"
+                    onFilterChange={setFilterType}
                   />
                   <ButtonFilter
                     clase="mx-1 my-2 px-5"
@@ -157,6 +171,7 @@ function HomeViewAdmin(props) {
                     color="secondary"
                     tamaño="sm"
                     filtro="user"
+                    onFilterChange={setFilterUser}
                   />
                   <ButtonFilter
                     clase="mx-1 my-2 px-5"
@@ -164,6 +179,7 @@ function HomeViewAdmin(props) {
                     color="secondary"
                     tamaño="sm"
                     filtro="fecha"
+                    onFilterChange={setFilterDate}
                   />
                 </div>
               </div>

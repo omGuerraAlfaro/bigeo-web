@@ -12,9 +12,9 @@ export function CountForm({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.properties.formCount.cntid}</td>
-                        <td>{formData.properties.formCount.hasFruit}</td>
-                        <td>{formData.properties.formCount.observation}</td>
+                        <td>{formData.__properties__.formCount.cntid}</td>
+                        <td>{formData.__properties__.formCount.hasFruit}</td>
+                        <td>{formData.__properties__.formCount.observation}</td>
                     </tr>
                 </tbody>
             </table>

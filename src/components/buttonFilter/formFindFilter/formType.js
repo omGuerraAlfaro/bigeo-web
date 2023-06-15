@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export function FormType() {
+export function FormType({ onFormSubmit }) {
     const [tipo, setTipo] = useState("");
     const [formData, setFormData] = useState({
         formSprinkler: null,
@@ -19,6 +19,7 @@ export function FormType() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(`Tipo enviado: ${tipo}`);
+        onFormSubmit(tipo);
     };
 
     useEffect(() => {

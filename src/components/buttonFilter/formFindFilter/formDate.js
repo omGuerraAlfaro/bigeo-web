@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export function FormDate() {
+export function FormDate({ onFormSubmit }) {
     const [fecha, setFecha] = useState("");
     const [data, setData] = useState(null);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(`Fecha enviada: ${fecha}`);
+        onFormSubmit(fecha);
     };
 
     useEffect(() => {

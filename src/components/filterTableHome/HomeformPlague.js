@@ -14,11 +14,11 @@ export function HomePlagueForm({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.properties.formPlague.plid}</td>
-                        <td>{formData.properties.formPlague.plague}</td>
-                        <td>{formData.properties.formPlague.level}</td>
-                        <td>{formData.properties.formPlague.population}</td>
-                        <td>{formData.properties.formPlague.observation}</td>
+                        <td>{formData.__properties__.formPlague.plid}</td>
+                        <td>{formData.__properties__.formPlague.plague}</td>
+                        <td>{formData.__properties__.formPlague.level}</td>
+                        <td>{formData.__properties__.formPlague.population}</td>
+                        <td>{formData.__properties__.formPlague.observation}</td>
                     </tr>
                 </tbody>
             </table>

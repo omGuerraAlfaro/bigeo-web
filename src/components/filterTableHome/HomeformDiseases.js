@@ -5,10 +5,10 @@ export function HomeDiseasesForm({ formData, nameForm}) {
             <table className="table table-sm table-striped table-responsive">
                 <tbody>
                     <tr>
-                        <td>{formData.properties.formDiseases.disid}</td>
-                        <td>{formData.properties.formDiseases.diseases}</td>
-                        <td>{formData.properties.formDiseases.level}</td>
-                        <td>{formData.properties.formDiseases.observation}</td>
+                        <td>{formData.__properties__.formDiseases.disid}</td>
+                        <td>{formData.__properties__.formDiseases.diseases}</td>
+                        <td>{formData.__properties__.formDiseases.level}</td>
+                        <td>{formData.__properties__.formDiseases.observation}</td>
                     </tr>
                 </tbody>
             </table>

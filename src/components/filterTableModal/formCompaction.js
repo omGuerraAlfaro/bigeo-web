@@ -12,9 +12,9 @@ export function CompactionForm({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.properties.formCompaction.cptid}</td>
-                        <td>{formData.properties.formCompaction.pressure}</td>
-                        <td>{formData.properties.formCompaction.observation}</td>
+                        <td>{formData.__properties__.formCompaction.cptid}</td>
+                        <td>{formData.__properties__.formCompaction.pressure}</td>
+                        <td>{formData.__properties__.formCompaction.observation}</td>
                     </tr>
                 </tbody>
             </table>

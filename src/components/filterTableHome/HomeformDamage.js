@@ -12,9 +12,9 @@ export function HomeDamageForm({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.properties.formDamage.dmgid}</td>
-                        <td>{formData.properties.formDamage.damage}</td>
-                        <td>{formData.properties.formDamage.observation}</td>
+                        <td>{formData.__properties__.formDamage.dmgid}</td>
+                        <td>{formData.__properties__.formDamage.damage}</td>
+                        <td>{formData.__properties__.formDamage.observation}</td>
                     </tr>
                 </tbody>
             </table>

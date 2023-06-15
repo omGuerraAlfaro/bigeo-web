@@ -186,7 +186,7 @@ export function ButtonState({ data, onButtonClick }) {
                         <tr>
                           <th scope="row">{formData.form_id}</th>
                           <td>{formData.type}</td>
-                          <td>{formData.properties.dateTime}</td>
+                          <td>{formData.__properties__.dateTime}</td>
                           <td>{formData.geometry.gid}</td>
                           <td>{formData.geometry.type}</td>
                         </tr>
@@ -195,31 +195,31 @@ export function ButtonState({ data, onButtonClick }) {
                   </div>
 
                   {
-                    formData.properties.formCompaction && <CompactionForm formData={formData} nameForm={"Compactación"} />
+                    formData.__properties__.formCompaction && <CompactionForm formData={formData} nameForm={"Compactación"} />
                   }
                   {
-                    formData.properties.formCount && <CountForm formData={formData} nameForm={"Conteo"} />
+                    formData.__properties__.formCount && <CountForm formData={formData} nameForm={"Conteo"} />
                   }
                   {
-                    formData.properties.formDamage && <DamageForm formData={formData} nameForm={"Daño"} />
+                    formData.__properties__.formDamage && <DamageForm formData={formData} nameForm={"Daño"} />
                   }
                   {
-                    formData.properties.formDiseases && <DiseasesForm formData={formData} nameForm={"Enfermedades"} />
+                    formData.__properties__.formDiseases && <DiseasesForm formData={formData} nameForm={"Enfermedades"} />
                   }
                   {
-                    formData.properties.formFauna && <FaunaForm formData={formData} nameForm={"Fauna"} />
+                    formData.__properties__.formFauna && <FaunaForm formData={formData} nameForm={"Fauna"} />
                   }
                   {
-                    formData.properties.formGirdling && <GirdlingForm formData={formData} nameForm={"Anillado"} />
+                    formData.__properties__.formGirdling && <GirdlingForm formData={formData} nameForm={"Anillado"} />
                   }
                   {
-                    formData.properties.formHumidity && <HumidityForm formData={formData} nameForm={"Humedad"} />
+                    formData.__properties__.formHumidity && <HumidityForm formData={formData} nameForm={"Humedad"} />
                   }
                   {
-                    formData.properties.formPlague && <PlagueForm formData={formData} nameForm={"Plaga"} />
+                    formData.__properties__.formPlague && <PlagueForm formData={formData} nameForm={"Plaga"} />
                   }
                   {
-                    formData.properties.formSprinkler && <SprinklerForm formData={formData} nameForm={"Aspersor"} />
+                    formData.__properties__.formSprinkler && <SprinklerForm formData={formData} nameForm={"Aspersor"} />
                   }
 
                   <div className="container border rounded table-separate">
@@ -233,7 +233,7 @@ export function ButtonState({ data, onButtonClick }) {
                       </thead>
                       <tbody>
                         <tr>
-                          <th scope="row">{formData.properties.userId}</th>
+                          <th scope="row">{formData.__properties__.userId}</th>
                           <td>{formData.geometry.gid}</td>
                           <td>{formData.geometry.coordinates.join(", ")}</td>
                         </tr>

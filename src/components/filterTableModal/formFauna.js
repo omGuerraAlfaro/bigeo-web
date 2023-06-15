@@ -14,11 +14,11 @@ export function FaunaForm({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.properties.formFauna.fauid}</td>
-                        <td>{formData.properties.formFauna.fauna}</td>
-                        <td>{formData.properties.formFauna.quantity}</td>
-                        <td>{formData.properties.formFauna.hint}</td>
-                        <td>{formData.properties.formFauna.observation}</td>
+                        <td>{formData.__properties__.formFauna.fauid}</td>
+                        <td>{formData.__properties__.formFauna.fauna}</td>
+                        <td>{formData.__properties__.formFauna.quantity}</td>
+                        <td>{formData.__properties__.formFauna.hint}</td>
+                        <td>{formData.__properties__.formFauna.observation}</td>
                     </tr>
                 </tbody>
             </table>

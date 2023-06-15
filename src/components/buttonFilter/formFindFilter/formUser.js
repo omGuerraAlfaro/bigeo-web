@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export function FormUser() {
+export function FormUser({ onFormSubmit }) {
     const [encargado, setEncargado] = useState("");
-
     const [users, setUsers] = useState([]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(`Encargado enviado: ${encargado}`);
+        onFormSubmit(encargado);
     };
 
     useEffect(() => {
@@ -23,6 +23,21 @@ export function FormUser() {
 
         fetchUsers();
     }, []);
+
+    useEffect(() => {
+        if (encargado) {
+            const fetchUserData = async () => {
+                try {
+                    const response = await axios.get(`http://localhost:3400/users/${encargado}`);
+                    // hacer algo con los datos del usuario
+                } catch (error) {
+                    console.error(`Error fetching user data for ${encargado}:`, error);
+                }
+            }
+    
+            fetchUserData();
+        }
+    }, [encargado]);
 
     return (
         <div>

@@ -14,11 +14,11 @@ export function SprinklerForm({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.properties.formSprinkler.spid}</td>
-                        <td>{formData.properties.formSprinkler.spcode}</td>
-                        <td>{formData.properties.formSprinkler.defect}</td>
-                        <td>{formData.properties.formSprinkler.repaired}</td>
-                        <td>{formData.properties.formSprinkler.observation}</td>
+                        <td>{formData.__properties__.formSprinkler.spid}</td>
+                        <td>{formData.__properties__.formSprinkler.spcode}</td>
+                        <td>{formData.__properties__.formSprinkler.defect}</td>
+                        <td>{formData.__properties__.formSprinkler.repaired}</td>
+                        <td>{formData.__properties__.formSprinkler.observation}</td>
                     </tr>
                 </tbody>
             </table>
