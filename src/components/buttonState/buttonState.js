@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Button, Tabs, Tab, Form, Dropdown } from "react-bootstrap";
 import "./buttonState.css";
 import DatePicker from "react-datepicker";
@@ -16,11 +16,25 @@ import { DiseasesForm } from "../filterTableModal/formDiseases";
 import { CountForm } from "../filterTableModal/formCount";
 import { DamageForm } from "../filterTableModal/formDamage";
 
+//icons
+import sprinkler from '../../assets/icon/sprinkler.png';
+import tractor from '../../assets/icon/tractor.png';
+import tree from '../../assets/icon/tree.png';
+import patch from '../../assets/icon/patch.png';
+import heart from '../../assets/icon/heart.png';
+import rabbit from '../../assets/icon/rabbit.png';
+import pruningshears from '../../assets/icon/pruning-shears.png';
+import humidity from '../../assets/icon/humidity.png';
+import plague from '../../assets/icon/plague.png';
+
+
+
 export function ButtonState({ data, onButtonClick }) {
   //states
 
   const [estado, setEstado] = useState('No Leído');
   const formData = data;
+  const formType = data.__properties__;
 
   const marcarLeido = () => {
     setEstado('Leído');
@@ -34,17 +48,32 @@ export function ButtonState({ data, onButtonClick }) {
     setEstado('Finalizado');
   };
 
+
+
   //tabs
   const [activeTab, setActiveTab] = useState('datos');
   const [textoInput, setTextoInput] = useState('');
 
   const [opcionSeleccionada1, setOpcionSeleccionada1] = useState('');
   const [opcionSeleccionada2, setOpcionSeleccionada2] = useState('');
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3400/users")
+      .then(response => response.json())
+      .then(data => {
+        setUsers(data);
+      })
+      .catch(error => {
+        console.error("Error al obtener la lista de usuarios:", error);
+      });
+  }, []);
 
 
   const handleTabSelect = (tabName) => {
     setActiveTab(tabName);
   };
+
   const handleOpcionSeleccionada1 = (opcion) => {
     setOpcionSeleccionada1(opcion);
   };
@@ -108,7 +137,7 @@ export function ButtonState({ data, onButtonClick }) {
 
   const handleGuardarAsignar = () => {
     // Aquí puedes realizar la lógica para guardar y asignar la tarea
-    console.log("Guardar y asignar tarea:", opcionSeleccionada1, textoInput);
+    console.log("Guardar y asignar tarea:", textoInput);
     closeModal();
 
 
@@ -227,7 +256,7 @@ export function ButtonState({ data, onButtonClick }) {
                       <thead>
                         <tr>
                           <th scope="col"></th>
-                          <th scope="col">Coodenadas</th>
+                          <th scope="col">Coordenadas</th>
                           <th scope="col">Tipo Ubicacion</th>
                         </tr>
                       </thead>
@@ -266,14 +295,58 @@ export function ButtonState({ data, onButtonClick }) {
             </Tab>
 
             <Tab eventKey="imagen" title="Imagen">
-              {formData && (
-                <div>
-                  <img src={formData.imagen} alt="Imagen del formulario" />
-                  <p>Nombre del formulario: {formData.nombreFormulario}</p>
-                  <p>Estado: {formData.estado}</p>
-                </div>
-              )}
+              {
+                formData && formData.properties && Object.entries(formData.properties).map(([key, value]) => {
+                  if (value === null) return null; // Si el valor es nulo, no hagas nada
+                  let imagen;
+
+                  switch (key) {
+                    case 'formSprinkler':
+                      imagen = <img style={{ width: "650px" }} src={sprinkler} alt="Imagen del formulario" />;
+                      break;
+                    case 'formCompaction':
+                      imagen = <img style={{ width: "650px" }} src={tractor} alt="Imagen del formulario" />;
+                      break;
+                    case 'formCount':
+                      imagen = <img style={{ width: "650px" }} src={tree} alt="Imagen del formulario" />;
+                      break;
+                    case 'formDamage':
+                      imagen = <img style={{ width: "650px" }} src={patch} alt="Imagen del formulario" />;
+                      break;
+                    case 'formDiseases':
+                      imagen = <img style={{ width: "650px" }} src={heart} alt="Imagen del formulario" />;
+                      break;
+                    case 'formFauna':
+                      imagen = <img style={{ width: "650px" }} src={rabbit} alt="Imagen del formulario" />;
+                      break;
+                    case 'formGirdling':
+                      imagen = <img style={{ width: "650px" }} src={pruningshears} alt="Imagen del formulario" />;
+                      break;
+                    case 'formHumidity':
+                      imagen = <img style={{ width: "650px" }} src={humidity} alt="Imagen del formulario" />;
+                      break;
+                    case 'formPlague':
+                      imagen = <img style={{ width: "650px" }} src={plague} alt="Imagen del formulario" />;
+                      break;
+                    default:
+                      return null; // Si la clave no coincide con ninguna de las esperadas, no hagas nada
+                  }
+
+                  return (
+                    <div>
+                      {imagen}
+                      <p>Nombre del formulario:</p>
+                      <p>Estado:</p>
+                    </div>
+                  )
+                })
+              }
             </Tab>
+
+
+
+
+
           </Tabs>
         </Modal.Body>
         <Modal.Footer>
@@ -292,22 +365,26 @@ export function ButtonState({ data, onButtonClick }) {
         <Modal.Body>
           <Form>
             <Form.Group controlId="formOpcionesDesplegables">
-              <Form.Label><h4>Ejecutor</h4></Form.Label>
-              <Dropdown onSelect={handleOpcionSeleccionada1}>
-                <Dropdown.Toggle
-                  variant="secondary"
-                  id="dropdown-basic"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  setTextoInput="Seleccione Fecha"
-                >
-                  {opcionSeleccionada1 ? opcionSeleccionada1 : "Seleccionar opción"}
+              <Form.Label>
+                <h4>Ejecutor</h4>
+              </Form.Label>
+              <Dropdown className="users-select" onSelect={handleOpcionSeleccionada1}>
+                <Dropdown.Toggle variant="secondary" id="users">
+                  {opcionSeleccionada1 ? opcionSeleccionada1 : "Seleccionar Usuario"}
                 </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item eventKey="Opción 1">Opción 1</Dropdown.Item>
-                  <Dropdown.Item eventKey="Opción 2">Opción 2</Dropdown.Item>
-                  <Dropdown.Item eventKey="Opción 3">Opción 3</Dropdown.Item>
+                <Dropdown.Menu type="submit" value="Submit">
+                  {users.map((user, index) => (
+                    <Dropdown.Item
+                      key={index}
+                      eventKey={user.username}
+                      onSelect={(eventKey) => {
+                        handleOpcionSeleccionada1(eventKey);
+                        setUsers(eventKey);
+                      }}
+                    >
+                      {user.username}
+                    </Dropdown.Item>
+                  ))}
                 </Dropdown.Menu>
               </Dropdown>
               <Form.Label><h4>Plazo</h4></Form.Label>
@@ -337,13 +414,13 @@ export function ButtonState({ data, onButtonClick }) {
               <Form.Label><h4>Prioridad</h4></Form.Label>
               <Dropdown onSelect={handleOpcionSeleccionada2}>
                 <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                  {opcionSeleccionada2 ? opcionSeleccionada2 : "Seleccionar opción"}
+                  {opcionSeleccionada2 ? opcionSeleccionada2 : "Seleccionar nivel"}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item eventKey="Opción Alta">Alta</Dropdown.Item>
-                  <Dropdown.Item eventKey="Opción Media">Media</Dropdown.Item>
-                  <Dropdown.Item eventKey="Opción Baja">Baja</Dropdown.Item>
+                  <Dropdown.Item eventKey="Alta">Alta</Dropdown.Item>
+                  <Dropdown.Item eventKey="Media">Media</Dropdown.Item>
+                  <Dropdown.Item eventKey="Baja">Baja</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Form.Group>
@@ -362,7 +439,7 @@ export function ButtonState({ data, onButtonClick }) {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={closeModal}>
+          <Button variant="secondary" onClick={closeModal2}>
             Cerrar
           </Button>
           <Button variant="primary" onClick={handleGuardarAsignar}>

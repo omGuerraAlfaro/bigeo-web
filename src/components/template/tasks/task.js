@@ -6,7 +6,7 @@ import { ButtonState } from "../../buttonState/buttonState";
 import ButtonFilter from "../../buttonFilter/buttonFilter";
 import fondo from "../../../assets/img/fondoPalta.jpg";
 import Navbar from "../../theme/navbar/navbar";
-import "./home.css";
+import "./tasks.css";
 
 //Formularios
 import { HomeSprinklerForm } from "../../filterTableHome/HomeformSprinkler";
@@ -21,7 +21,7 @@ import { HomeCompactionForm } from "../../filterTableHome/HomeformCompaction";
 
 
 
-function HomeViewAdmin(props) {
+function AssignedTasks(props) {
   const [currentPage, setCurrentPage] = useState(0);
   const elementsPerPage = 5;
   const nombreUser = localStorage.getItem("name_user");
@@ -188,4 +188,4 @@ function HomeViewAdmin(props) {
   );
 }
 
-export default HomeViewAdmin;
+export default AssignedTasks;

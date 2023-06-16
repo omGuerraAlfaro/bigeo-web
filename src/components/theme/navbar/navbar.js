@@ -28,9 +28,9 @@ const Navbar = ({ nombreUser }) => {
 
   return (
     <nav className={`navbar navbar-expand-lg navbar-light bg-light ${navExpanded ? 'show' : ''}`}>
-      <a className="navbar-brand">
+      <div className="navbar-brand">
         <img src={logo} width="150px" className="logo" alt="Logo" />
-      </a>
+      </div>
 
       <button
         onClick={toggleNav}
@@ -48,7 +48,7 @@ const Navbar = ({ nombreUser }) => {
           <div className="col">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item dropdown">
-                <h3
+                <div
                   className="nav-link dropdown-toggle"
                   id="navbarDropdown"
                   role="button"
@@ -57,17 +57,17 @@ const Navbar = ({ nombreUser }) => {
                   aria-expanded={mostrarDropdown}
                 >
                   Bienvenido: {nombreUser}
-                </h3>
+                </div>
                 <div className={`dropdown-menu ${mostrarDropdown ? "show" : ""}`}
                   aria-labelledby="navbarDropdown"
                 >
-                  <a className="dropdown-item" href="/home-admin" onClick={handleProfileClick}>
+                  <div className="dropdown-item" id="pointer" onClick={handleProfileClick}>
                     Perfil
-                  </a>
+                  </div>
                   <div className="dropdown-divider"></div>
-                  <a className="dropdown-item" onClick={logout}>
+                  <div className="dropdown-item" id="pointer" onClick={logout}>
                     Cerrar Sesión
-                  </a>
+                  </div>
                 </div>
               </li>
             </ul>

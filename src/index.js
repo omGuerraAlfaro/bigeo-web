@@ -6,11 +6,13 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginForm from '../src/components/template/login/LoginForm';
 import HomeViewAdmin from '../src/components/template/home/home';
 import AuthGuard from '../src/auth/authGuard';
+import Footer from './components/theme/footer/footer';
 
 const link = document.createElement('link');
 link.href = 'https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css';
 link.rel = 'stylesheet';
 document.head.appendChild(link);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,6 +27,7 @@ root.render(
         } />
       </Routes>
     </Router>
+    <Footer />
   </React.StrictMode>
 );
 
