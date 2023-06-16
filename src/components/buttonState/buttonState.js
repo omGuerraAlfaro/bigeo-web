@@ -295,7 +295,7 @@ export function ButtonState({ data, onButtonClick }) {
             </Tab>
 
             <Tab eventKey="imagen" title="Imagen">
-              {
+              {/* {
                 formData && formData.properties && Object.entries(formData.properties).map(([key, value]) => {
                   if (value === null) return null; // Si el valor es nulo, no hagas nada
                   let imagen;
@@ -340,7 +340,7 @@ export function ButtonState({ data, onButtonClick }) {
                     </div>
                   )
                 })
-              }
+              } */}
             </Tab>
 
 
