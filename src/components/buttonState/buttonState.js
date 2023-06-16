@@ -108,7 +108,7 @@ export function ButtonState({ data, onButtonClick }) {
 
   const handleGuardarAsignar = () => {
     // Aquí puedes realizar la lógica para guardar y asignar la tarea
-    console.log("Guardar y asignar tarea:", opcionSeleccionada, textoInput);
+    console.log("Guardar y asignar tarea:", opcionSeleccionada1, textoInput);
     closeModal();
 
 
