@@ -56,7 +56,7 @@ export function FormType({ onFormSubmit }) {
                         <option key={index} value={formType}>{formType}</option>
                     ))}
                 </select>
-                <input type="submit" value="Submit" className="btn btn-primary mt-2" />
+                <input type="submit" value="Submit" className="btn btn-primary mt-2 px-4" />
             </form>
         </div>
     );

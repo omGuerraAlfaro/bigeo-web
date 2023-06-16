@@ -5,14 +5,12 @@ export function HomeCountForm({ formData, nameForm }) {
             <table className="table table-sm table-striped table-responsive">
                 <thead>
                     <tr>
-                        <th scope="col">ID Conteo</th>
                         <th scope="col">Tiene Fruto</th>
                         <th scope="col">Observaciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.__properties__.formCount.cntid}</td>
                         <td>{formData.__properties__.formCount.hasFruit}</td>
                         <td>{formData.__properties__.formCount.observation}</td>
                     </tr>

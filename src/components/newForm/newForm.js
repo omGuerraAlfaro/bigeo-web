@@ -3,12 +3,13 @@ import "./footer.css";
 
 const initialFormState = {
     type: "",
-    image:null,
+    image: null,
     properties: {
         username: "",
-        nameProperties: "", ....
+        nameProperties: "",
 
-};
+    }
+}
 
 export const NewForm = () => {
     const [form, setForm] = useState(initialFormState);

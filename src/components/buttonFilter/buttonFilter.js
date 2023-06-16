@@ -15,7 +15,6 @@ const ButtonFilter = (props) => {
     } else {
       setActiveButton(filtro); // activar si no está activo
     }
-    console.log(filtro);
   };
 
   const renderForm = () => {

@@ -74,7 +74,6 @@ function HomeViewAdmin(props) {
     currentPage * elementsPerPage,
     currentPage * elementsPerPage + elementsPerPage
   );
-  console.log(displayedData);
 
   return (
     <div>
@@ -84,9 +83,40 @@ function HomeViewAdmin(props) {
       <div className="container-flow mx-5 data-table">
         <div className="container-rounded">
           <div className="row">
-            <div className="col-10">
-              <h1 className="titulo">Lista Tareas</h1>
-              <div className="table-responsive">
+          <div className="col-md-2 col-12">
+              <div className="container d-flex justify-content-center py-5">
+                <div className="border rounded p-1">
+                  <h4 className="text-center">Filtros</h4>
+                  <ButtonFilter
+                    clase="mx-1 my-2 px-5"
+                    nombre="Tipo Formulario"
+                    color="secondary"
+                    tamaño="sm"
+                    filtro="tipo"
+                    onFilterChange={setFilterType}
+                  />
+                  <ButtonFilter
+                    clase="mx-1 my-2 px-5"
+                    nombre="Usuario"
+                    color="secondary"
+                    tamaño="sm"
+                    filtro="user"
+                    onFilterChange={setFilterUser}
+                  />
+                  <ButtonFilter
+                    clase="mx-1 my-2 px-5"
+                    nombre="Fecha"
+                    color="secondary"
+                    tamaño="sm"
+                    filtro="fecha"
+                    onFilterChange={setFilterDate}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="col-md-10 col-12">
+              <h1 className="titulo">Lista de Tareas</h1>
+              <div className="table-responsive overflow-x-auto">
                 <div className="scroll">
                   <table className="table table-striped">
                     <thead>
@@ -146,44 +176,13 @@ function HomeViewAdmin(props) {
                 breakClassName={"break-me"}
                 pageCount={Math.ceil((tableData?.length || 0) / elementsPerPage)}
                 marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
+                pageRangeDisplayed={3}
                 onPageChange={handlePageChange}
                 containerClassName={"pagination"}
                 subContainerClassName={"pages pagination"}
                 activeClassName={"active"}
               />
-            </div>
-            <div className="col-2">
-              <div className="container d-flex justify-content-center py-5">
-                <div className="border rounded p-1">
-                  <h4 className="text-center">Filtros</h4>
-                  <ButtonFilter
-                    clase="mx-1 my-2 px-5"
-                    nombre="Tipo Formulario"
-                    color="secondary"
-                    tamaño="sm"
-                    filtro="tipo"
-                    onFilterChange={setFilterType}
-                  />
-                  <ButtonFilter
-                    clase="mx-1 my-2 px-5"
-                    nombre="Usuario"
-                    color="secondary"
-                    tamaño="sm"
-                    filtro="user"
-                    onFilterChange={setFilterUser}
-                  />
-                  <ButtonFilter
-                    clase="mx-1 my-2 px-5"
-                    nombre="Fecha"
-                    color="secondary"
-                    tamaño="sm"
-                    filtro="fecha"
-                    onFilterChange={setFilterDate}
-                  />
-                </div>
-              </div>
-            </div>
+            </div>            
           </div>
         </div>
       </div>

@@ -5,7 +5,6 @@ export function HomeSprinklerForm({ formData, nameForm }) {
             <table className="table table-sm table-striped table-responsive">
                 <thead>
                     <tr>
-                        <th scope="col">ID Aspersor</th>
                         <th scope="col">Codigo Aspersor</th>
                         <th scope="col">Defecto</th>
                         <th scope="col">Reparado</th>
@@ -14,7 +13,6 @@ export function HomeSprinklerForm({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.__properties__.formSprinkler.spid}</td>
                         <td>{formData.__properties__.formSprinkler.spcode}</td>
                         <td>{formData.__properties__.formSprinkler.defect}</td>
                         <td>{formData.__properties__.formSprinkler.repaired}</td>

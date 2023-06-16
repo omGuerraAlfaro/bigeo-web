@@ -88,3 +88,28 @@
 }
 
 
+@media screen and (max-width: 576px) {
+    .ButtonFilter {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+        margin: 0.5rem 0;
+    }
+
+    .titulo {
+        font-size: 1.2rem;
+    }
+
+    .table thead th {
+        font-size: 0.8rem;
+    }
+
+    .data-table {
+        margin: 1rem 0.5rem;
+    }
+
+    container-rounded {
+        padding: 1rem;
+    }
+
+    
+}

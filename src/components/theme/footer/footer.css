@@ -31,3 +31,35 @@ footer {
 .contact-info {
   margin: 0;
 }
+
+/* Styles for tablets (widths between 768px and 992px) */
+@media screen and (max-width: 992px) and (min-width: 768px) {
+  .logo-image {
+    width: 150px; /* Adjust these sizes based on your needs */
+    height: 75px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-contact {
+    text-align: left;
+  }
+}
+
+/* Styles for mobile phones (widths less than 768px) */
+@media screen and (max-width: 768px) {
+  .logo-image {
+    width: 100px; /* Adjust these sizes based on your needs */
+    height: 50px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-contact {
+    text-align: left;
+  }
+}

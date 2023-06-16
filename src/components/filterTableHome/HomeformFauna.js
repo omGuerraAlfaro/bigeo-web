@@ -5,7 +5,6 @@ export function HomeFaunaForm({ formData, nameForm }) {
             <table className="table table-sm table-sm table-striped table-responsive">
                 <thead>
                     <tr>
-                        <th scope="col">ID Fauna</th>
                         <th scope="col">Fauna</th>
                         <th scope="col">Cantidad</th>
                         <th scope="col">Pista</th>
@@ -14,7 +13,6 @@ export function HomeFaunaForm({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.__properties__.formFauna.fauid}</td>
                         <td>{formData.__properties__.formFauna.fauna}</td>
                         <td>{formData.__properties__.formFauna.quantity}</td>
                         <td>{formData.__properties__.formFauna.hint}</td>

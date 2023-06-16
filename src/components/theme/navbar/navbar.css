@@ -1,37 +1,87 @@
 .logo {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.navbar {
+  padding: 10px 20px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-nav .nav-item {
+  margin-right: 10px;
+}
+
+.nav-link {
+  color: #333;
+}
+
+.nav-link:hover {
+  color: #555;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.toggle {
+  background-color: transparent;
+}
+
+.btn-primary {
+  margin-left: 10px;
+}
+
+/* Styles for tablets (widths between 768px and 992px) */
+@media screen and (max-width: 992px) and (min-width: 768px) {
+  .logo {
+    max-width: 80% !important; /* Adjust this percentage based on your needs */
   }
-  
   .navbar {
-    padding: 10px 20px;
+    padding: 5px 10px;
   }
-  
+
   .navbar-brand {
-    display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  .navbar-nav .nav-item {
-    margin-right: 10px;
-  }
-  
-  .nav-link {
-    color: #333;
-  }
-  
-  .nav-link:hover {
-    color: #555;
-  }
-  
+
   .navbar-toggler {
-    border: none;
+    border: 1px solid #ccc;
   }
-  
-  .toggle {
-    background-color: transparent;
-  }
-  
+
   .btn-primary {
-    margin-left: 10px;
+    margin-left: 5px;
   }
+}
+
+/* Styles for mobile phones (widths less than 768px) */
+@media screen and (max-width: 768px) {
+  .logo {
+    max-width: 60% !important; /* Adjust this percentage based on your needs */
+  }
+  .navbar {
+    padding: 2px 5px;
+  }
+
+  .navbar-brand {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-toggler {
+    border: 1px solid #ccc;
+  }
+
+  .btn-primary {
+    margin-left: 2px;
+  }
+
+  .navbar-nav .nav-item {
+    margin-right: 5px;
+  }
+}
