@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import "./footer.css";
-
 const initialFormState = {
     type: "",
     image: null,
