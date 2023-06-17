@@ -15,17 +15,18 @@ import { CompactionForm } from "../filterTableModal/formCompaction";
 import { DiseasesForm } from "../filterTableModal/formDiseases";
 import { CountForm } from "../filterTableModal/formCount";
 import { DamageForm } from "../filterTableModal/formDamage";
+import NewForm from "../newForm/newForm";
 
 //icons
-import sprinkler from '../../assets/icon/sprinkler.png';
-import tractor from '../../assets/icon/tractor.png';
-import tree from '../../assets/icon/tree.png';
-import patch from '../../assets/icon/patch.png';
-import heart from '../../assets/icon/heart.png';
-import rabbit from '../../assets/icon/rabbit.png';
-import pruningshears from '../../assets/icon/pruning-shears.png';
-import humidity from '../../assets/icon/humidity.png';
-import plague from '../../assets/icon/plague.png';
+// import sprinkler from '../../assets/icon/sprinkler.png';
+// import tractor from '../../assets/icon/tractor.png';
+// import tree from '../../assets/icon/tree.png';
+// import patch from '../../assets/icon/patch.png';
+// import heart from '../../assets/icon/heart.png';
+// import rabbit from '../../assets/icon/rabbit.png';
+// import pruningshears from '../../assets/icon/pruning-shears.png';
+// import humidity from '../../assets/icon/humidity.png';
+// import plague from '../../assets/icon/plague.png';
 
 
 
@@ -98,7 +99,6 @@ export function ButtonState({ data, onButtonClick }) {
 
   const closeModal = () => {
     setShowModal(false);
-    console.log(showModal);
   };
 
   const openModal2 = () => {
@@ -282,8 +282,17 @@ export function ButtonState({ data, onButtonClick }) {
                       (() => {
                         let [lat, lon] = formData.geometry.coordinates;
                         return (
-                          <div className="mapbox-container">
-                            <MapComponent lat={lon} lon={lat} />
+                          <div className="mapbox-container container-fluid">
+                            <div className="row">
+                              <div className="col-12">
+                                <h3>Ubicación</h3>
+                              </div>
+                            </div>
+                            <div className="row">
+                              <div className="col-12">
+                                <MapComponent lat={lon} lon={lat} />
+                              </div>
+                            </div>
                           </div>
                         );
                       })()
@@ -291,7 +300,6 @@ export function ButtonState({ data, onButtonClick }) {
                   </>
                 )
               }
-
             </Tab>
 
             <Tab eventKey="imagen" title="Imagen">
@@ -343,10 +351,6 @@ export function ButtonState({ data, onButtonClick }) {
               } */}
             </Tab>
 
-
-
-
-
           </Tabs>
         </Modal.Body>
         <Modal.Footer>
@@ -363,80 +367,9 @@ export function ButtonState({ data, onButtonClick }) {
           <Modal.Title>Asignar Tarea</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Form.Group controlId="formOpcionesDesplegables">
-              <Form.Label>
-                <h4>Ejecutor</h4>
-              </Form.Label>
-              <Dropdown className="users-select" onSelect={handleOpcionSeleccionada1}>
-                <Dropdown.Toggle variant="secondary" id="users">
-                  {opcionSeleccionada1 ? opcionSeleccionada1 : "Seleccionar Usuario"}
-                </Dropdown.Toggle>
-                <Dropdown.Menu type="submit" value="Submit">
-                  {users.map((user, index) => (
-                    <Dropdown.Item
-                      key={index}
-                      eventKey={user.username}
-                      onSelect={(eventKey) => {
-                        handleOpcionSeleccionada1(eventKey);
-                        setUsers(eventKey);
-                      }}
-                    >
-                      {user.username}
-                    </Dropdown.Item>
-                  ))}
-                </Dropdown.Menu>
-              </Dropdown>
-              <Form.Label><h4>Plazo</h4></Form.Label>
-              <div className="date-pickers-container">
-                <div>
-                  <span>Desde:</span>
-                  <DatePicker
-                    selected={fechaInicio}
-                    onChange={handleFechaInicioChange}
-                    dateFormat="dd/MM/yyyy"
-                    className="form-control datepicker-sm"
-                  />
-                </div>
-                <div>
-                  <span>Hasta:</span>
-                  <DatePicker
-                    selected={fechaFin}
-                    onChange={handleFechaFinChange}
-                    dateFormat="dd/MM/yyyy"
-                    className="form-control datepicker-sm ml-2"
-                  />
-                </div>
-                <div className="total-days">
-                  <span>Total de Días: {diasEntreFechas}</span>
-                </div>
-              </div>
-              <Form.Label><h4>Prioridad</h4></Form.Label>
-              <Dropdown onSelect={handleOpcionSeleccionada2}>
-                <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                  {opcionSeleccionada2 ? opcionSeleccionada2 : "Seleccionar nivel"}
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                  <Dropdown.Item eventKey="Alta">Alta</Dropdown.Item>
-                  <Dropdown.Item eventKey="Media">Media</Dropdown.Item>
-                  <Dropdown.Item eventKey="Baja">Baja</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </Form.Group>
-
-            <Form.Group controlId="formTextoInput">
-              <Form.Label><h4>Observaciones</h4></Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Escriba el texto aqui"
-                value={textoInput}
-                onChange={handleTextoInputChange}
-                as="textarea"
-                rows={3}
-              />
-            </Form.Group>
-          </Form>
+          {/* INGRESO DE ASIGNACION TAREA. */}
+          <NewForm />
+          {/* INGRESO DE ASIGNACION TAREA. */}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={closeModal2}>

@@ -5,11 +5,12 @@ import './geolocation.css';
 mapboxgl.accessToken = 'pk.eyJ1IjoiY3Jpc3RvYmFsLWdhcnJpZG8iLCJhIjoiY2w5bnBkMmowMDRnYjN1bXd1ZW8yNXZkcCJ9.enFPbRymB4K5HWOIWNxfgA';
 
 class MapComponent extends React.Component {
+
+  //document.body.classList.add('body-zoomed');
   mapContainerRef = React.createRef();
 
   componentDidMount() {
     const { lon, lat } = this.props;
-    
     const lonNum = parseFloat(lon);
     const latNum = parseFloat(lat);
 
@@ -20,10 +21,11 @@ class MapComponent extends React.Component {
       zoom: 16,
     });
 
+    this.map.isStyleLoaded();
     this.map.on('load', () => {
-      new mapboxgl.Marker() 
-        .setLngLat([lonNum, latNum]) 
-        .addTo(this.map); 
+      new mapboxgl.Marker()
+        .setLngLat([lonNum, latNum])
+        .addTo(this.map);
     });
   }
 
