@@ -85,3 +85,8 @@
     margin-right: 5px;
   }
 }
+
+
+#pointer{
+  cursor: pointer !important;
+}

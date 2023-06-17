@@ -17,7 +17,6 @@ function HomeViewAdmin(props) {
   return (
     <>
       <Navbar nombreUser={nombreUser} />
-
       <img src={fondo} className="fondo" alt="background" />
 
       <Tabs>
