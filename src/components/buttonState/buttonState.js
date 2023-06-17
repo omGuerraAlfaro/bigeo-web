@@ -368,7 +368,7 @@ export function ButtonState({ data, onButtonClick }) {
         </Modal.Header>
         <Modal.Body>
           {/* INGRESO DE ASIGNACION TAREA. */}
-          <NewForm />
+          <NewForm req={formData}/>
           {/* INGRESO DE ASIGNACION TAREA. */}
         </Modal.Body>
         <Modal.Footer>

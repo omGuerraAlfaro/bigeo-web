@@ -17,7 +17,8 @@ const initialFormState = {
   observation: "",
 }
 
-const NewForm = () => {
+const NewForm = props => {
+    const {formData} = props;
   const [formState, setFormState] = useState(initialFormState);
   const [fechaInicio, setFechaInicio] = useState(null);
   const [fechaFin, setFechaFin] = useState(null);
@@ -52,6 +53,7 @@ const NewForm = () => {
     setFormState({ ...formState, observation: event.target.value });
   };
 
+  console.log(formData);
   return (
     <>
       <Form>
