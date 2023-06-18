@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/img/LogoBIGEO.png";
+import "./navbar.css";
 
 const Navbar = ({ nombreUser }) => {
   const [mostrarDropdown, setMostrarDropdown] = useState(false);
@@ -45,37 +46,27 @@ const Navbar = ({ nombreUser }) => {
 
       <div className={`collapse navbar-collapse ${navExpanded ? 'show' : ''}`} id="navbarSupportedContent">
         <div className="row w-100">
-          <div className="col">
+          <div className="col d-flex justify-content-end">
+            <button type="button" className="btn btn-primary">
+              Notificaciones <span className="badge badge-light">4</span>
+            </button>
             <ul className="navbar-nav mr-auto">
               <li className="nav-item dropdown">
                 <div
-                  className="nav-link dropdown-toggle"
-                  id="navbarDropdown"
-                  role="button"
-                  onClick={toggleDropdown}
-                  aria-haspopup="true"
-                  aria-expanded={mostrarDropdown}
-                >
-                  Bienvenido: {nombreUser}
+                  className="nav-link dropdown-toggle d-flex align-items-center" id="navbarDropdown" role="button" onClick={toggleDropdown} aria-haspopup="true" aria-expanded={mostrarDropdown}>
+                  <h5 className="font-weight-bold">Bienvenido: {nombreUser}</h5>
                 </div>
-                <div className={`dropdown-menu ${mostrarDropdown ? "show" : ""}`}
-                  aria-labelledby="navbarDropdown"
-                >
-                  <div className="dropdown-item" id="pointer" onClick={handleProfileClick}>
+                <div className={`dropdown-menu ${mostrarDropdown ? "show" : ""}`}aria-labelledby="navbarDropdown">
+                  <div className="dropdown-item pointer" onClick={handleProfileClick}>
                     Perfil
                   </div>
                   <div className="dropdown-divider"></div>
-                  <div className="dropdown-item" id="pointer" onClick={logout}>
+                  <div className="dropdown-item pointer" onClick={logout}>
                     Cerrar Sesión
                   </div>
                 </div>
               </li>
             </ul>
-          </div>
-          <div className="col d-flex justify-content-end">
-            <button type="button" className="btn btn-primary">
-              Notificaciones <span className="badge badge-light">4</span>
-            </button>
           </div>
         </div>
       </div>

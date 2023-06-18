@@ -104,7 +104,29 @@ function Task(props) {
                                                     <td className="text-center">{task.status}</td>
                                                     <td className="text-center">{task.assigned_user}</td>
                                                     <td className="text-center">{new Date(task.dateTime).toLocaleString()}</td>
-                                                    <td className="text-center">{JSON.stringify(task.assigned_form)}</td>
+                                                    <td className="text-center">
+                                                        <table className="table table-sm table-striped table-responsive">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">info1</th>
+                                                                    <th scope="col">info1</th>
+                                                                    <th scope="col">info1</th>
+                                                                    <th scope="col">info1</th>
+                                                                    <th scope="col">Observación</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>{task.assigned_form.info_form1}</td>
+                                                                    <td>{task.assigned_form.info_form2}</td>
+                                                                    <td>{task.assigned_form.info_form3}</td>
+                                                                    <td>{task.assigned_form.info_form4}</td>
+                                                                    <td>aslkdjlkasljkdjlkasljkdlajsk</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                    {/* <td className="text-center">{JSON.stringify(task.assigned_form)}</td> */}
                                                 </tr>
                                             ))}
                                         </tbody>
