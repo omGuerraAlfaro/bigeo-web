@@ -1,71 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
-import DatePicker from 'react-datepicker';
-
-// La estructura inicial del estado del formulario
-const initialFormState = {
-  dateTime: "",
-  status: "",
-  assignedUser: "",
-  assignedForm: {
-    info_form1: "",
-    info_form2: "",
-    info_form3: "",
-    info_form4: ""
-  },
-  observation: "",
-}
 
 const NewForm = props => {
-    const {formData} = props;
-  const [formState, setFormState] = useState(initialFormState);
-  const [fechaInicio, setFechaInicio] = useState(null);
-  const [fechaFin, setFechaFin] = useState(null);
-  const [diasEntreFechas, setDiasEntreFechas] = useState(0);
-  const [users, setUsers] = useState([]); // Supongo que debes obtener los usuarios de alguna manera
+  const { formData } = props;
+  const [formState, setFormState] = useState({
+    dateTime: "",
+    status: "",
+    assignedUser: "",
+    assignedForm: formData, // almacenamos formData en assignedForm
+    observation: "",
+    priority: "",
+  });
+  const [users, setUsers] = useState([]);
 
-  const handleOpcionSeleccionada1 = (username) => {
-    setFormState({ ...formState, assignedUser: username });
+  useEffect(() => {
+    fetch("http://localhost:3400/users")
+      .then(response => response.json())
+      .then(data => {
+        console.log("Lista de usuarios:", data);
+        setUsers(data);
+      })
+      .catch(error => {
+        console.error("Error al obtener la lista de usuarios:", error);
+      });
+  }, []);
+
+  const handleUserSelection = (user) => {
+    setFormState(prevState => ({...prevState, assignedUser: user}));
   };
 
-  const handleOpcionSeleccionada2 = (priority) => {
-    setFormState({
-      ...formState,
-      assignedForm: {
-        ...formState.assignedForm,
-        info_form1: priority,
-      },
-    });
+  const handlePrioritySelection = (priority) => {
+    setFormState(prevState => ({...prevState, priority}));
   };
 
-  const handleFechaInicioChange = (date) => {
-    setFechaInicio(date);
-    setFormState({ ...formState, dateTime: new Date().toISOString() });
+  const handleObservationChange = (event) => {
+    setFormState(prevState => ({...prevState, observation: event.target.value}));
   };
 
-  const handleFechaFinChange = (date) => {
-    setFechaFin(date);
-    // Aquí puedes calcular los días entre las fechas y establecer diasEntreFechas
-  };
-
-  const handleTextoInputChange = (event) => {
-    setFormState({ ...formState, observation: event.target.value });
-  };
-
-  console.log(formData);
+  console.log(formState);
   return (
     <>
       <Form>
         <Form.Group controlId="formOpcionesDesplegables">
+
           <Form.Label>
             <h4>Ejecutor</h4>
           </Form.Label>
-          <Dropdown className="users-select" onSelect={handleOpcionSeleccionada1}>
+          <Dropdown className="users-select" onSelect={handleUserSelection}>
             <Dropdown.Toggle variant="secondary" id="users">
               {formState.assignedUser ? formState.assignedUser : "Seleccionar Usuario"}
             </Dropdown.Toggle>
-            <Dropdown.Menu type="submit" value="Submit">
+            <Dropdown.Menu>
               {users.map((user, index) => (
                 <Dropdown.Item
                   key={index}
@@ -76,34 +62,11 @@ const NewForm = props => {
               ))}
             </Dropdown.Menu>
           </Dropdown>
-          <Form.Label><h4>Plazo</h4></Form.Label>
-          <div className="date-pickers-container">
-            <div>
-              <span>Desde:</span>
-              <DatePicker
-                selected={fechaInicio}
-                onChange={handleFechaInicioChange}
-                dateFormat="dd/MM/yyyy"
-                className="form-control datepicker-sm"
-              />
-            </div>
-            <div>
-              <span>Hasta:</span>
-              <DatePicker
-                selected={fechaFin}
-                onChange={handleFechaFinChange}
-                dateFormat="dd/MM/yyyy"
-                className="form-control datepicker-sm ml-2"
-              />
-            </div>
-            <div className="total-days">
-              <span>Total de Días: {diasEntreFechas}</span>
-            </div>
-          </div>
+
           <Form.Label><h4>Prioridad</h4></Form.Label>
-          <Dropdown onSelect={handleOpcionSeleccionada2}>
-            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-              {formState.assignedForm.info_form1 ? formState.assignedForm.info_form1 : "Seleccionar nivel"}
+          <Dropdown onSelect={handlePrioritySelection}>
+            <Dropdown.Toggle variant="secondary" id="dropdown-basic">              
+              {formState.priority ? formState.priority : "Seleccionar Prioridad"}
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
@@ -112,12 +75,12 @@ const NewForm = props => {
               <Dropdown.Item eventKey="Baja">Baja</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
+
           <Form.Label><h4>Observaciones</h4></Form.Label>
           <Form.Control
             type="text"
-            placeholder="Escriba el texto aqui"
-            value={formState.observation}
-            onChange={handleTextoInputChange}
+            placeholder="Escriba el texto aquí"
+            onChange={handleObservationChange}
             as="textarea"
             rows={3}
           />

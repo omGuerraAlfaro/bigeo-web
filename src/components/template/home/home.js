@@ -19,7 +19,7 @@ function HomeViewAdmin(props) {
       <Navbar nombreUser={nombreUser} />
       <img src={fondo} className="fondo" alt="background" />
 
-      <Tabs>
+      <Tabs className="background container-fluid">
         <TabList className="mb-3 zindex">
           <Tab>
             <div>Inicio</div>

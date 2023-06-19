@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Button, Tabs, Tab, Form, Dropdown } from "react-bootstrap";
+import { Modal, Button, Tabs, Tab, } from "react-bootstrap";
 import "./buttonState.css";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import MapComponent from "../geolocation/geolocation";
 
 //filter forms
@@ -35,7 +33,6 @@ export function ButtonState({ data, onButtonClick }) {
 
   const [estado, setEstado] = useState('No Leído');
   const formData = data;
-  const formType = data.__properties__;
 
   const marcarLeido = () => {
     setEstado('Leído');
@@ -63,6 +60,7 @@ export function ButtonState({ data, onButtonClick }) {
     fetch("http://localhost:3400/users")
       .then(response => response.json())
       .then(data => {
+        console.log("Lista de usuarios:", data);
         setUsers(data);
       })
       .catch(error => {
@@ -75,17 +73,7 @@ export function ButtonState({ data, onButtonClick }) {
     setActiveTab(tabName);
   };
 
-  const handleOpcionSeleccionada1 = (opcion) => {
-    setOpcionSeleccionada1(opcion);
-  };
-  const handleOpcionSeleccionada2 = (opcion) => {
-    setOpcionSeleccionada2(opcion);
-  };
-
-  const handleTextoInputChange = (event) => {
-    setTextoInput(event.target.value);
-  };
-
+ 
   //modals
   const [showModal, setShowModal] = useState(false);
   // console.log(showModal);
@@ -109,39 +97,12 @@ export function ButtonState({ data, onButtonClick }) {
     setShowModal2(false);
   };
 
-
-  const [fechaInicio, setFechaInicio] = useState(null);
-  const [fechaFin, setFechaFin] = useState(null);
-  const [diasEntreFechas, setDiasEntreFechas] = useState(0);
-
-  const handleFechaInicioChange = (date) => {
-    setFechaInicio(date);
-    calcularDiasEntreFechas(date, fechaFin);
-  };
-
-  const handleFechaFinChange = (date) => {
-    setFechaFin(date);
-    calcularDiasEntreFechas(fechaInicio, date);
-  };
-
-  const calcularDiasEntreFechas = (inicio, fin) => {
-    if (inicio && fin) {
-      const diferencia = Math.abs(fin - inicio);
-      const dias = Math.ceil(diferencia / (1000 * 60 * 60 * 24));
-      setDiasEntreFechas(dias);
-    } else {
-      setDiasEntreFechas(0);
-    }
-  };
-
+ 
 
   const handleGuardarAsignar = () => {
     // Aquí puedes realizar la lógica para guardar y asignar la tarea
     console.log("Guardar y asignar tarea:", textoInput);
     closeModal();
-
-
-
   };
 
   return (
@@ -156,7 +117,6 @@ export function ButtonState({ data, onButtonClick }) {
             openModal();
             onButtonClick(data);
           }}
-          disabled={estado === 'Leído' | estado === 'Asignado y en Proceso'}
         >
           Ver
         </button>
@@ -166,6 +126,7 @@ export function ButtonState({ data, onButtonClick }) {
           onClick={() => {
             marcarEnProceso();
             openModal2();
+            
           }}
           disabled={estado === 'No Leído' | estado === 'Asignado y en Proceso' | estado === 'Finalizado'}
         >

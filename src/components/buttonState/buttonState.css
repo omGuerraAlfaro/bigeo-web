@@ -27,3 +27,61 @@
 .table-separate {
     margin-top: 20px;
 }
+
+/* Custom CSS for mobile screens */
+@media only screen and (max-width: 600px) {
+    .estado {
+      font-size: 12px;
+    }
+  
+    .table-separate {
+      margin-top: 10px;
+    }
+  
+    .mapbox-container {
+      height: 200px;
+    }
+  
+    .btn-group {
+      flex-direction: column;
+    }
+  }
+  
+  /* Custom CSS for tablet screens */
+  @media only screen and (min-width: 601px) and (max-width: 1024px) {
+    .estado {
+      font-size: 16px;
+    }
+  
+    .table-separate {
+      margin-top: 15px;
+    }
+  
+    .mapbox-container {
+      height: 300px;
+    }
+  
+    .btn-group {
+      flex-direction: row;
+    }
+  }
+  
+  /* Custom CSS for desktop screens */
+  @media only screen and (min-width: 1025px) {
+    .estado {
+      font-size: 20px;
+    }
+  
+    .table-separate {
+      margin-top: 20px;
+    }
+  
+    .mapbox-container {
+      height: 400px;
+    }
+  
+    .btn-group {
+      flex-direction: row;
+    }
+  }
+  

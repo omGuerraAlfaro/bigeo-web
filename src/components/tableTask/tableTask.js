@@ -13,13 +13,13 @@ function Task(props) {
     };
 
     const [tableData, setTableData] = useState([]);
-    const [error, setError] = useState(null);
 
 
     const [filterType, setFilterType] = useState(null);
     const [filterUser, setFilterUser] = useState(null);
     const [filterDate, setFilterDate] = useState(null);
 
+    //get tasks
     useEffect(() => {
         let url = "http://localhost:3400/tasks";
 
@@ -43,6 +43,39 @@ function Task(props) {
 
         fetchData();
     }, []);
+
+    //post tasks
+    useEffect(() => {
+        let url = "http://localhost:3400/tasks";
+
+        // Asumiendo que tienes algunos datos que quieres enviar
+        let newTask = {
+            title: "Mi nueva tarea",
+            description: "Descripción de la tarea"
+            // ...otros campos
+        };
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+
+        const postData = async () => {
+            try {
+                const response = await axios.post(url, newTask, config);
+                const data = response.data;
+                console.log(data);
+                // setTableData(data); // Solo si necesitas actualizar la tabla después de POST
+            } catch (error) {
+                console.error("Error posting data:", error);
+                setError(error.message);
+            }
+        };
+
+        postData();
+    }, []);
+
 
     const displayedData = (tableData || []).slice(
         currentPage * elementsPerPage,
