@@ -2,18 +2,11 @@
     display: none;
 }
 
-.body-zoomed {
-    transform: scale(1.01);
-}
-
-
-
 .map-container {
     width: 750px;
     height: 500px;
     position: relative;
 }
-
 
 
 /* Cambios a aplicar cuando la pantalla es menor a 600px */

@@ -48,11 +48,9 @@ function Task(props) {
     useEffect(() => {
         let url = "http://localhost:3400/tasks";
 
-        // Asumiendo que tienes algunos datos que quieres enviar
         let newTask = {
             title: "Mi nueva tarea",
             description: "Descripción de la tarea"
-            // ...otros campos
         };
 
         const config = {

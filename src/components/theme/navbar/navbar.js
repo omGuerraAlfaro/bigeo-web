@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/img/LogoBIGEO.png";
 import "./navbar.css";
+import axios from "axios";
 
 const Navbar = ({ nombreUser }) => {
+  const [contadorNotificaciones, setContadorNotificaciones] = useState(0);
   const [mostrarDropdown, setMostrarDropdown] = useState(false);
   const [navExpanded, setNavExpanded] = useState(false);
   const navigate = useNavigate();
@@ -27,6 +29,30 @@ const Navbar = ({ nombreUser }) => {
     //  "Perfil"
   };
 
+
+  useEffect(() => {
+    let url = "http://localhost:3400/tasks/count/sin leer";
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(url, config);
+        const data = response.data;
+        setContadorNotificaciones(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  });
+
+
   return (
     <nav className={`navbar navbar-expand-lg navbar-light bg-light ${navExpanded ? 'show' : ''}`}>
       <div className="navbar-brand">
@@ -48,7 +74,7 @@ const Navbar = ({ nombreUser }) => {
         <div className="row w-100">
           <div className="col d-flex justify-content-end">
             <button type="button" className="btn btn-primary">
-              Notificaciones <span className="badge badge-light">4</span>
+              Notificaciones <span className="badge badge-light">{contadorNotificaciones}</span>
             </button>
             <ul className="navbar-nav mr-auto">
               <li className="nav-item dropdown">
