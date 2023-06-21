@@ -17,7 +17,7 @@ export function FormDate({ onFormSubmit }) {
         if (fecha) {
             const fetchData = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:3400/forms/date/${fecha}`);
+                    const response = await axios.get(`http://localhost:3200/forms/date/${fecha}`);
                     console.log(response.data);
                     setData(response.data);
                 } catch (error) {

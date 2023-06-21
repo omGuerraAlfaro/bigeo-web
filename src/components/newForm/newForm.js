@@ -15,7 +15,7 @@ const NewForm = props => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3400/users")
+    fetch("http://localhost:3200/users")
       .then(response => response.json())
       .then(data => {
         console.log("Lista de usuarios:", data);

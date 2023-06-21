@@ -26,7 +26,7 @@ export function FormType({ onFormSubmit }) {
         if (tipo) {
             const fetchFormData = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:3400/forms/type/${tipo}`);
+                    const response = await axios.get(`http://localhost:3200/forms/type/${tipo}`);
                     setFormData((prevState) => ({
                         ...prevState,
                         [tipo]: response.data

@@ -15,13 +15,13 @@ function Task(props) {
     const [tableData, setTableData] = useState([]);
 
 
-    const [filterType, setFilterType] = useState(null);
-    const [filterUser, setFilterUser] = useState(null);
-    const [filterDate, setFilterDate] = useState(null);
+    const [/* filterType */, setFilterType] = useState(null);
+    const [/* filterUser */, setFilterUser] = useState(null);
+    const [/* filterDate */, setFilterDate] = useState(null);
 
     //get tasks
     useEffect(() => {
-        let url = "http://localhost:3400/tasks";
+        let url = "http://localhost:3200/tasks";
 
         const config = {
             headers: {
@@ -46,7 +46,7 @@ function Task(props) {
 
     //post tasks
     useEffect(() => {
-        let url = "http://localhost:3400/tasks";
+        let url = "http://localhost:3200/tasks";
 
         let newTask = {
             title: "Mi nueva tarea",
@@ -71,7 +71,6 @@ function Task(props) {
             }
         };
 
-        postData();
     }, []);
 
 

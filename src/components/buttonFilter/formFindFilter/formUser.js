@@ -14,7 +14,7 @@ export function FormUser({ onFormSubmit }) {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axios.get('http://localhost:3400/users');
+                const response = await axios.get('http://localhost:3200/users');
                 setUsers(response.data);
             } catch (error) {
                 console.error('Error fetching users:', error);
@@ -28,7 +28,7 @@ export function FormUser({ onFormSubmit }) {
         if (encargado) {
             const fetchUserData = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:3400/users/${encargado}`);
+                    const response = await axios.get(`http://localhost:3200/users/${encargado}`);
                     // hacer algo con los datos del usuario
                 } catch (error) {
                     console.error(`Error fetching user data for ${encargado}:`, error);

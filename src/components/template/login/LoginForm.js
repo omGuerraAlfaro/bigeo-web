@@ -17,7 +17,7 @@ function LoginForm(props) {
     console.log('Credentials:', credentials);
   
     try {
-      const url = 'http://localhost:3400/auth/login';
+      const url = 'http://localhost:3200/auth/login';
       const config = {
         headers: {
           'Content-Type': 'application/json',

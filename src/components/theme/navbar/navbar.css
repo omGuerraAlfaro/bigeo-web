@@ -90,3 +90,15 @@
 #pointer{
   cursor: pointer !important;
 }
+
+
+.badge{
+  background-color: #eb4b4b;
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}

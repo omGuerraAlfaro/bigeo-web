@@ -50,14 +50,11 @@ export function ButtonState({ data, onButtonClick }) {
 
   //tabs
   const [activeTab, setActiveTab] = useState('datos');
-  const [textoInput, setTextoInput] = useState('');
 
-  const [opcionSeleccionada1, setOpcionSeleccionada1] = useState('');
-  const [opcionSeleccionada2, setOpcionSeleccionada2] = useState('');
-  const [users, setUsers] = useState([]);
+  const [/* users */, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3400/users")
+    fetch("http://localhost:3200/users")
       .then(response => response.json())
       .then(data => {
         console.log("Lista de usuarios:", data);
