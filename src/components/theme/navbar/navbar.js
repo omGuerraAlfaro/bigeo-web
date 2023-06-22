@@ -31,7 +31,7 @@ const Navbar = ({ nombreUser }) => {
 
 
   useEffect(() => {
-    let url = "http://localhost:3200/tasks/count/sin leer";
+    let url = "http://localhost:3200/tasks/count/no leido";
 
     const config = {
       headers: {
@@ -73,9 +73,7 @@ const Navbar = ({ nombreUser }) => {
       <div className={`collapse navbar-collapse ${navExpanded ? 'show' : ''}`} id="navbarSupportedContent">
         <div className="row w-100">
           <div className="col d-flex justify-content-end">
-            <button type="button" className="btn btn-secondary">
-              Notificaciones <span className="badge">{contadorNotificaciones}</span>
-            </button>
+            
             <ul className="navbar-nav mr-auto">
               <li className="nav-item dropdown">
                 <div
@@ -93,6 +91,9 @@ const Navbar = ({ nombreUser }) => {
                 </div>
               </li>
             </ul>
+            <button type="button" className="btn btn-secondary">
+              Notificaciones <span className="badge">{contadorNotificaciones}</span>
+            </button>
           </div>
         </div>
       </div>

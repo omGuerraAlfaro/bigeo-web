@@ -107,13 +107,14 @@ function Task(props) {
                                             <tr>
                                                 <th scope="col" className="text-center">Usuario Asignado</th>
                                                 <th scope="col" className="text-center">Fecha Asignación</th>
+                                                <th scope="col" className="text-center">Fecha Limite</th>
                                                 <th scope="col" className="text-center">Observaciones</th>
                                                 <th scope="col" className="text-center">Prioridad</th>
                                                 <th scope="col" className="text-center">Datos Formularios</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {displayedData.map((task, index) => {
+                                            {displayedData.map((task) => {
                                                 let formComponent;
 
                                                 if (task.assigned_form.__properties__.formSprinkler) {
@@ -140,7 +141,8 @@ function Task(props) {
                                                     <tr key={task.task_id}>
                                                         <td className="text-center  align-middle">{task.assigned_user}</td>
                                                         <td className="text-center  align-middle">{new Date(task.dateTime).toLocaleDateString()}</td>
-                                                        <td className="text-center textObs  align-middle">{task.observation}</td>
+                                                        <td className="text-center  align-middle">{new Date(task.dateTimeLimit).toLocaleDateString()}</td>
+                                                        <td className="text-center breakTxt align-middle">{task.observation}</td>
                                                         <td className="text-center  align-middle">{task.priority}</td>
                                                         <td>
                                                             {formComponent}

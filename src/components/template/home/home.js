@@ -6,7 +6,7 @@ import "./home.css";
 import fondo from "../../../assets/img/fondoPalta.jpg";
 import Navbar from "../../theme/navbar/navbar";
 import Footer from "../../theme/footer/footer";
-import Home from "../../tableHome/tableHome";
+import Forms from "../../tableHome/tableHome";
 import Task from "../../tableTask/tableTask";
 
 
@@ -30,7 +30,7 @@ function HomeViewAdmin(props) {
         </TabList>
 
         <TabPanel>          
-            <Home />          
+            <Forms />          
         </TabPanel>
 
         <TabPanel>          

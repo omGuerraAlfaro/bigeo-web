@@ -3,14 +3,17 @@ import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import Swal from 'sweetalert2'
+
+import "./newTask.css";
 
 export const NewTask = props => {
   const { data } = props;
-  const [formData, setFormData] = useState(data);
+  const [formData, /* setFormData */] = useState(data);
   const [newTask, setNewTask] = useState({
     dateTime: "",
     dateTimeLimit: "",
-    status: "asignada",
+    status: "Tarea Asignada",
     assigned_user: "",
     assigned_form: formData,
     observation: "",
@@ -42,6 +45,15 @@ export const NewTask = props => {
       const response = await axios.post(url, newTask, config);
       const data = response.data;
       console.log(data);
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Tarea Asignada Exitosamente',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      console.log('Closing modal...');
+      props.closeModal();
     } catch (error) {
       console.error("Error posting data:", error);
     }
@@ -68,15 +80,13 @@ export const NewTask = props => {
   return (
     <>
       <Form>
-        <Form.Group controlId="formOpcionesDesplegables">
-          <Form.Label>
-            <h4 className="mb-3">Ejecutor</h4>
-          </Form.Label>
+        <Form.Group controlId="formOpcionesDesplegables" >
+          <h4 className="mb-3">Ejecutor</h4>
           <Dropdown className="users-select mb-3" onSelect={handleUserSelection}>
             <Dropdown.Toggle variant="secondary" id="users">
               {newTask.assigned_user ? newTask.assigned_user : "Seleccionar Usuario"}
             </Dropdown.Toggle>
-            <Dropdown.Menu>
+            <Dropdown.Menu style={{ maxHeight: '200px', overflowY: 'scroll' }}>
               {users.map((user, index) => (
                 <Dropdown.Item
                   key={index}
@@ -88,9 +98,8 @@ export const NewTask = props => {
             </Dropdown.Menu>
           </Dropdown>
 
-          <Form.Label className="mb-3">
-            <h4>Prioridad</h4>
-          </Form.Label>
+
+          <h4>Prioridad</h4>
           <Dropdown className="mb-3" onSelect={handlePrioritySelection}>
             <Dropdown.Toggle variant="secondary" id="dropdown-basic">
               {newTask.priority ? newTask.priority : "Seleccionar Prioridad"}
@@ -102,18 +111,16 @@ export const NewTask = props => {
             </Dropdown.Menu>
           </Dropdown>
 
-          <Form.Label className="mb-3">
-            <h4>Fecha Límite</h4>
-          </Form.Label>
-          <Form.Control 
+
+          <h4>Fecha Límite</h4>
+          <Form.Control
             type="date"
             onChange={handleDeadlineChange}
             className="mb-3"
           />
 
-          <Form.Label className="mb-3">
-            <h4>Observaciones</h4>
-          </Form.Label>
+
+          <h4>Observaciones</h4>
           <Form.Control
             type="text"
             placeholder="Escriba el texto aquí"
@@ -123,9 +130,11 @@ export const NewTask = props => {
             className="mb-3"
           />
 
-          <Button variant="primary" onClick={handleSubmit}>
-            Submit
-          </Button>
+          <div className="d-flex justify-content-end">
+            <Button variant="primary" onClick={handleSubmit} >
+              Asignar Tarea
+            </Button>
+          </div>
         </Form.Group>
       </Form>
     </>

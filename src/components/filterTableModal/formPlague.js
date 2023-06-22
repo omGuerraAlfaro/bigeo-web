@@ -1,11 +1,10 @@
 export function PlagueForm({ formData, nameForm }) {
     return (
         <div className="container border rounded table-separate">
-            <h6 className="text-center font-weight-bold my-1">Formulario de {nameForm}</h6>
+            <h4 className="text-center font-weight-bold my-1">Formulario de {nameForm}</h4>
             <table className="table table-striped table-responsive">
                 <thead>
                     <tr>
-                        <th scope="col">ID Plaga</th>
                         <th scope="col">Plaga</th>
                         <th scope="col">Nivel</th>
                         <th scope="col">Población</th>
@@ -14,7 +13,6 @@ export function PlagueForm({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.__properties__.formPlague.plid}</td>
                         <td>{formData.__properties__.formPlague.plague}</td>
                         <td>{formData.__properties__.formPlague.level}</td>
                         <td>{formData.__properties__.formPlague.population}</td>

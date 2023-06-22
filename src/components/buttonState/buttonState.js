@@ -159,29 +159,6 @@ export function ButtonState({ data, onButtonClick }) {
             <Tab eventKey="datos" title="Datos">
               {formData && (
                 <>
-                  <div className="container border rounded table-separate">
-                    <table className="table table-striped table-responsive">
-                      <thead>
-                        <tr>
-                          <th scope="col">ID Formulario</th>
-                          <th scope="col">Tipo</th>
-                          <th scope="col">Fecha y Hora</th>
-                          <th scope="col">Sector</th>
-                          <th scope="col">Tipo Sector</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">{formData.form_id}</th>
-                          <td>{formData.type}</td>
-                          <td>{formData.__properties__.dateTime}</td>
-                          <td>{formData.geometry.gid}</td>
-                          <td>{formData.geometry.type}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-
                   {
                     formData.__properties__.formCompaction && <CompactionForm formData={formData} nameForm={"Compactación"} />
                   }
@@ -210,19 +187,38 @@ export function ButtonState({ data, onButtonClick }) {
                     formData.__properties__.formSprinkler && <SprinklerForm formData={formData} nameForm={"Aspersor"} />
                   }
 
-                  <div className="container border rounded table-separate">
+
+                  <div className="container border rounded table-separate my-2">
                     <table className="table table-striped table-responsive">
                       <thead>
                         <tr>
-                          <th scope="col"></th>
-                          <th scope="col">Coordenadas</th>
-                          <th scope="col">Tipo Ubicacion</th>
+                          <th scope="col">Tipo</th>
+                          <th scope="col">Fecha y Hora</th>
+                          <th scope="col">Sector</th>
+                          <th scope="col">Tipo Sector</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <th scope="row">{formData.__properties__.userId}</th>
+                          <td>{formData.type}</td>
+                          <td>{formData.__properties__.dateTime}</td>
                           <td>{formData.geometry.gid}</td>
+                          <td>{formData.geometry.type}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+
+                  <div className="container border rounded table-separate my-2">
+                    <table className="table table-striped table-responsive">
+                      <thead>
+                        <tr>
+                          <th scope="col">Geolocalización</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
                           <td>{formData.geometry.coordinates.join(", ")}</td>
                         </tr>
                       </tbody>
@@ -327,17 +323,9 @@ export function ButtonState({ data, onButtonClick }) {
         </Modal.Header>
         <Modal.Body>
           {/* INGRESO DE ASIGNACION TAREA. */}
-          <NewTask data={formData} />
+          <NewTask data={formData} closeModal={closeModal2}/>
           {/* INGRESO DE ASIGNACION TAREA. */}
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={closeModal2}>
-            Cerrar
-          </Button>
-          <Button variant="primary" onClick={handleGuardarAsignar}>
-            Guardar y Asignar
-          </Button>
-        </Modal.Footer>
       </Modal>
     </div>
   );

@@ -5,14 +5,12 @@ export function CompactionForm({ formData, nameForm }) {
             <table className="table table-striped table-responsive">
                 <thead>
                     <tr>
-                        <th scope="col">ID Compactación</th>
                         <th scope="col">Presión</th>
                         <th scope="col">Observaciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.__properties__.formCompaction.cptid}</td>
                         <td>{formData.__properties__.formCompaction.pressure}</td>
                         <td>{formData.__properties__.formCompaction.observation}</td>
                     </tr>

@@ -18,7 +18,7 @@ import { HomeCompactionForm } from "../filterTableHome/HomeformCompaction";
 
 
 
-function Home(props) {
+function Forms(props) {
   const [currentPage, setCurrentPage] = useState(0);
   const elementsPerPage = 5;
 
@@ -187,4 +187,4 @@ function Home(props) {
   );
 }
 
-export default Home;
+export default Forms;
