@@ -5,6 +5,17 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./tableTask.css";
 import ButtonFilter from "../buttonFilter/buttonFilter";
 
+//Formularios
+import { TaskFormSprinkler } from "../filterTableTask/TaskformSprinkler";
+import { TaskFormFauna } from "../filterTableTask/TaskformFauna";
+import { TaskFormCount } from "../filterTableTask/TaskformCount";
+import { TaskFormHumidity } from "../filterTableTask/TaskformHumidity";
+import { TaskFormPlague } from "../filterTableTask/TaskformPlague";
+import { TaskFormGirdling } from "../filterTableTask/TaskformGirdling";
+import { TaskFormDiseases } from "../filterTableTask/TaskformDiseases";
+import { TaskFormDamage } from "../filterTableTask/TaskformDamage";
+import { TaskFormCompaction } from "../filterTableTask/TaskformCompaction";
+
 function Task(props) {
     const [currentPage, setCurrentPage] = useState(0);
     const elementsPerPage = 5;
@@ -13,7 +24,6 @@ function Task(props) {
     };
 
     const [tableData, setTableData] = useState([]);
-
 
     const [/* filterType */, setFilterType] = useState(null);
     const [/* filterUser */, setFilterUser] = useState(null);
@@ -44,34 +54,7 @@ function Task(props) {
         fetchData();
     }, []);
 
-    //post tasks
-    useEffect(() => {
-        let url = "http://localhost:3200/tasks";
 
-        let newTask = {
-            title: "Mi nueva tarea",
-            description: "Descripción de la tarea"
-        };
-
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-            },
-        };
-
-        const postData = async () => {
-            try {
-                const response = await axios.post(url, newTask, config);
-                const data = response.data;
-                console.log(data);
-                // setTableData(data); // Solo si necesitas actualizar la tabla después de POST
-            } catch (error) {
-                console.error("Error posting data:", error);
-                setError(error.message);
-            }
-        };
-
-    }, []);
 
 
     const displayedData = (tableData || []).slice(
@@ -122,43 +105,49 @@ function Task(props) {
                                     <table className="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th scope="col" className="text-center">Acciones</th>
-                                                <th scope="col" className="text-center">Usuario Responsable</th>
-                                                <th scope="col" className="text-center">Fecha y Hora</th>
+                                                <th scope="col" className="text-center">Usuario Asignado</th>
+                                                <th scope="col" className="text-center">Fecha Asignación</th>
+                                                <th scope="col" className="text-center">Observaciones</th>
+                                                <th scope="col" className="text-center">Prioridad</th>
                                                 <th scope="col" className="text-center">Datos Formularios</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {displayedData.map((task, index) => (
-                                                <tr key={index}>
-                                                    <td className="text-center">{task.status}</td>
-                                                    <td className="text-center">{task.assigned_user}</td>
-                                                    <td className="text-center">{new Date(task.dateTime).toLocaleString()}</td>
-                                                    <td className="text-center">
-                                                        <table className="table table-sm table-striped table-responsive">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th scope="col">info1</th>
-                                                                    <th scope="col">info1</th>
-                                                                    <th scope="col">info1</th>
-                                                                    <th scope="col">info1</th>
-                                                                    <th scope="col">Observación</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>{task.assigned_form.info_form1}</td>
-                                                                    <td>{task.assigned_form.info_form2}</td>
-                                                                    <td>{task.assigned_form.info_form3}</td>
-                                                                    <td>{task.assigned_form.info_form4}</td>
-                                                                    <td>aslkdjlkasljkdjlkasljkdlajsk</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </td>
-                                                    {/* <td className="text-center">{JSON.stringify(task.assigned_form)}</td> */}
-                                                </tr>
-                                            ))}
+                                            {displayedData.map((task, index) => {
+                                                let formComponent;
+
+                                                if (task.assigned_form.__properties__.formSprinkler) {
+                                                    formComponent = <TaskFormSprinkler formData={task} nameForm={"Aspersor"} />;
+                                                } else if (task.assigned_form.__properties__.formCompaction) {
+                                                    formComponent = <TaskFormCompaction formData={task} nameForm={"Compactación"} />;
+                                                } else if (task.assigned_form.__properties__.formCount) {
+                                                    formComponent = <TaskFormCount formData={task} nameForm={"Conteo"} />;
+                                                } else if (task.assigned_form.__properties__.formDamage) {
+                                                    formComponent = <TaskFormDamage formData={task} nameForm={"Daño"} />;
+                                                } else if (task.assigned_form.__properties__.formDiseases) {
+                                                    formComponent = <TaskFormDiseases formData={task} nameForm={"Enfermedades"} />;
+                                                } else if (task.assigned_form.__properties__.formFauna) {
+                                                    formComponent = <TaskFormFauna formData={task} nameForm={"Fauna"} />;
+                                                } else if (task.assigned_form.__properties__.formGirdling) {
+                                                    formComponent = <TaskFormGirdling formData={task} nameForm={"Anillado"} />;
+                                                } else if (task.assigned_form.__properties__.formHumidity) {
+                                                    formComponent = <TaskFormHumidity formData={task} nameForm={"Humedad"} />;
+                                                } else if (task.assigned_form.__properties__.formPlague) {
+                                                    formComponent = <TaskFormPlague formData={task} nameForm={"Plaga"} />;
+                                                }
+
+                                                return (
+                                                    <tr key={task.task_id}>
+                                                        <td className="text-center  align-middle">{task.assigned_user}</td>
+                                                        <td className="text-center  align-middle">{new Date(task.dateTime).toLocaleDateString()}</td>
+                                                        <td className="text-center textObs  align-middle">{task.observation}</td>
+                                                        <td className="text-center  align-middle">{task.priority}</td>
+                                                        <td>
+                                                            {formComponent}
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            })}
                                         </tbody>
                                     </table>
                                 </div>

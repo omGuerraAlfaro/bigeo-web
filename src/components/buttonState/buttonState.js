@@ -13,7 +13,7 @@ import { CompactionForm } from "../filterTableModal/formCompaction";
 import { DiseasesForm } from "../filterTableModal/formDiseases";
 import { CountForm } from "../filterTableModal/formCount";
 import { DamageForm } from "../filterTableModal/formDamage";
-import NewForm from "../newForm/newForm";
+import { NewTask } from "../newTask/newTask";
 
 //icons
 // import sprinkler from '../../assets/icon/sprinkler.png';
@@ -53,6 +53,7 @@ export function ButtonState({ data, onButtonClick }) {
 
   const [/* users */, setUsers] = useState([]);
 
+  /* ***************************************************** */
   useEffect(() => {
     fetch("http://localhost:3200/users")
       .then(response => response.json())
@@ -64,13 +65,14 @@ export function ButtonState({ data, onButtonClick }) {
         console.error("Error al obtener la lista de usuarios:", error);
       });
   }, []);
+  /* ***************************************************** */
 
 
   const handleTabSelect = (tabName) => {
     setActiveTab(tabName);
   };
 
- 
+
   //modals
   const [showModal, setShowModal] = useState(false);
   // console.log(showModal);
@@ -94,11 +96,10 @@ export function ButtonState({ data, onButtonClick }) {
     setShowModal2(false);
   };
 
- 
+
 
   const handleGuardarAsignar = () => {
     // Aquí puedes realizar la lógica para guardar y asignar la tarea
-    console.log("Guardar y asignar tarea:", textoInput);
     closeModal();
   };
 
@@ -123,7 +124,7 @@ export function ButtonState({ data, onButtonClick }) {
           onClick={() => {
             marcarEnProceso();
             openModal2();
-            
+
           }}
           disabled={estado === 'No Leído' | estado === 'Asignado y en Proceso' | estado === 'Finalizado'}
         >
@@ -326,7 +327,7 @@ export function ButtonState({ data, onButtonClick }) {
         </Modal.Header>
         <Modal.Body>
           {/* INGRESO DE ASIGNACION TAREA. */}
-          <NewForm req={formData} />
+          <NewTask data={formData} />
           {/* INGRESO DE ASIGNACION TAREA. */}
         </Modal.Body>
         <Modal.Footer>

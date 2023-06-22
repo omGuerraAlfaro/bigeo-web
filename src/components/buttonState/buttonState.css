@@ -24,18 +24,11 @@
     margin-top: 20px;
 }
 
-.table-separate {
-    margin-top: 20px;
-}
 
 /* Custom CSS for mobile screens */
 @media only screen and (max-width: 600px) {
     .estado {
       font-size: 12px;
-    }
-  
-    .table-separate {
-      margin-top: 10px;
     }
   
     .mapbox-container {
@@ -53,9 +46,7 @@
       font-size: 16px;
     }
   
-    .table-separate {
-      margin-top: 15px;
-    }
+    
   
     .mapbox-container {
       height: 300px;
@@ -71,11 +62,7 @@
     .estado {
       font-size: 20px;
     }
-  
-    .table-separate {
-      margin-top: 20px;
-    }
-  
+   
     .mapbox-container {
       height: 400px;
     }

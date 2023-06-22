@@ -20,7 +20,7 @@ import { HomeCompactionForm } from "../filterTableHome/HomeformCompaction";
 
 function Home(props) {
   const [currentPage, setCurrentPage] = useState(0);
-  const elementsPerPage = 5;  
+  const elementsPerPage = 5;
 
   const [filterType, setFilterType] = useState(null);
   const [filterUser, setFilterUser] = useState(null);
@@ -33,7 +33,9 @@ function Home(props) {
 
   const [tableData, setTableData] = useState([]);
   const [error, setError] = useState(null);
+  /* ***************************************************** */
 
+  //get forms
   useEffect(() => {
     let url = "http://localhost:3200/forms";
 
@@ -64,6 +66,9 @@ function Home(props) {
 
     fetchData();
   }, [filterType, filterUser, filterDate]);
+  /* ***************************************************** */
+
+  
 
   const displayedData = (tableData || []).slice(
     currentPage * elementsPerPage,
@@ -75,7 +80,7 @@ function Home(props) {
       <div className="container-flow mx-5 data-table">
         <div className="container-rounded">
           <div className="row">
-          <div className="col-md-2 col-12">
+            <div className="col-md-2 col-12">
               <div className="container d-flex justify-content-center py-5">
                 <div className="border rounded p-1">
                   <h4 className="text-center">Filtros</h4>
@@ -115,7 +120,7 @@ function Home(props) {
                       <tr>
                         <th scope="col" className="text-center">Acciones</th>
                         <th scope="col" className="text-center">Usuario Responsable</th>
-                        <th scope="col" className="text-center">Fecha y Hora</th>
+                        <th scope="col" className="text-center">Fecha</th>
                         <th scope="col" className="text-center">Datos Formularios</th>
                       </tr>
                     </thead>
@@ -174,7 +179,7 @@ function Home(props) {
                 subContainerClassName={"pages pagination"}
                 activeClassName={"active"}
               />
-            </div>            
+            </div>
           </div>
         </div>
       </div>

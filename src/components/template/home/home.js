@@ -29,16 +29,12 @@ function HomeViewAdmin(props) {
           </Tab>
         </TabList>
 
-        <TabPanel>
-          <div>
-            <Home />
-          </div>
+        <TabPanel>          
+            <Home />          
         </TabPanel>
 
-        <TabPanel>
-          <div>
-            <Task />
-          </div>
+        <TabPanel>          
+            <Task />          
         </TabPanel>
       </Tabs>
 
