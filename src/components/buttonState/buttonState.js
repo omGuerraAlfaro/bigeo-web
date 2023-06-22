@@ -16,23 +16,36 @@ import { DamageForm } from "../filterTableModal/formDamage";
 import { NewTask } from "../newTask/newTask";
 
 //icons
-// import sprinkler from '../../assets/icon/sprinkler.png';
-// import tractor from '../../assets/icon/tractor.png';
-// import tree from '../../assets/icon/tree.png';
-// import patch from '../../assets/icon/patch.png';
-// import heart from '../../assets/icon/heart.png';
-// import rabbit from '../../assets/icon/rabbit.png';
-// import pruningshears from '../../assets/icon/pruning-shears.png';
-// import humidity from '../../assets/icon/humidity.png';
-// import plague from '../../assets/icon/plague.png';
+import sprinkler from '../../assets/icon/sprinkler.png';
+import tractor from '../../assets/icon/tractor.png';
+import tree from '../../assets/icon/tree.png';
+import patch from '../../assets/icon/patch.png';
+import heart from '../../assets/icon/heart.png';
+import rabbit from '../../assets/icon/rabbit.png';
+import pruningshears from '../../assets/icon/pruning-shears.png';
+import humidity from '../../assets/icon/humidity.png';
+import plague from '../../assets/icon/plague.png';
 
 
 
 export function ButtonState({ data, onButtonClick }) {
-  //states
 
+  //states
   const [estado, setEstado] = useState('No Leído');
   const formData = data;
+
+  const formImageMap = {
+    'formSprinkler': sprinkler,
+    'formCompaction': tractor,
+    'formCount': tree,
+    'formDamage': patch,
+    'formDiseases': heart,
+    'formFauna': rabbit,
+    'formGirdling': pruningshears,
+    'formHumidity': humidity,
+    'formPlague': plague,
+  };
+  
 
   const marcarLeido = () => {
     setEstado('Leído');
@@ -58,7 +71,6 @@ export function ButtonState({ data, onButtonClick }) {
     fetch("http://localhost:3200/users")
       .then(response => response.json())
       .then(data => {
-        console.log("Lista de usuarios:", data);
         setUsers(data);
       })
       .catch(error => {
@@ -75,10 +87,7 @@ export function ButtonState({ data, onButtonClick }) {
 
   //modals
   const [showModal, setShowModal] = useState(false);
-  // console.log(showModal);
   const [showModal2, setShowModal2] = useState(false);
-  // console.log(showModal2);
-
 
   const openModal = () => {
     setShowModal(true);
@@ -96,12 +105,6 @@ export function ButtonState({ data, onButtonClick }) {
     setShowModal2(false);
   };
 
-
-
-  const handleGuardarAsignar = () => {
-    // Aquí puedes realizar la lógica para guardar y asignar la tarea
-    closeModal();
-  };
 
   return (
     <div>
@@ -134,7 +137,7 @@ export function ButtonState({ data, onButtonClick }) {
           type="button"
           className="btn btn-outline-danger "
           onClick={marcarFinalizado}
-          disabled={estado != 'Asignado y en Proceso' | estado === 'Leído' | estado === 'No Leído'}
+          disabled={estado !== 'Asignado y en Proceso' | estado === 'Leído' | estado === 'No Leído'}
         >
           Completar
         </button>
@@ -258,52 +261,19 @@ export function ButtonState({ data, onButtonClick }) {
             </Tab>
 
             <Tab eventKey="imagen" title="Imagen">
-              {/* {
-                formData && formData.properties && Object.entries(formData.properties).map(([key, value]) => {
-                  if (value === null) return null; // Si el valor es nulo, no hagas nada
-                  let imagen;
+            {
+        formData?.__properties__ && Object.entries(formData.__properties__).map(([key, value]) => {
+          if (value === null || !(key in formImageMap)) return null;
 
-                  switch (key) {
-                    case 'formSprinkler':
-                      imagen = <img style={{ width: "650px" }} src={sprinkler} alt="Imagen del formulario" />;
-                      break;
-                    case 'formCompaction':
-                      imagen = <img style={{ width: "650px" }} src={tractor} alt="Imagen del formulario" />;
-                      break;
-                    case 'formCount':
-                      imagen = <img style={{ width: "650px" }} src={tree} alt="Imagen del formulario" />;
-                      break;
-                    case 'formDamage':
-                      imagen = <img style={{ width: "650px" }} src={patch} alt="Imagen del formulario" />;
-                      break;
-                    case 'formDiseases':
-                      imagen = <img style={{ width: "650px" }} src={heart} alt="Imagen del formulario" />;
-                      break;
-                    case 'formFauna':
-                      imagen = <img style={{ width: "650px" }} src={rabbit} alt="Imagen del formulario" />;
-                      break;
-                    case 'formGirdling':
-                      imagen = <img style={{ width: "650px" }} src={pruningshears} alt="Imagen del formulario" />;
-                      break;
-                    case 'formHumidity':
-                      imagen = <img style={{ width: "650px" }} src={humidity} alt="Imagen del formulario" />;
-                      break;
-                    case 'formPlague':
-                      imagen = <img style={{ width: "650px" }} src={plague} alt="Imagen del formulario" />;
-                      break;
-                    default:
-                      return null; // Si la clave no coincide con ninguna de las esperadas, no hagas nada
-                  }
-
-                  return (
-                    <div>
-                      {imagen}
-                      <p>Nombre del formulario:</p>
-                      <p>Estado:</p>
-                    </div>
-                  )
-                })
-              } */}
+          return (
+            <div key={key} className="text-center">
+              <img style={{ width: "350px" }} src={formImageMap[key]} alt="Imagen del formulario" />
+              <p>Nombre del formulario: {key}</p>
+              <p>Estado: {/* Aquí debes poner el estado del formulario basado en el value */}</p>
+            </div>
+          );
+        })
+      }
             </Tab>
 
           </Tabs>
@@ -323,7 +293,7 @@ export function ButtonState({ data, onButtonClick }) {
         </Modal.Header>
         <Modal.Body>
           {/* INGRESO DE ASIGNACION TAREA. */}
-          <NewTask data={formData} closeModal={closeModal2}/>
+          <NewTask data={formData} closeModal={closeModal2} />
           {/* INGRESO DE ASIGNACION TAREA. */}
         </Modal.Body>
       </Modal>
