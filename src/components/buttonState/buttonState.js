@@ -27,13 +27,9 @@ import humidity from '../../assets/icon/humidity.png';
 import plague from '../../assets/icon/plague.png';
 
 
-
 export function ButtonState({ data, onButtonClick }) {
-
-  //states
-  const [estado, setEstado] = useState('No Leído');
   const formData = data;
-
+  
   const formImageMap = {
     'formSprinkler': sprinkler,
     'formCompaction': tractor,
@@ -47,17 +43,44 @@ export function ButtonState({ data, onButtonClick }) {
   };
   
 
-  const marcarLeido = () => {
-    setEstado('Leído');
-  };
+  
+  //states
+  let estadoTask = data.task;
+  if (estadoTask === null) {
+    estadoTask = 'Sin Asignar';
+  }else{
+    estadoTask = data.task.status;
+  }
+  const [estado, setEstado] = useState(estadoTask);
 
-  const marcarEnProceso = () => {
-    setEstado('Asignado y en Proceso');
-  };
+  // const marcarLeido = () => {
+  //   let estadoTask = data.task;
+  //   if (estadoTask === null) {
+  //     estadoTask = 'Sin Asignar';
+  //   }
+  //   setEstado(estadoTask);
+  // };
+  
+  // const marcarEnProceso = () => {
+  //   let estadoTask = data.task;
+  //   if (estadoTask === null) {
+  //     estadoTask = 'Sin Asignar';
+  //   }
+  //   setEstado(estadoTask);
+  // };
+  
+  // const marcarEfectuado = () => {
+  //   let estadoTask = data.task;
+  //   if (estadoTask === null) {
+  //     estadoTask = 'Sin Asignar';
+  //   }
+  //   setEstado(estadoTask);
+  // };
 
-  const marcarFinalizado = () => {
-    setEstado('Finalizado');
-  };
+  // const marcarFinalizado = () => {
+  //   let estadoTask = data.task;
+  //   setEstado(estadoTask);
+  // };
 
 
 
@@ -108,13 +131,13 @@ export function ButtonState({ data, onButtonClick }) {
 
   return (
     <div>
-      <p className={`estado ${estado.toLowerCase()}`}>Estado: {estado}</p>
+      <p className="estado">Estado: {estado}</p>
       <div className="btn-group" role="group" aria-label="Basic example">
         <button
           type="button"
           className="btn btn-outline-secondary"
           onClick={() => {
-            marcarLeido();
+            // marcarLeido();
             openModal();
             onButtonClick(data);
           }}
@@ -125,7 +148,7 @@ export function ButtonState({ data, onButtonClick }) {
           type="button"
           className="btn btn-outline-success"
           onClick={() => {
-            marcarEnProceso();
+            // marcarEnProceso();
             openModal2();
 
           }}
@@ -136,7 +159,7 @@ export function ButtonState({ data, onButtonClick }) {
         <button
           type="button"
           className="btn btn-outline-danger "
-          onClick={marcarFinalizado}
+          // onClick={marcarFinalizado}
           disabled={estado !== 'Asignado y en Proceso' | estado === 'Leído' | estado === 'No Leído'}
         >
           Completar

@@ -15,12 +15,12 @@ export function TaskFormGirdling({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.assigned_form.__properties__.formGirdling.administration}</td>
-                        <td>{formData.assigned_form.__properties__.formGirdling.area}</td>
-                        <td>{formData.assigned_form.__properties__.formGirdling.sector}</td>
-                        <td>{formData.assigned_form.__properties__.formGirdling.percent}</td>
-                        <td>{formData.assigned_form.__properties__.formGirdling.stuckGirdling}</td>
-                        <td>{formData.assigned_form.__properties__.formGirdling.deepGirdling}</td>
+                        <td>{formData.__properties__.formGirdling.administration}</td>
+                        <td>{formData.__properties__.formGirdling.area}</td>
+                        <td>{formData.__properties__.formGirdling.sector}</td>
+                        <td>{formData.__properties__.formGirdling.percent}</td>
+                        <td>{formData.__properties__.formGirdling.stuckGirdling}</td>
+                        <td>{formData.__properties__.formGirdling.deepGirdling}</td>
                     </tr>
                 </tbody>
                 <thead>

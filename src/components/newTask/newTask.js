@@ -15,7 +15,7 @@ export const NewTask = props => {
     dateTimeLimit: "",
     status: "Tarea Asignada",
     assigned_user: "",
-    assigned_form: formData,
+    assigned_form: formData.form_id,
     observation: "",
     priority: "",
   });

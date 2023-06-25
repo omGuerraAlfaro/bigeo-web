@@ -11,8 +11,8 @@ export function TaskFormCount({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.assigned_form.__properties__.formCount.hasFruit}</td>
-                        <td>{formData.assigned_form.__properties__.formCount.observation}</td>
+                        <td>{formData.__properties__.formCount.hasFruit}</td>
+                        <td>{formData.__properties__.formCount.observation}</td>
                     </tr>
                 </tbody>                
             </table>

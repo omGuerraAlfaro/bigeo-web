@@ -14,11 +14,11 @@ export function TaskFormPlague({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.assigned_form.__properties__.formPlague.plid}</td>
-                        <td>{formData.assigned_form.__properties__.formPlague.plague}</td>
-                        <td>{formData.assigned_form.__properties__.formPlague.level}</td>
-                        <td>{formData.assigned_form.__properties__.formPlague.population}</td>
-                        <td>{formData.assigned_form.__properties__.formPlague.observation}</td>
+                        <td>{formData.__properties__.formPlague.plid}</td>
+                        <td>{formData.__properties__.formPlague.plague}</td>
+                        <td>{formData.__properties__.formPlague.level}</td>
+                        <td>{formData.__properties__.formPlague.population}</td>
+                        <td>{formData.__properties__.formPlague.observation}</td>
                     </tr>
                 </tbody>
             </table>

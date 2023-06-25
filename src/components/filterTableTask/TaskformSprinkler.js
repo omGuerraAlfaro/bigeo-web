@@ -13,10 +13,10 @@ export function TaskFormSprinkler({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.assigned_form.__properties__.formSprinkler.spcode}</td>
-                        <td>{formData.assigned_form.__properties__.formSprinkler.defect}</td>
-                        <td>{formData.assigned_form.__properties__.formSprinkler.repaired}</td>
-                        <td>{formData.assigned_form.__properties__.formSprinkler.observation}</td>
+                        <td>{formData.__properties__.formSprinkler.spcode}</td>
+                        <td>{formData.__properties__.formSprinkler.defect}</td>
+                        <td>{formData.__properties__.formSprinkler.repaired}</td>
+                        <td>{formData.__properties__.formSprinkler.observation}</td>
                     </tr>
                 </tbody>
             </table>

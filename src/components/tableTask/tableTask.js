@@ -31,7 +31,7 @@ function Task(props) {
 
     //get tasks
     useEffect(() => {
-        let url = "http://localhost:3200/tasks";
+        let url = "http://localhost:3200/forms/task";
 
         const config = {
             headers: {
@@ -114,36 +114,36 @@ function Task(props) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {displayedData.map((task) => {
+                                            {displayedData.map((item) => {
                                                 let formComponent;
 
-                                                if (task.assigned_form.__properties__.formSprinkler) {
-                                                    formComponent = <TaskFormSprinkler formData={task} nameForm={"Aspersor"} />;
-                                                } else if (task.assigned_form.__properties__.formCompaction) {
-                                                    formComponent = <TaskFormCompaction formData={task} nameForm={"Compactación"} />;
-                                                } else if (task.assigned_form.__properties__.formCount) {
-                                                    formComponent = <TaskFormCount formData={task} nameForm={"Conteo"} />;
-                                                } else if (task.assigned_form.__properties__.formDamage) {
-                                                    formComponent = <TaskFormDamage formData={task} nameForm={"Daño"} />;
-                                                } else if (task.assigned_form.__properties__.formDiseases) {
-                                                    formComponent = <TaskFormDiseases formData={task} nameForm={"Enfermedades"} />;
-                                                } else if (task.assigned_form.__properties__.formFauna) {
-                                                    formComponent = <TaskFormFauna formData={task} nameForm={"Fauna"} />;
-                                                } else if (task.assigned_form.__properties__.formGirdling) {
-                                                    formComponent = <TaskFormGirdling formData={task} nameForm={"Anillado"} />;
-                                                } else if (task.assigned_form.__properties__.formHumidity) {
-                                                    formComponent = <TaskFormHumidity formData={task} nameForm={"Humedad"} />;
-                                                } else if (task.assigned_form.__properties__.formPlague) {
-                                                    formComponent = <TaskFormPlague formData={task} nameForm={"Plaga"} />;
+                                                if (item.__properties__.formSprinkler) {
+                                                    formComponent = <TaskFormSprinkler formData={item} nameForm={"Aspersor"} />;
+                                                } else if (item.__properties__.formCompaction) {
+                                                    formComponent = <TaskFormCompaction formData={item} nameForm={"Compactación"} />;
+                                                } else if (item.__properties__.formCount) {
+                                                    formComponent = <TaskFormCount formData={item} nameForm={"Conteo"} />;
+                                                } else if (item.__properties__.formDamage) {
+                                                    formComponent = <TaskFormDamage formData={item} nameForm={"Daño"} />;
+                                                } else if (item.__properties__.formDiseases) {
+                                                    formComponent = <TaskFormDiseases formData={item} nameForm={"Enfermedades"} />;
+                                                } else if (item.__properties__.formFauna) {
+                                                    formComponent = <TaskFormFauna formData={item} nameForm={"Fauna"} />;
+                                                } else if (item.__properties__.formGirdling) {
+                                                    formComponent = <TaskFormGirdling formData={item} nameForm={"Anillado"} />;
+                                                } else if (item.__properties__.formHumidity) {
+                                                    formComponent = <TaskFormHumidity formData={item} nameForm={"Humedad"} />;
+                                                } else if (item.__properties__.formPlague) {
+                                                    formComponent = <TaskFormPlague formData={item} nameForm={"Plaga"} />;
                                                 }
 
                                                 return (
-                                                    <tr key={task.task_id}>
-                                                        <td className="text-center  align-middle">{task.assigned_user}</td>
-                                                        <td className="text-center  align-middle">{new Date(task.dateTime).toLocaleDateString()}</td>
-                                                        <td className="text-center  align-middle">{new Date(task.dateTimeLimit).toLocaleDateString()}</td>
-                                                        <td className="text-center breakTxt align-middle">{task.observation}</td>
-                                                        <td className="text-center  align-middle">{task.priority}</td>
+                                                    <tr key={item.task_id}>
+                                                        <td className="text-center  align-middle">{item.task.assigned_user}</td>
+                                                        <td className="text-center  align-middle">{new Date(item.task.dateTime).toLocaleDateString()}</td>
+                                                        <td className="text-center  align-middle">{new Date(item.task.dateTimeLimit).toLocaleDateString()}</td>
+                                                        <td className="text-center breakTxt align-middle">{item.task.observation}</td>
+                                                        <td className="text-center  align-middle">{item.task.priority}</td>
                                                         <td>
                                                             {formComponent}
                                                         </td>

@@ -11,8 +11,8 @@ export function TaskFormDamage({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.assigned_form.__properties__.formDamage.damage}</td>
-                        <td>{formData.assigned_form.__properties__.formDamage.observation}</td>
+                        <td>{formData.__properties__.formDamage.damage}</td>
+                        <td>{formData.__properties__.formDamage.observation}</td>
                     </tr>
                 </tbody>
             </table>

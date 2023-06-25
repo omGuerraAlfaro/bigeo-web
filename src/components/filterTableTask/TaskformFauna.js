@@ -13,10 +13,10 @@ export function TaskFormFauna({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.assigned_form.__properties__.formFauna.fauna}</td>
-                        <td>{formData.assigned_form.__properties__.formFauna.quantity}</td>
-                        <td>{formData.assigned_form.__properties__.formFauna.hint}</td>
-                        <td>{formData.assigned_form.__properties__.formFauna.observation}</td>
+                        <td>{formData.__properties__.formFauna.fauna}</td>
+                        <td>{formData.__properties__.formFauna.quantity}</td>
+                        <td>{formData.__properties__.formFauna.hint}</td>
+                        <td>{formData.__properties__.formFauna.observation}</td>
                     </tr>
                 </tbody>
             </table>

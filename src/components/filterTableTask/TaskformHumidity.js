@@ -15,12 +15,12 @@ export function TaskFormHumidity({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.assigned_form.__properties__.formHumidity.hmdid}</td>
-                        <td>{formData.assigned_form.__properties__.formHumidity.moisture20}</td>
-                        <td>{formData.assigned_form.__properties__.formHumidity.moisture40}</td>
-                        <td>{formData.assigned_form.__properties__.formHumidity.moisture60}</td>
-                        <td>{formData.assigned_form.__properties__.formHumidity.roots}</td>
-                        <td>{formData.assigned_form.__properties__.formHumidity.observation}</td>
+                        <td>{formData.__properties__.formHumidity.hmdid}</td>
+                        <td>{formData.__properties__.formHumidity.moisture20}</td>
+                        <td>{formData.__properties__.formHumidity.moisture40}</td>
+                        <td>{formData.__properties__.formHumidity.moisture60}</td>
+                        <td>{formData.__properties__.formHumidity.roots}</td>
+                        <td>{formData.__properties__.formHumidity.observation}</td>
                     </tr>
                 </tbody>
             </table>

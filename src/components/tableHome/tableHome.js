@@ -39,6 +39,8 @@ function Forms(props) {
   useEffect(() => {
     let url = "http://localhost:3200/forms";
 
+
+    //aqui se pega el filtro
     if (filterType) {
       url += `/type/${filterType}`;
     } else if (filterUser) {

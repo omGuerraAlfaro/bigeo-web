@@ -12,9 +12,9 @@ export function TaskFormDiseases({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.assigned_form.__properties__.formDiseases.diseases}</td>
-                        <td>{formData.assigned_form.__properties__.formDiseases.level}</td>
-                        <td>{formData.assigned_form.__properties__.formDiseases.observation}</td>
+                        <td>{formData.__properties__.formDiseases.diseases}</td>
+                        <td>{formData.__properties__.formDiseases.level}</td>
+                        <td>{formData.__properties__.formDiseases.observation}</td>
                     </tr>
                 </tbody>
             </table>

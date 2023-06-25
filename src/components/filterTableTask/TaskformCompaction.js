@@ -11,8 +11,8 @@ export function TaskFormCompaction({ formData, nameForm }) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.assigned_form.__properties__.formCompaction.pressure}</td>
-                        <td>{formData.assigned_form.__properties__.formCompaction.observation}</td>
+                        <td>{formData.__properties__.formCompaction.pressure}</td>
+                        <td>{formData.__properties__.formCompaction.observation}</td>
                     </tr>
                 </tbody>
             </table>
