@@ -24,7 +24,6 @@ export const NewTask = props => {
   useEffect(() => {
     axios.get("http://localhost:3200/users")
       .then(response => {
-        console.log("Lista de usuarios:", response.data);
         setUsers(response.data);
       })
       .catch(error => {
@@ -52,7 +51,9 @@ export const NewTask = props => {
         showConfirmButton: false,
         timer: 2000
       })
-      console.log('Closing modal...');
+      setTimeout(() => {
+        window.location.reload();
+      }, 2005);
       props.closeModal();
     } catch (error) {
       console.error("Error posting data:", error);

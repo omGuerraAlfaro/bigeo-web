@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, Tabs, Tab, } from "react-bootstrap";
+import axios from 'axios';
+import Swal from 'sweetalert2'
+
 import "./buttonState.css";
 import MapComponent from "../geolocation/geolocation";
+
 
 //filter forms
 import { FaunaForm } from "../filterTableModal/formFauna";
@@ -27,9 +31,9 @@ import humidity from '../../assets/icon/humidity.png';
 import plague from '../../assets/icon/plague.png';
 
 
-export function ButtonState({ data, onButtonClick }) {
+export function ButtonState({ data }) {
   const formData = data;
-  
+
   const formImageMap = {
     'formSprinkler': sprinkler,
     'formCompaction': tractor,
@@ -41,46 +45,102 @@ export function ButtonState({ data, onButtonClick }) {
     'formHumidity': humidity,
     'formPlague': plague,
   };
-  
 
-  
+
+
   //states
   let estadoTask = data.task;
   if (estadoTask === null) {
     estadoTask = 'Sin Asignar';
-  }else{
+  } else {
     estadoTask = data.task.status;
   }
-  const [estado, setEstado] = useState(estadoTask);
+  const [estado, /* setEstado */] = useState(estadoTask);
 
-  // const marcarLeido = () => {
-  //   let estadoTask = data.task;
-  //   if (estadoTask === null) {
-  //     estadoTask = 'Sin Asignar';
-  //   }
-  //   setEstado(estadoTask);
-  // };
-  
-  // const marcarEnProceso = () => {
-  //   let estadoTask = data.task;
-  //   if (estadoTask === null) {
-  //     estadoTask = 'Sin Asignar';
-  //   }
-  //   setEstado(estadoTask);
-  // };
-  
-  // const marcarEfectuado = () => {
-  //   let estadoTask = data.task;
-  //   if (estadoTask === null) {
-  //     estadoTask = 'Sin Asignar';
-  //   }
-  //   setEstado(estadoTask);
-  // };
+  //Modificador de estado de la tarea
+  const updateData = async (id, status) => {
+    const url = `http://localhost:3200/tasks/${id}/status`;
+    const body = { "status": status };
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
 
-  // const marcarFinalizado = () => {
-  //   let estadoTask = data.task;
-  //   setEstado(estadoTask);
-  // };
+    try {
+      await axios.put(url, body, config);
+    } catch (error) {
+      console.error("Error updating data:", error);
+    }
+  };
+
+
+  //for desktop ******************** 
+  const marcarFinalizado = (data) => {
+    updateData(data.task.task_id, "Finalizado");
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Tarea Finalizada Exitosamente',
+      showConfirmButton: false,
+      timer: 2000
+    })
+    setTimeout(() => {
+      window.location.reload();
+    }, 2005);
+  };
+  //for desktop ********************
+
+  //for mobile ********************
+  const marcarLeido = (data) => {
+    if (data.task !== null) {
+      updateData(data.task.task_id, "Leido");
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Tarea Leida Exitosamente',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      setTimeout(() => {
+        window.location.reload();
+      }, 2005);
+
+    } else {
+      Swal.fire({
+        title: 'Error!',
+        text: 'No se puede marcar como leído una tarea sin asignar',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      });
+    }
+  };
+
+
+  const marcarEfectuado = (data) => {
+    if (data.task !== null | data.task.status === "Leido" | data.task.status === "Sin Asignar") {
+      updateData(data.task.task_id, "Efectuado");
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Tarea Efectuada Exitosamente, se espera Aprobación...',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      setTimeout(() => {
+        window.location.reload();
+      }, 2005);
+
+    } else {
+      Swal.fire({
+        title: 'Error!',
+        text: 'No se puede marcar como leído una tarea sin asignar',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      });
+    }
+  };
+  //for mobile ********************
 
 
 
@@ -137,9 +197,7 @@ export function ButtonState({ data, onButtonClick }) {
           type="button"
           className="btn btn-outline-secondary"
           onClick={() => {
-            // marcarLeido();
             openModal();
-            onButtonClick(data);
           }}
         >
           Ver
@@ -148,21 +206,41 @@ export function ButtonState({ data, onButtonClick }) {
           type="button"
           className="btn btn-outline-success"
           onClick={() => {
-            // marcarEnProceso();
             openModal2();
-
           }}
-          disabled={estado === 'No Leído' | estado === 'Asignado y en Proceso' | estado === 'Finalizado'}
+          disabled={estado === '' | estado === 'Tarea Asignada' | estado === 'Finalizado' | estado === 'Leido' | estado === 'Efectuado'}
         >
           Asignar
         </button>
         <button
           type="button"
-          className="btn btn-outline-danger "
-          // onClick={marcarFinalizado}
-          disabled={estado !== 'Asignado y en Proceso' | estado === 'Leído' | estado === 'No Leído'}
+          className="btn btn-outline-success"
+          onClick={() => {
+            marcarLeido(data); //FOR MOBILE
+          }}
+          disabled={estado === 'Sin Asignar' | estado === 'Tarea Asignada' | estado === 'Finalizado' | estado === 'Leido' | estado === 'Efectuado'}
         >
-          Completar
+          Leer
+        </button>
+        <button
+          type="button"
+          className="btn btn-outline-success"
+          onClick={() => {
+            marcarEfectuado(data); //FOR MOBILE
+          }}
+          disabled={estado === 'Sin Asignar' | estado === 'Tarea Asignada' | estado === 'Finalizado' | estado === 'Efectuado'}
+        >
+          Efectuar
+        </button>
+        <button
+          type="button"
+          className="btn btn-outline-danger "
+          onClick={() => {
+            marcarFinalizado(data); //FOR DESKTOP
+          }}
+          disabled={estado == 'Tarea Asignada' | estado === 'Leído' | estado === 'Sin Asignar' | estado === 'Finalizado'}
+        >
+          Finalizar
         </button>
       </div>
 
@@ -284,19 +362,19 @@ export function ButtonState({ data, onButtonClick }) {
             </Tab>
 
             <Tab eventKey="imagen" title="Imagen">
-            {
-        formData?.__properties__ && Object.entries(formData.__properties__).map(([key, value]) => {
-          if (value === null || !(key in formImageMap)) return null;
+              {
+                formData?.__properties__ && Object.entries(formData.__properties__).map(([key, value]) => {
+                  if (value === null || !(key in formImageMap)) return null;
 
-          return (
-            <div key={key} className="text-center">
-              <img style={{ width: "350px" }} src={formImageMap[key]} alt="Imagen del formulario" />
-              <p>Nombre del formulario: {key}</p>
-              <p>Estado: {/* Aquí debes poner el estado del formulario basado en el value */}</p>
-            </div>
-          );
-        })
-      }
+                  return (
+                    <div key={key} className="text-center">
+                      <img style={{ width: "250px" }} src={formImageMap[key]} alt="Imagen del formulario" />
+                      <p>Nombre del formulario: {key}</p>
+                      <p>Estado: {/* Aquí debes poner el estado del formulario basado en el value */}</p>
+                    </div>
+                  );
+                })
+              }
             </Tab>
 
           </Tabs>
