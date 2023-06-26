@@ -3,7 +3,7 @@ import ReactPaginate from "react-paginate";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 import "./tableTask.css";
-import ButtonFilter from "../buttonFilter/buttonFilter";
+// import ButtonFilter from "../buttonFilter/buttonFilter";
 
 //Formularios
 import { TaskFormSprinkler } from "../filterTableTask/TaskformSprinkler";
@@ -25,9 +25,9 @@ function Task(props) {
 
     const [tableData, setTableData] = useState([]);
 
-    const [/* filterType */, setFilterType] = useState(null);
-    const [/* filterUser */, setFilterUser] = useState(null);
-    const [/* filterDate */, setFilterDate] = useState(null);
+    // const [/* filterType */, setFilterType] = useState(null);
+    // const [/* filterUser */, setFilterUser] = useState(null);
+    // const [/* filterDate */, setFilterDate] = useState(null);
 
     //get tasks
     useEffect(() => {
