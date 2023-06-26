@@ -1,44 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function FormType({ onFormSubmit }) {
     const [tipo, setTipo] = useState("");
-    const [formData, setFormData] = useState({
-        formSprinkler: null,
-        formDamage: null,
-        formHumidity: null,
-        formCompaction: null,
-        formFauna: null,
-        formCount: null,
-        formDiseases: null,
-        formGirdling: null,
-        formPlague: null
-    });
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(`Tipo enviado: ${tipo}`);
-        onFormSubmit(tipo);
+    const formTypeMapping = {
+        formSprinkler: 'Aspersor',
+        formDamage: 'Daño',
+        formHumidity: 'Humedad',
+        formCompaction: 'Compactación',
+        formFauna: 'Fauna',
+        formCount: 'Conteo',
+        formDiseases: 'Enfermedades',
+        formGirdling: 'Anillado',
+        formPlague: 'Plaga'
     };
 
-    useEffect(() => {
-        if (tipo) {
-            const fetchFormData = async () => {
-                try {
-                    const response = await axios.get(`http://localhost:3200/forms/type/${tipo}`);
-                    setFormData((prevState) => ({
-                        ...prevState,
-                        [tipo]: response.data
-                    }));
-                } catch (error) {
-                    console.error(`Error fetching form data for type ${tipo}:`, error);
-                }
-            }
-    
-            fetchFormData();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        console.log(`Tipo enviado: ${tipo}`);
+        
+        try {
+            const response = await axios.get(`http://localhost:3200/forms/type/${tipo}`);
+            // Aquí puedes hacer algo con response.data si lo necesitas
+            // Por ejemplo, podrías pasarlo a onFormSubmit:
+            onFormSubmit(tipo, response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error(`Error fetching form data for type ${tipo}:`, error);
         }
-    }, [tipo]);
+    };
 
     return (
         <div>
@@ -52,8 +44,8 @@ export function FormType({ onFormSubmit }) {
                     onChange={(e) => setTipo(e.target.value)}
                 >
                     <option value="">Selecione...</option>
-                    {Object.keys(formData).map((formType, index) => (
-                        <option key={index} value={formType}>{formType}</option>
+                    {Object.keys(formTypeMapping).map((formType, index) => (
+                        <option key={index} value={formType}>{formTypeMapping[formType]}</option>
                     ))}
                 </select>
                 <input type="submit" value="Submit" className="btn btn-primary mt-2 px-4" />

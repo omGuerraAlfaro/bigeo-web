@@ -49,13 +49,17 @@ export function ButtonState({ data }) {
 
 
   //states
-  let estadoTask = data.task;
-  if (estadoTask === null) {
-    estadoTask = 'Sin Asignar';
-  } else {
-    estadoTask = data.task.status;
-  }
-  const [estado, /* setEstado */] = useState(estadoTask);
+  let estadoTask;
+
+if (data && data.task !== undefined && data.task !== null) {
+  estadoTask = data.task.status;
+}
+if (estadoTask === undefined || estadoTask === null) {
+  estadoTask = 'Sin Asignar';
+}
+
+const [estado, /* setEstado */] = useState(estadoTask);
+
 
   //Modificador de estado de la tarea
   const updateData = async (id, status) => {
@@ -94,7 +98,7 @@ export function ButtonState({ data }) {
   //for mobile ********************
   const marcarLeido = (data) => {
     if (data.task !== null) {
-      updateData(data.task.task_id, "Leido");
+      updateData(data.task.task_id, "Leído");
       Swal.fire({
         position: 'top-end',
         icon: 'success',
@@ -191,11 +195,11 @@ export function ButtonState({ data }) {
 
   return (
     <div>
-      <p className="estado">Estado: {estado}</p>
+      <p className={`estado-${estado.toLowerCase().replace(' ', '-')}`}>Estado: {estado}</p>
       <div className="btn-group" role="group" aria-label="Basic example">
         <button
           type="button"
-          className="btn btn-outline-secondary"
+          className="btn btn-outline-primary"
           onClick={() => {
             openModal();
           }}
@@ -214,17 +218,17 @@ export function ButtonState({ data }) {
         </button>
         <button
           type="button"
-          className="btn btn-outline-success"
+          className="btn btn-outline-secondary"
           onClick={() => {
             marcarLeido(data); //FOR MOBILE
           }}
-          disabled={estado === 'Sin Asignar' | estado === 'Tarea Asignada' | estado === 'Finalizado' | estado === 'Leido' | estado === 'Efectuado'}
+          disabled={estado === 'Sin Asignar' | estado === 'Finalizado' | estado === 'Leido' | estado === 'Efectuado'}
         >
           Leer
         </button>
         <button
           type="button"
-          className="btn btn-outline-success"
+          className="btn btn-outline-secondary"
           onClick={() => {
             marcarEfectuado(data); //FOR MOBILE
           }}
@@ -238,7 +242,7 @@ export function ButtonState({ data }) {
           onClick={() => {
             marcarFinalizado(data); //FOR DESKTOP
           }}
-          disabled={estado == 'Tarea Asignada' | estado === 'Leído' | estado === 'Sin Asignar' | estado === 'Finalizado'}
+          disabled={estado == 'Tarea Asignada' | estado === 'Leído' | estado === 'Sin Asignar' | estado === 'Finalizado' }
         >
           Finalizar
         </button>

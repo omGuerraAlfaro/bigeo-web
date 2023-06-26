@@ -2,20 +2,21 @@
     font-weight: bold;
 }
 
-.estado.no {
-    color: rgb(182, 0, 0);
+.estado-sin-asignar {
+  color: red;
 }
 
-.estado.en {
-    color: rgb(255, 165, 0);
+.estado-tarea-asignada,
+.estado-finalizado {
+  color: green;
 }
 
-.estado.finalizado {
-    color: green;
+.estado-leído {
+  color: rgb(248, 144, 102);
 }
 
-.estado.leído {
-    color: rgb(48, 135, 207);
+.estado-efectuado {
+  color: purple;
 }
 
 

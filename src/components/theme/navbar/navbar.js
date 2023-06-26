@@ -31,7 +31,7 @@ const Navbar = ({ nombreUser }) => {
 
 
   useEffect(() => {
-    let url = "http://localhost:3200/tasks/count/no leido";
+    let url = "http://localhost:3200/tasks/count/Leído";
 
     const config = {
       headers: {
