@@ -242,7 +242,7 @@ const [estado, /* setEstado */] = useState(estadoTask);
           onClick={() => {
             marcarFinalizado(data); //FOR DESKTOP
           }}
-          disabled={estado == 'Tarea Asignada' | estado === 'Leído' | estado === 'Sin Asignar' | estado === 'Finalizado' }
+          disabled={estado === 'Tarea Asignada' | estado === 'Leído' | estado === 'Sin Asignar' | estado === 'Finalizado' }
         >
           Finalizar
         </button>
@@ -300,18 +300,18 @@ const [estado, /* setEstado */] = useState(estadoTask);
                     <table className="table table-striped table-responsive">
                       <thead>
                         <tr>
-                          <th scope="col">Tipo</th>
-                          <th scope="col">Fecha y Hora</th>
-                          <th scope="col">Sector</th>
-                          <th scope="col">Tipo Sector</th>
+                          <th scope="col" className="text-center">Tipo</th>
+                          <th scope="col" className="text-center">Fecha y Hora</th>
+                          <th scope="col" className="text-center">Sector</th>
+                          <th scope="col" className="text-center">Tipo Sector</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td>{formData.type}</td>
-                          <td>{formData.__properties__.dateTime}</td>
-                          <td>{formData.geometry.gid}</td>
-                          <td>{formData.geometry.type}</td>
+                          <td className="text-center">{formData.type}</td>
+                          <td className="text-center">{new Date(formData.__properties__.dateTime).toLocaleDateString()}</td>
+                          <td className="text-center">{formData.geometry.gid}</td>
+                          <td className="text-center">{formData.geometry.type}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -322,12 +322,12 @@ const [estado, /* setEstado */] = useState(estadoTask);
                     <table className="table table-striped table-responsive">
                       <thead>
                         <tr>
-                          <th scope="col">Geolocalización</th>
+                          <th scope="col" className="text-center">Geolocalización</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td>{formData.geometry.coordinates.join(", ")}</td>
+                          <td className="text-center">{formData.geometry.coordinates.join(", ")}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -352,9 +352,7 @@ const [estado, /* setEstado */] = useState(estadoTask);
                               </div>
                             </div>
                             <div className="row">
-                              <div className="col-12">
                                 <MapComponent lat={lon} lon={lat} />
-                              </div>
                             </div>
                           </div>
                         );

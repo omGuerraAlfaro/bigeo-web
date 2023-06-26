@@ -1,6 +1,6 @@
-.mapboxgl-ctrl-attrib {
+/* .mapboxgl-ctrl-attrib {
     display: none;
-}
+} */
 
 .map-container {
     width: 750px;
@@ -11,21 +11,21 @@
 
 /* Cambios a aplicar cuando la pantalla es menor a 600px */
 @media screen and (max-width: 600px) {
-    .mapbox-container {
+    .map-container {
         height: 200px;
     }
 }
 
 /* Cambios a aplicar cuando la pantalla es entre 600px y 1200px */
 @media screen and (min-width: 600px) and (max-width: 1200px) {
-    .mapbox-container {
+    .map-container {
         height: 400px;
     }
 }
 
 /* Cambios a aplicar cuando la pantalla es mayor a 1200px */
 @media screen and (min-width: 1200px) {
-    .mapbox-container {
+    .map-container {
         height: 600px;
     }
 }

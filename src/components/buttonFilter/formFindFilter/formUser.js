@@ -28,7 +28,8 @@ export function FormUser({ onFormSubmit }) {
         if (encargado) {
             const fetchUserData = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:3200/users/${encargado}`);
+                    const response = await axios.get(`http://localhost:3200/forms/user/${encargado}`);
+                    console.log(response.data);
                 } catch (error) {
                     console.error(`Error fetching user data for ${encargado}:`, error);
                 }

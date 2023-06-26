@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
 import { ButtonState } from "../buttonState/buttonState";
 import ButtonFilter from "../buttonFilter/buttonFilter";
+import "./tableHome.css";
 
 //Formularios
 import { HomeSprinklerForm } from "../filterTableHome/HomeformSprinkler";
@@ -38,20 +39,19 @@ function Forms(props) {
   //get forms
   useEffect(() => {
     let url = "http://localhost:3200/forms";
-    let filterParams = new URLSearchParams();
+
 
     if (filterType) {
-      filterParams.append("type", filterType);
+      url = 'http://localhost:3200/forms'
+      url += `/type/${filterType}`;
     }
     if (filterUser) {
-      filterParams.append("user", filterUser);
-    } 
-    if (filterDate) {
-      filterParams.append("date", filterDate);
+      url = 'http://localhost:3200/forms'
+      url += `/user/${filterUser}`;
     }
-
-    if (filterParams.toString()) {
-      url += "?" + filterParams.toString();
+    if (filterDate) {
+      url = 'http://localhost:3200/forms'
+      url += `/date/${filterDate}`;
     }
 
     const config = {
@@ -92,6 +92,8 @@ function Forms(props) {
               <div className="container d-flex justify-content-center py-5">
                 <div className="border rounded p-1">
                   <h4 className="text-center">Filtros</h4>
+                  <button className="btn-refresh btn btn-sm btn-primary mx-4 my-2 px-5 col-10"
+                    onClick={() => { window.location.reload(); }}>Recargar Página</button>
                   <ButtonFilter
                     clase="mx-1 my-2 px-5"
                     nombre="Tipo Formulario"

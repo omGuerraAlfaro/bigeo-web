@@ -20,11 +20,11 @@
 }
 
 
-.mapbox-container {
+/* .mapbox-container {
     height: 400px;
     width: 100%;
     margin-top: 20px;
-}
+} */
 
 
 /* Custom CSS for mobile screens */
@@ -33,10 +33,10 @@
       font-size: 12px;
     }
   
-    .mapbox-container {
+    /* .mapbox-container {
       height: 200px;
     }
-  
+   */
     .btn-group {
       flex-direction: column;
     }
@@ -50,9 +50,9 @@
   
     
   
-    .mapbox-container {
+    /* .mapbox-container {
       height: 300px;
-    }
+    } */
   
     .btn-group {
       flex-direction: row;
@@ -65,9 +65,9 @@
       font-size: 20px;
     }
    
-    .mapbox-container {
+    /* .mapbox-container {
       height: 400px;
-    }
+    } */
   
     .btn-group {
       flex-direction: row;

@@ -4,13 +4,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function FormDate({ onFormSubmit }) {
     const [fecha, setFecha] = useState("");
-    const [data, setData] = useState([]);
+    const [/* data */, setData] = useState([]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(`Fecha enviada: ${fecha}`);
-        console.log(`data enviada: ${data}`);
-        onFormSubmit(fecha);
+        const selectedDate = new Date(fecha);
+        selectedDate.setDate(selectedDate.getDate() + 1);
+        const newDate = selectedDate.toISOString().split('T')[0];
+        // console.log(`Fecha enviada: ${newDate}`);
+        // console.log(`data enviada: ${data}`);
+        onFormSubmit(newDate);
     };
 
     useEffect(() => {
@@ -18,13 +21,13 @@ export function FormDate({ onFormSubmit }) {
             const fetchData = async () => {
                 try {
                     const response = await axios.get(`http://localhost:3200/forms/date/${fecha}`);
-                    console.log(response.data);
+                    // console.log(response.data);
                     setData(response.data);
                 } catch (error) {
                     console.error(`Error fetching data for date ${fecha}:`, error);
                 }
             }
-    
+
             fetchData();
         }
     }, [fecha]);
@@ -33,11 +36,11 @@ export function FormDate({ onFormSubmit }) {
         <div>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="fecha" className="form-label">Fecha:</label>
-                <input 
-                    type="date" 
-                    id="fecha" 
-                    name="fecha" 
-                    value={fecha} 
+                <input
+                    type="date"
+                    id="fecha"
+                    name="fecha"
+                    value={fecha}
                     onChange={(e) => setFecha(e.target.value)}
                     className="form-control"
                 />
