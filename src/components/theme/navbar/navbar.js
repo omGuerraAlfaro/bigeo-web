@@ -5,11 +5,13 @@ import "./navbar.css";
 import axios from "axios";
 
 const Navbar = ({ nombreUser }) => {
+  const [notificaciones, setNotificaciones] = useState([]);
   const [contadorNotificaciones, setContadorNotificaciones] = useState(0);
   const [mostrarDropdown, setMostrarDropdown] = useState(false);
   const [navExpanded, setNavExpanded] = useState(false);
   const navigate = useNavigate();
 
+  
   const toggleDropdown = () => {
     setMostrarDropdown(!mostrarDropdown);
   };
@@ -31,7 +33,8 @@ const Navbar = ({ nombreUser }) => {
 
 
   useEffect(() => {
-    let url = "http://localhost:3200/tasks/count/Leído";
+    let url1 = "http://localhost:3200/tasks/count/Leído";
+    let url2 = "http://localhost:3200/tasks/count/Efectuado";
 
     const config = {
       headers: {
@@ -41,16 +44,22 @@ const Navbar = ({ nombreUser }) => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(url, config);
-        const data = response.data;
-        setContadorNotificaciones(data);
+        const response1 = axios.get(url1, config);
+        const response2 = axios.get(url2, config);
+
+        const responses = await Promise.all([response1, response2]);
+
+        const total = responses[0].data + responses[1].data;
+        const data = [responses[0].data, responses[1].data];
+        setNotificaciones(data);
+        setContadorNotificaciones(total);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-
     fetchData();
-  });
+  }, []);
+
 
 
   return (
@@ -73,14 +82,14 @@ const Navbar = ({ nombreUser }) => {
       <div className={`collapse navbar-collapse ${navExpanded ? 'show' : ''}`} id="navbarSupportedContent">
         <div className="row w-100">
           <div className="col d-flex justify-content-end">
-            
+
             <ul className="navbar-nav mr-auto">
               <li className="nav-item dropdown">
                 <div
                   className="nav-link dropdown-toggle d-flex align-items-center" id="navbarDropdown" role="button" onClick={toggleDropdown} aria-haspopup="true" aria-expanded={mostrarDropdown}>
                   <h5 className="font-weight-bold">Bienvenido: {nombreUser}</h5>
                 </div>
-                <div className={`dropdown-menu ${mostrarDropdown ? "show" : ""}`}aria-labelledby="navbarDropdown">
+                <div className={`dropdown-menu ${mostrarDropdown ? "show" : ""}`} aria-labelledby="navbarDropdown">
                   <div className="dropdown-item pointer" onClick={handleProfileClick}>
                     Perfil
                   </div>
