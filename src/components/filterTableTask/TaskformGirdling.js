@@ -25,20 +25,20 @@ export function TaskFormGirdling({ formData, nameForm }) {
                 </tbody>
                 <thead>
                     <tr>
-                        <th scope="col" className="text-center">Altura</th>
-                        <th scope="col" className="text-center">Marca</th>
-                        <th scope="col" className="text-center">Cantidad</th>
-                        <th scope="col" className="text-center">Arbol Inyectado</th>
-                        <th scope="col" className="text-center">Observación</th>
+                        <th scope="col" className="text-center border">Altura</th>
+                        <th scope="col" className="text-center border">Marca</th>
+                        <th scope="col" className="text-center border">Cantidad</th>
+                        <th scope="col" className="text-center border">Arbol Inyectado</th>
+                        <th scope="col" className="text-center border">Observación</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td className="text-center">{formData.__properties__.formGirdling.heightGirdling}</td>
-                        <td className="text-center">{formData.__properties__.formGirdling.markGirdling}</td>
-                        <td className="text-center">{formData.__properties__.formGirdling.cantGirdling}</td>
-                        <td className="text-center">{formData.__properties__.formGirdling.injectedTree}</td>
-                        <td className="text-center">{formData.__properties__.formGirdling.observation}</td>
+                        <td className="text-center border">{formData.__properties__.formGirdling.heightGirdling}</td>
+                        <td className="text-center border">{formData.__properties__.formGirdling.markGirdling}</td>
+                        <td className="text-center border">{formData.__properties__.formGirdling.cantGirdling}</td>
+                        <td className="text-center border">{formData.__properties__.formGirdling.injectedTree}</td>
+                        <td className="text-center border">{formData.__properties__.formGirdling.observation}</td>
                     </tr>
                 </tbody>
             </table>

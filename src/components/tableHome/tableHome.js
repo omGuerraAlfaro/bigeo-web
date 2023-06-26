@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import ReactPaginate from "react-paginate";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
@@ -26,20 +26,16 @@ function Forms(props) {
   const [filterType, setFilterType] = useState(null);
   const [filterUser, setFilterUser] = useState(null);
   const [filterDate, setFilterDate] = useState(null);
-
+  const [order, setOrder] = useState('descendente');
+  const [tableData, setTableData] = useState([]);
+  const [error, setError] = useState(null);
 
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
   };
 
-  const [tableData, setTableData] = useState([]);
-  const [error, setError] = useState(null);
-  /* ***************************************************** */
-
-  //get forms
   useEffect(() => {
     let url = "http://localhost:3200/forms";
-
 
     if (filterType) {
       url = 'http://localhost:3200/forms'
@@ -74,14 +70,19 @@ function Forms(props) {
 
     fetchData();
   }, [filterType, filterUser, filterDate]);
-  /* ***************************************************** */
 
+  const displayedData = useMemo(() => {
+    const sortedData = [...tableData].sort((a, b) => {
+      const dateA = new Date(a.__properties__.dateTime);
+      const dateB = new Date(b.__properties__.dateTime);
+      return order === 'ascendente' ? dateA - dateB : dateB - dateA;
+    });
 
-
-  const displayedData = (tableData || []).slice(
-    currentPage * elementsPerPage,
-    currentPage * elementsPerPage + elementsPerPage
-  );
+    return sortedData.slice(
+      currentPage * elementsPerPage,
+      currentPage * elementsPerPage + elementsPerPage
+    );
+  }, [tableData, order, currentPage, elementsPerPage]);
 
   return (
     <div>
@@ -125,13 +126,19 @@ function Forms(props) {
               <h1 className="titulo">Lista de Tareas</h1>
               <div className="table-responsive overflow-x-auto">
                 <div className="scroll">
-                  <table className="table table-striped">
+                  <table className="table table-striped border">
                     <thead>
                       <tr>
-                        <th scope="col" className="text-center">Acciones</th>
-                        <th scope="col" className="text-center">Usuario Responsable</th>
-                        <th scope="col" className="text-center">Fecha</th>
-                        <th scope="col" className="text-center">Datos Formularios</th>
+                        <th scope="col" className="text-center border">Acciones</th>
+                        <th scope="col" className="text-center border">Usuario Responsable</th>
+                        <th
+                          scope="col"
+                          className="text-center cursor-pointer border"
+                          onClick={() => setOrder(order === 'descendente' ? 'ascendente' : 'descendente')}
+                        >
+                          Fecha {order === 'descendente' ? '↓' : '↑'}
+                        </th>
+                        <th scope="col" className="text-center border">Datos Formularios</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -160,11 +167,11 @@ function Forms(props) {
 
                         return (
                           <tr key={item.form_id}>
-                            <th scope="row" className="text-center align-middle">
+                            <th scope="row" className="text-center align-middle border">
                               <ButtonState data={item} onButtonClick={(item) => console.log(item)} />
                             </th>
-                            <th scope="row" className="text-center align-middle">{item.__properties__.userId}</th>
-                            <td className="text-center align-middle">{new Date(item.__properties__.dateTime).toLocaleDateString()}</td>
+                            <th scope="row" className="text-center align-middle border">{item.__properties__.userId}</th>
+                            <td className="text-center align-middle border">{new Date(item.__properties__.dateTime).toLocaleDateString()}</td>
                             <td>
                               {formComponent}
                             </td>

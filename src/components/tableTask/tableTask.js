@@ -65,9 +65,9 @@ function Task(props) {
     return (
         <div>
             <div className="container-flow mx-5 data-table zindex">
-                <div className="container-rounded">
+                <div className="container rounded">
                     <div className="row">
-                        <div className="col-md-2 col-12">
+                        {/* <div className="col-md-2 col-12">
                             <div className="container d-flex justify-content-center py-5">
                                 <div className="border rounded p-1">
                                     <h4 className="text-center">Filtros</h4>
@@ -97,8 +97,8 @@ function Task(props) {
                                     />
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-md-10 col-12">
+                        </div> */}
+                        <div className="col-md-12 col-12">
                             <h1 className="titulo">Lista de Tareas Asignadas</h1>
                             <div className="table-responsive overflow-x-auto">
                                 <div className="scroll">

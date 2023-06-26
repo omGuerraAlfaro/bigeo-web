@@ -5,18 +5,18 @@ export function FaunaForm({ formData, nameForm }) {
             <table className="table table-striped table-responsive">
                 <thead>
                     <tr>
-                        <th scope="col" className="text-center">Fauna</th>
-                        <th scope="col" className="text-center">Cantidad</th>
-                        <th scope="col" className="text-center">Pista</th>
-                        <th scope="col" className="text-center">Observación</th>
+                        <th scope="col" className="text-center border">Fauna</th>
+                        <th scope="col" className="text-center border">Cantidad</th>
+                        <th scope="col" className="text-center border">Pista</th>
+                        <th scope="col" className="text-center border">Observación</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td className="text-center">{formData.__properties__.formFauna.fauna}</td>
-                        <td className="text-center">{formData.__properties__.formFauna.quantity}</td>
-                        <td className="text-center">{formData.__properties__.formFauna.hint}</td>
-                        <td className="text-center">{formData.__properties__.formFauna.observation}</td>
+                        <td className="text-center border">{formData.__properties__.formFauna.fauna}</td>
+                        <td className="text-center border">{formData.__properties__.formFauna.quantity}</td>
+                        <td className="text-center border">{formData.__properties__.formFauna.hint}</td>
+                        <td className="text-center border">{formData.__properties__.formFauna.observation}</td>
                     </tr>
                 </tbody>
             </table>

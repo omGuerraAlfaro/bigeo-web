@@ -5,7 +5,7 @@ import "./navbar.css";
 import axios from "axios";
 
 const Navbar = ({ nombreUser }) => {
-  const [notificaciones, setNotificaciones] = useState([]);
+  const [/* notificaciones */, setNotificaciones] = useState([]);
   const [contadorNotificaciones, setContadorNotificaciones] = useState(0);
   const [mostrarDropdown, setMostrarDropdown] = useState(false);
   const [navExpanded, setNavExpanded] = useState(false);
