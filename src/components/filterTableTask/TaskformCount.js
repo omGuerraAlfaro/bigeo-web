@@ -5,14 +5,14 @@ export function TaskFormCount({ formData, nameForm }) {
             <table className="table table-sm table-striped table-responsive">
                 <thead>
                     <tr>
-                        <th scope="col">Tiene Fruto</th>
-                        <th scope="col">Observaciones</th>
+                        <th scope="col" className="text-center">Tiene Fruto</th>
+                        <th scope="col" className="text-center">Observaciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.__properties__.formCount.hasFruit}</td>
-                        <td>{formData.__properties__.formCount.observation}</td>
+                        <td className="text-center">{formData.__properties__.formCount.hasFruit}</td>
+                        <td className="text-center">{formData.__properties__.formCount.observation}</td>
                     </tr>
                 </tbody>                
             </table>

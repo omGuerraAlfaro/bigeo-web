@@ -29,12 +29,10 @@ export function FormUser({ onFormSubmit }) {
             const fetchUserData = async () => {
                 try {
                     const response = await axios.get(`http://localhost:3200/users/${encargado}`);
-                    // hacer algo con los datos del usuario
                 } catch (error) {
                     console.error(`Error fetching user data for ${encargado}:`, error);
                 }
-            }
-    
+            }    
             fetchUserData();
         }
     }, [encargado]);
@@ -50,13 +48,14 @@ export function FormUser({ onFormSubmit }) {
                     value={encargado} 
                     onChange={(e) => setEncargado(e.target.value)}
                 >
-                    <option value="">Select...</option>
+                    <option value="">Selecione...</option>
                     {users.map((user, index) => (
                         <option key={index} value={user.username}>{user.username}</option>
                     ))}
                 </select>
-                <input type="submit" value="Submit" className="btn btn-primary mt-2" />
+                <input type="submit" value="Filtrar" className="btn btn-primary mt-2 col-11" />
             </form>
+            <hr />
         </div>
     );
 }

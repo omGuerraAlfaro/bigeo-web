@@ -38,15 +38,20 @@ function Forms(props) {
   //get forms
   useEffect(() => {
     let url = "http://localhost:3200/forms";
+    let filterParams = new URLSearchParams();
 
-
-    //aqui se pega el filtro
     if (filterType) {
-      url += `/type/${filterType}`;
-    } else if (filterUser) {
-      url += `/user/${filterUser}`;
-    } else if (filterDate) {
-      url += `/date/${filterDate}`;
+      filterParams.append("type", filterType);
+    }
+    if (filterUser) {
+      filterParams.append("user", filterUser);
+    } 
+    if (filterDate) {
+      filterParams.append("date", filterDate);
+    }
+
+    if (filterParams.toString()) {
+      url += "?" + filterParams.toString();
     }
 
     const config = {
@@ -60,6 +65,7 @@ function Forms(props) {
         const response = await axios.get(url, config);
         const data = response.data;
         setTableData(data);
+        setCurrentPage(0);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError(error.message);
@@ -70,7 +76,7 @@ function Forms(props) {
   }, [filterType, filterUser, filterDate]);
   /* ***************************************************** */
 
-  
+
 
   const displayedData = (tableData || []).slice(
     currentPage * elementsPerPage,

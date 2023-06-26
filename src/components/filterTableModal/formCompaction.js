@@ -5,14 +5,14 @@ export function CompactionForm({ formData, nameForm }) {
             <table className="table table-striped table-responsive">
                 <thead>
                     <tr>
-                        <th scope="col">Presión</th>
-                        <th scope="col">Observaciones</th>
+                        <th scope="col" className="text-center">Presión</th>
+                        <th scope="col" className="text-center">Observaciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.__properties__.formCompaction.pressure}</td>
-                        <td>{formData.__properties__.formCompaction.observation}</td>
+                        <td className="text-center">{formData.__properties__.formCompaction.pressure}</td>
+                        <td className="text-center">{formData.__properties__.formCompaction.observation}</td>
                     </tr>
                 </tbody>
             </table>

@@ -5,22 +5,22 @@ export function TaskFormHumidity({ formData, nameForm }) {
             <table className="table table-sm table-striped table-responsive">
                 <thead>
                     <tr>
-                        <th scope="col">ID Humedad</th>
-                        <th scope="col">Moisture20</th>
-                        <th scope="col">Moisture40</th>
-                        <th scope="col">Moisture60</th>
-                        <th scope="col">Raiz</th>
-                        <th scope="col">Observación</th>
+                        <th scope="col" className="text-center">ID Humedad</th>
+                        <th scope="col" className="text-center">Moisture20</th>
+                        <th scope="col" className="text-center">Moisture40</th>
+                        <th scope="col" className="text-center">Moisture60</th>
+                        <th scope="col" className="text-center">Raiz</th>
+                        <th scope="col" className="text-center">Observación</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.__properties__.formHumidity.hmdid}</td>
-                        <td>{formData.__properties__.formHumidity.moisture20}</td>
-                        <td>{formData.__properties__.formHumidity.moisture40}</td>
-                        <td>{formData.__properties__.formHumidity.moisture60}</td>
-                        <td>{formData.__properties__.formHumidity.roots}</td>
-                        <td>{formData.__properties__.formHumidity.observation}</td>
+                        <td className="text-center">{formData.__properties__.formHumidity.hmdid}</td>
+                        <td className="text-center">{formData.__properties__.formHumidity.moisture20}</td>
+                        <td className="text-center">{formData.__properties__.formHumidity.moisture40}</td>
+                        <td className="text-center">{formData.__properties__.formHumidity.moisture60}</td>
+                        <td className="text-center">{formData.__properties__.formHumidity.roots}</td>
+                        <td className="text-center">{formData.__properties__.formHumidity.observation}</td>
                     </tr>
                 </tbody>
             </table>

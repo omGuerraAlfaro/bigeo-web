@@ -5,14 +5,14 @@ export function HomeDamageForm({ formData, nameForm }) {
             <table className="table table-sm table-striped table-responsive">
                 <thead>
                     <tr>
-                        <th scope="col">Daño</th>
-                        <th scope="col">Observaciones</th>
+                        <th scope="col" className="text-center">Daño</th>
+                        <th scope="col" className="text-center">Observaciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.__properties__.formDamage.damage}</td>
-                        <td>{formData.__properties__.formDamage.observation}</td>
+                        <td className="text-center">{formData.__properties__.formDamage.damage}</td>
+                        <td className="text-center">{formData.__properties__.formDamage.observation}</td>
                     </tr>
                 </tbody>
             </table>

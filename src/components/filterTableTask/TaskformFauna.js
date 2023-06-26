@@ -5,18 +5,18 @@ export function TaskFormFauna({ formData, nameForm }) {
             <table className="table table-sm table-sm table-striped table-responsive">
                 <thead>
                     <tr>
-                        <th scope="col">Fauna</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">Pista</th>
-                        <th scope="col">Observación</th>
+                        <th scope="col" className="text-center">Fauna</th>
+                        <th scope="col" className="text-center">Cantidad</th>
+                        <th scope="col" className="text-center">Pista</th>
+                        <th scope="col" className="text-center">Observación</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.__properties__.formFauna.fauna}</td>
-                        <td>{formData.__properties__.formFauna.quantity}</td>
-                        <td>{formData.__properties__.formFauna.hint}</td>
-                        <td>{formData.__properties__.formFauna.observation}</td>
+                        <td className="text-center">{formData.__properties__.formFauna.fauna}</td>
+                        <td className="text-center">{formData.__properties__.formFauna.quantity}</td>
+                        <td className="text-center">{formData.__properties__.formFauna.hint}</td>
+                        <td className="text-center">{formData.__properties__.formFauna.observation}</td>
                     </tr>
                 </tbody>
             </table>

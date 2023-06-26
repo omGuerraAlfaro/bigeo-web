@@ -5,16 +5,16 @@ export function DiseasesForm({ formData, nameForm}) {
             <table className="table table-striped table-responsive">
                 <thead>
                     <tr>
-                        <th scope="col">Enfermedades</th>
-                        <th scope="col">Nivel</th>
-                        <th scope="col">Observaciones</th>
+                        <th scope="col" className="text-center">Enfermedades</th>
+                        <th scope="col" className="text-center">Nivel</th>
+                        <th scope="col" className="text-center">Observaciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{formData.__properties__.formDiseases.diseases}</td>
-                        <td>{formData.__properties__.formDiseases.level}</td>
-                        <td>{formData.__properties__.formDiseases.observation}</td>
+                        <td className="text-center">{formData.__properties__.formDiseases.diseases}</td>
+                        <td className="text-center">{formData.__properties__.formDiseases.level}</td>
+                        <td className="text-center">{formData.__properties__.formDiseases.observation}</td>
                     </tr>
                 </tbody>
             </table>

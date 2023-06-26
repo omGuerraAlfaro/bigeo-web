@@ -20,11 +20,9 @@ export function FormType({ onFormSubmit }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log(`Tipo enviado: ${tipo}`);
-        
+
         try {
             const response = await axios.get(`http://localhost:3200/forms/type/${tipo}`);
-            // Aquí puedes hacer algo con response.data si lo necesitas
-            // Por ejemplo, podrías pasarlo a onFormSubmit:
             onFormSubmit(tipo, response.data);
             console.log(response.data);
         } catch (error) {
@@ -36,11 +34,11 @@ export function FormType({ onFormSubmit }) {
         <div>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="tipo" className="form-label">Tipo:</label>
-                <select 
+                <select
                     className="form-select"
-                    id="tipo" 
-                    name="tipo" 
-                    value={tipo} 
+                    id="tipo"
+                    name="tipo"
+                    value={tipo}
                     onChange={(e) => setTipo(e.target.value)}
                 >
                     <option value="">Selecione...</option>
@@ -48,8 +46,11 @@ export function FormType({ onFormSubmit }) {
                         <option key={index} value={formType}>{formTypeMapping[formType]}</option>
                     ))}
                 </select>
-                <input type="submit" value="Submit" className="btn btn-primary mt-2 px-4" />
+                <div className="mt-2">
+                    <input type="submit" value="Filtrar" className="btn btn-primary mt-2 col-11" />
+                </div>
             </form>
+            <hr />
         </div>
     );
 }

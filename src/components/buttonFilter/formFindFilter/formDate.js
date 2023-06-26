@@ -41,7 +41,7 @@ export function FormDate({ onFormSubmit }) {
                     onChange={(e) => setFecha(e.target.value)}
                     className="form-control"
                 />
-                <input type="submit" value="Submit" className="btn btn-primary mt-2" />
+                <input type="submit" value="Filtrar" className="btn btn-primary mt-2 col-11" />
             </form>
         </div>
     );
