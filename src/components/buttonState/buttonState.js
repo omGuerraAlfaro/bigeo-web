@@ -352,7 +352,9 @@ const [estado, /* setEstado */] = useState(estadoTask);
                               </div>
                             </div>
                             <div className="row">
+                              <div className="col-12">
                                 <MapComponent lat={lon} lon={lat} />
+                              </div>
                             </div>
                           </div>
                         );
