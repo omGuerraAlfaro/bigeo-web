@@ -51,14 +51,14 @@ export function ButtonState({ data }) {
   //states
   let estadoTask;
 
-if (data && data.task !== undefined && data.task !== null) {
-  estadoTask = data.task.status;
-}
-if (estadoTask === undefined || estadoTask === null) {
-  estadoTask = 'Sin Asignar';
-}
+  if (data && data.task !== undefined && data.task !== null) {
+    estadoTask = data.task.status;
+  }
+  if (estadoTask === undefined || estadoTask === null) {
+    estadoTask = 'Sin Asignar';
+  }
 
-const [estado, /* setEstado */] = useState(estadoTask);
+  const [estado, /* setEstado */] = useState(estadoTask);
 
 
   //Modificador de estado de la tarea
@@ -242,7 +242,7 @@ const [estado, /* setEstado */] = useState(estadoTask);
           onClick={() => {
             marcarFinalizado(data); //FOR DESKTOP
           }}
-          disabled={estado === 'Tarea Asignada' | estado === 'Leído' | estado === 'Sin Asignar' | estado === 'Finalizado' }
+          disabled={estado === 'Tarea Asignada' | estado === 'Leído' | estado === 'Sin Asignar' | estado === 'Finalizado'}
         >
           Finalizar
         </button>

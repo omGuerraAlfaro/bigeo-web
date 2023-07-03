@@ -15,6 +15,7 @@ import { TaskFormGirdling } from "../filterTableTask/TaskformGirdling";
 import { TaskFormDiseases } from "../filterTableTask/TaskformDiseases";
 import { TaskFormDamage } from "../filterTableTask/TaskformDamage";
 import { TaskFormCompaction } from "../filterTableTask/TaskformCompaction";
+import { ButtonStateTask } from "../buttonStateTask/buttonStateTask";
 
 function Task(props) {
     const [currentPage, setCurrentPage] = useState(0);
@@ -47,7 +48,7 @@ function Task(props) {
                 setTableData(data);
             } catch (error) {
                 console.error("Error fetching data:", error);
-                
+
             }
         };
 
@@ -105,6 +106,7 @@ function Task(props) {
                                     <table className="table table-striped">
                                         <thead>
                                             <tr>
+                                                <th scope="col" className="text-center">Acciones</th>
                                                 <th scope="col" className="text-center">Usuario Asignado</th>
                                                 <th scope="col" className="text-center">Fecha Asignación</th>
                                                 <th scope="col" className="text-center">Fecha Limite</th>
@@ -138,12 +140,13 @@ function Task(props) {
                                                 }
 
                                                 return (
-                                                    <tr key={item.task_id}>
-                                                        <td className="text-center  align-middle">{item.task.assigned_user}</td>
-                                                        <td className="text-center  align-middle">{new Date(item.task.dateTime).toLocaleDateString()}</td>
-                                                        <td className="text-center  align-middle">{new Date(item.task.dateTimeLimit).toLocaleDateString()}</td>
-                                                        <td className="text-center breakTxt align-middle">{item.task.observation}</td>
-                                                        <td className="text-center  align-middle">{item.task.priority}</td>
+                                                    <tr key={item.id}>
+                                                        <td className="text-center align-middle border"><ButtonStateTask data={item} onButtonClick={(item) => console.log(item)} /></td>
+                                                        <td className="text-center align-middle border">{item.task.assigned_user}</td>
+                                                        <td className="text-center align-middle border">{new Date(item.task.dateTime).toLocaleDateString()}</td>
+                                                        <td className="text-center align-middle border">{new Date(item.task.dateTimeLimit).toLocaleDateString()}</td>
+                                                        <td className="text-center breakTxt align-middle border">{item.task.observation}</td>
+                                                        <td className="text-center align-middle border">{item.task.priority}</td>
                                                         <td>
                                                             {formComponent}
                                                         </td>
