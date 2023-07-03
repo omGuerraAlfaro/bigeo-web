@@ -31,7 +31,7 @@ function Task(props) {
 
     //get tasks
     useEffect(() => {
-        let url = "https://bigeo-api-ws.onrender.com/forms/task";
+        let url = "https://bigeo-api.onrender.com/forms/task";
 
         const config = {
             headers: {

@@ -22,7 +22,7 @@ export const NewTask = props => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get("https://bigeo-api-ws.onrender.com/users")
+    axios.get("https://bigeo-api.onrender.com/users")
       .then(response => {
         setUsers(response.data);
       })
@@ -32,7 +32,7 @@ export const NewTask = props => {
   }, []);
 
   const handleSubmit = async () => {
-    let url = "https://bigeo-api-ws.onrender.com/tasks";
+    let url = "https://bigeo-api.onrender.com/tasks";
 
     const config = {
       headers: {

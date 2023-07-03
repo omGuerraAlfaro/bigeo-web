@@ -22,7 +22,7 @@ export function FormType({ onFormSubmit }) {
         console.log(`Tipo enviado: ${tipo}`);
 
         try {
-            const response = await axios.get(`https://bigeo-api-ws.onrender.com/forms/type/${tipo}`);
+            const response = await axios.get(`https://bigeo-api.onrender.com/forms/type/${tipo}`);
             onFormSubmit(tipo, response.data);
             console.log(response.data);
         } catch (error) {

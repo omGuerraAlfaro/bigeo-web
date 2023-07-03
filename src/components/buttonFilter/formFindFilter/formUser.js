@@ -14,7 +14,7 @@ export function FormUser({ onFormSubmit }) {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axios.get('https://bigeo-api-ws.onrender.com/users');
+                const response = await axios.get('https://bigeo-api.onrender.com/users');
                 setUsers(response.data);
             } catch (error) {
                 console.error('Error fetching users:', error);
@@ -28,7 +28,7 @@ export function FormUser({ onFormSubmit }) {
         if (encargado) {
             const fetchUserData = async () => {
                 try {
-                    const response = await axios.get(`https://bigeo-api-ws.onrender.com/forms/user/${encargado}`);
+                    const response = await axios.get(`https://bigeo-api.onrender.com/forms/user/${encargado}`);
                     console.log(response.data);
                 } catch (error) {
                     console.error(`Error fetching user data for ${encargado}:`, error);
