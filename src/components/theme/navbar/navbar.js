@@ -4,6 +4,7 @@ import logo from "../../../assets/img/LogoBIGEO.png";
 import "./navbar.css";
 import axios from "axios";
 import Modal from 'react-bootstrap/Modal';
+import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
 const Navbar = ({ nombreUser }) => {
@@ -116,9 +117,26 @@ const Navbar = ({ nombreUser }) => {
           <Modal.Title>Notificaciones</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>*<strong>{notificaciones[0]}</strong> formularios han sido leídos</p>
-          <p>*<strong>{notificaciones[1]}</strong> formularios han sido efectuados</p>
-        </Modal.Body>
+  <Table striped bordered hover>
+    <thead>
+      <tr>
+        <th>Estado del Formulario</th>
+        <th>Contador</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Formularios leídos</td>
+        <th>{notificaciones[0]}</th>
+      </tr>
+      <tr>
+        <td>Formularios efectuados</td>
+        <th>{notificaciones[1]}</th>
+      </tr>
+    </tbody>
+  </Table>
+</Modal.Body>
+
         <Modal.Footer>
           <Button variant="secondary" onClick={handleShowModal}>
             Cerrar
