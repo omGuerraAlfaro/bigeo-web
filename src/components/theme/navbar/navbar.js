@@ -116,8 +116,8 @@ const Navbar = ({ nombreUser }) => {
           <Modal.Title>Notificaciones</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Hay <strong>{notificaciones[0]}</strong> formularios leídos</p>
-          <p>Hay <strong>{notificaciones[1]}</strong> formularios efectuados</p>
+          <p>*<strong>{notificaciones[0]}</strong> formularios han sido leídos</p>
+          <p>*<strong>{notificaciones[1]}</strong> formularios han sido efectuados</p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleShowModal}>
