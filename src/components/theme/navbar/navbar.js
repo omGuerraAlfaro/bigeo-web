@@ -33,8 +33,8 @@ const Navbar = ({ nombreUser }) => {
 
 
   useEffect(() => {
-    let url1 = "http://localhost:3200/tasks/count/Leído";
-    let url2 = "http://localhost:3200/tasks/count/Efectuado";
+    let url1 = "https://bigeo-api-ws.onrender.com/tasks/count/Leído";
+    let url2 = "https://bigeo-api-ws.onrender.com/tasks/count/Efectuado";
 
     const config = {
       headers: {

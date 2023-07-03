@@ -17,7 +17,7 @@ function LoginForm(props) {
     console.log('Credentials:', credentials);
   
     try {
-      const url = 'http://localhost:3200/auth/login';
+      const url = 'https://bigeo-api-ws.onrender.com/auth/login';
       const config = {
         headers: {
           'Content-Type': 'application/json',

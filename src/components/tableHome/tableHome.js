@@ -35,18 +35,18 @@ function Forms(props) {
   };
 
   useEffect(() => {
-    let url = "http://localhost:3200/forms";
+    let url = "https://bigeo-api-ws.onrender.com/forms";
 
     if (filterType) {
-      url = 'http://localhost:3200/forms'
+      url = 'https://bigeo-api-ws.onrender.com/forms'
       url += `/type/${filterType}`;
     }
     if (filterUser) {
-      url = 'http://localhost:3200/forms'
+      url = 'https://bigeo-api-ws.onrender.com/forms'
       url += `/user/${filterUser}`;
     }
     if (filterDate) {
-      url = 'http://localhost:3200/forms'
+      url = 'https://bigeo-api-ws.onrender.com/forms'
       url += `/date/${filterDate}`;
     }
 

@@ -63,7 +63,7 @@ const [estado, /* setEstado */] = useState(estadoTask);
 
   //Modificador de estado de la tarea
   const updateData = async (id, status) => {
-    const url = `http://localhost:3200/tasks/${id}/status`;
+    const url = `https://bigeo-api-ws.onrender.com/tasks/${id}/status`;
     const body = { "status": status };
     const config = {
       headers: {
@@ -155,7 +155,7 @@ const [estado, /* setEstado */] = useState(estadoTask);
 
   /* ***************************************************** */
   useEffect(() => {
-    fetch("http://localhost:3200/users")
+    fetch("https://bigeo-api-ws.onrender.com/users")
       .then(response => response.json())
       .then(data => {
         setUsers(data);
