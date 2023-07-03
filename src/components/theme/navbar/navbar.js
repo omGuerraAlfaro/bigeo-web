@@ -121,17 +121,17 @@ const Navbar = ({ nombreUser }) => {
     <thead>
       <tr>
         <th>Estado del Formulario</th>
-        <th>Contador</th>
+        <th className="text-center">Cantidad</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>Formularios leídos</td>
-        <th>{notificaciones[0]}</th>
+        <th className="text-center">{notificaciones[0]}</th>
       </tr>
       <tr>
         <td>Formularios efectuados</td>
-        <th>{notificaciones[1]}</th>
+        <th className="text-center">{notificaciones[1]}</th>
       </tr>
     </tbody>
   </Table>
