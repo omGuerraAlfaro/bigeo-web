@@ -212,7 +212,7 @@ const [estado, /* setEstado */] = useState(estadoTask);
           onClick={() => {
             openModal2();
           }}
-          disabled={estado === '' | estado === 'Tarea Asignada' | estado === 'Finalizado' | estado === 'Leido' | estado === 'Efectuado'}
+          disabled={estado === '' | estado === 'Tarea Asignada' | estado === 'Finalizado' | estado === 'Leído' | estado === 'Efectuado'}
         >
           Asignar
         </button>
@@ -222,7 +222,7 @@ const [estado, /* setEstado */] = useState(estadoTask);
           onClick={() => {
             marcarLeido(data); //FOR MOBILE
           }}
-          disabled={estado === 'Sin Asignar' | estado === 'Finalizado' | estado === 'Leido' | estado === 'Efectuado'}
+          disabled={estado === 'Sin Asignar' | estado === 'Finalizado' | estado === 'Leído' | estado === 'Efectuado'}
         >
           Leer
         </button>
