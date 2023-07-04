@@ -19,7 +19,7 @@ import { CountForm } from "../filterTableModal/formCount";
 import { DamageForm } from "../filterTableModal/formDamage";
 import { NewTask } from "../newTask/newTask";
 
-//icons
+//images
 import sprinkler from '../../assets/icon/sprinkler.png';
 import tractor from '../../assets/icon/tractor.png';
 import tree from '../../assets/icon/tree.png';
