@@ -3,7 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "bootstrap/dist/css/bootstrap.css";
 import "react-tabs/style/react-tabs.css";
 import "./home.css";
-import fondo from "../../../assets/img/fondoPalta.jpg";
+import fondo from "../../../assets/img/2.jpg";
 import Navbar from "../../theme/navbar/navbar";
 import Footer from "../../theme/footer/footer";
 import Forms from "../../tableHome/tableHome";
