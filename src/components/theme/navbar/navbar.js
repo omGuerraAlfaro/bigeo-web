@@ -33,10 +33,10 @@ const Navbar = ({ nombreUser }) => {
     navigate('/');
   };
 
-  const handleProfileClick = (e) => {
+  /* const handleProfileClick = (e) => {
     e.preventDefault();
-    //  "Perfil"
-  };
+    "Perfil"
+  }; */
 
   useEffect(() => {
     let url1 = "https://bigeo-api.onrender.com/tasks/count/Leído";
@@ -95,11 +95,7 @@ const Navbar = ({ nombreUser }) => {
                     <h5 className="font-weight-bold">Bienvenido: {nombreUser}</h5>
                   </div>
                   <div className={`dropdown-menu ${mostrarDropdown ? "show" : ""}`} aria-labelledby="navbarDropdown">
-                    <div className="dropdown-item pointer" onClick={handleProfileClick}>
-                      Perfil
-                    </div>
-                    <div className="dropdown-divider"></div>
-                    <div className="dropdown-item pointer" onClick={logout}>
+                    <div className="dropdown-item" onClick={logout}>
                       Cerrar Sesión
                     </div>
                   </div>

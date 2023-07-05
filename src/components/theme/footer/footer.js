@@ -10,7 +10,7 @@ export const Footer = () => {
           <img src={logo} alt="Logo" className="logo-image" />
         </div>
         <div className="footer-contact">
-          <p className="contact-info">Dirección: Calle principal, Ciudad</p>
+          <p className="contact-info">Dirección: Álvarez 2366, Chorrillos, Viña del Mar</p>
           <p className="contact-info">Teléfono: +1234567890</p>
         </div>
       </div>

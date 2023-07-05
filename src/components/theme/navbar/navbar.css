@@ -16,6 +16,10 @@
   margin-right: 10px;
 }
 
+.dropdown-item {
+  cursor: pointer;
+}
+
 .nav-link {
   color: #333;
 }
@@ -39,8 +43,10 @@
 /* Styles for tablets (widths between 768px and 992px) */
 @media screen and (max-width: 992px) and (min-width: 768px) {
   .logo {
-    max-width: 80% !important; /* Adjust this percentage based on your needs */
+    max-width: 80% !important;
+    /* Adjust this percentage based on your needs */
   }
+
   .navbar {
     padding: 5px 10px;
   }
@@ -62,8 +68,10 @@
 /* Styles for mobile phones (widths less than 768px) */
 @media screen and (max-width: 768px) {
   .logo {
-    max-width: 60% !important; /* Adjust this percentage based on your needs */
+    max-width: 60% !important;
+    /* Adjust this percentage based on your needs */
   }
+
   .navbar {
     padding: 2px 5px;
   }
@@ -87,12 +95,12 @@
 }
 
 
-#pointer{
+#pointer {
   cursor: pointer !important;
 }
 
 
-.badge{
+.badge {
   background-color: #eb4b4b;
   color: #fff;
   font-size: 10px;
