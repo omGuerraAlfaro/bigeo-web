@@ -63,7 +63,7 @@ function LoginForm(props) {
         <h2>Inicio Sesión</h2>
         <form className="login-form" onSubmit={handleSubmit}>
           <label htmlFor="username">Usuario</label>
-          <input value={credentials.username} onChange={handleChange} type="text" placeholder="Ingresa tu Usuario" id="username" name="username" />
+          <input value={credentials.username} onChange={handleChange} type="text" placeholder="Ingresar usuario" id="username" name="username" />
           <label htmlFor="password">Contraseña</label>
           <input value={credentials.password} onChange={handleChange} type="password" placeholder="********" id="password" name="password" />
           <button className="button" type="submit">Iniciar Sesión</button>
