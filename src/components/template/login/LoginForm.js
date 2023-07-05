@@ -13,9 +13,9 @@ function LoginForm(props) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-  
+
     console.log('Credentials:', credentials);
-  
+
     try {
       const url = 'https://bigeo-api.onrender.com/auth/login';
       const config = {
@@ -23,9 +23,9 @@ function LoginForm(props) {
           'Content-Type': 'application/json',
         },
       };
-  
+
       const response = await axios.post(url, credentials, config);
-      
+
       if (response && response.data) {
         console.log('Login response:', response.data);
         // console.log('Access token:', accessToken); // definir 'accessToken'
@@ -43,7 +43,7 @@ function LoginForm(props) {
         else {
           console.error('El rol del usuario no es válido');
         }
-        
+
       } else {
         console.error('La respuesta no contiene datos');
       }
@@ -68,10 +68,10 @@ function LoginForm(props) {
           <input value={credentials.password} onChange={handleChange} type="password" placeholder="********" id="password" name="password" />
           <button className="button" type="submit">Iniciar Sesión</button>
         </form>
-        <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Olvido su Contraseña? Click Aquí.</button>
+       {/*  <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Olvido su Contraseña? Click Aquí.</button> */}
       </div>
       <div>
-        
+
       </div>
     </div>
   );
