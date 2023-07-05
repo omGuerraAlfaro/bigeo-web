@@ -66,7 +66,7 @@ function Task(props) {
     return (
         <div>
             <div className="container-flow mx-5 data-table zindex">
-                <div className="container rounded">
+                <div className="rounded">
                     <div className="row">
                         {/* <div className="col-md-2 col-12">
                             <div className="container d-flex justify-content-center py-5">

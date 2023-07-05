@@ -1,32 +1,7 @@
-/* .mapboxgl-ctrl-attrib {
-    display: none;
-} */
-
 .map-container {
-    width: 100%;
-    width: 750px;
-    height: 500px;
+    width: 750px !important;
+    height: 600px !important;
     position: relative;
 }
 
 
-/* Cambios a aplicar cuando la pantalla es menor a 600px */
-@media screen and (max-width: 600px) {
-    .map-container {
-        height: 200px;
-    }
-}
-
-/* Cambios a aplicar cuando la pantalla es entre 600px y 1200px */
-@media screen and (min-width: 600px) and (max-width: 1200px) {
-    .map-container {
-        height: 400px;
-    }
-}
-
-/* Cambios a aplicar cuando la pantalla es mayor a 1200px */
-@media screen and (min-width: 1200px) {
-    .map-container {
-        height: 600px;
-    }
-}

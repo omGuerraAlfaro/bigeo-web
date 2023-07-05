@@ -22,10 +22,10 @@ function HomeViewAdmin(props) {
       <Tabs className="background container-fluid">
         <TabList className="mb-3 zindex">
           <Tab>
-            <div>Inicio</div>
+            <div><strong>Formularios</strong></div>
           </Tab>
           <Tab >
-            <div>Tareas</div>
+            <div><strong>Tareas Asignadas</strong></div>
           </Tab>
         </TabList>
 

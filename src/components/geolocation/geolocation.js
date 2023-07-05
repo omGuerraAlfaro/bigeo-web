@@ -1,43 +1,42 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import './geolocation.css';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY3Jpc3RvYmFsLWdhcnJpZG8iLCJhIjoiY2w5bnBkMmowMDRnYjN1bXd1ZW8yNXZkcCJ9.enFPbRymB4K5HWOIWNxfgA';
 
-class MapComponent extends React.Component {
+function MapComponent({ lon, lat }) {
 
-  //document.body.classList.add('body-zoomed');
-  mapContainerRef = React.createRef();
+  const mapContainerRef = useRef(null);
+  const mapRef = useRef(null);
 
-  componentDidMount() {
-    const { lon, lat } = this.props;
+  useEffect(() => {
     const lonNum = parseFloat(lon);
     const latNum = parseFloat(lat);
 
-    this.map = new mapboxgl.Map({
-      container: this.mapContainerRef.current,
+    mapRef.current = new mapboxgl.Map({
+      container: mapContainerRef.current,
       style: 'mapbox://styles/mapbox/satellite-v9',
       center: [lonNum, latNum],
       zoom: 16,
     });
 
-    this.map.isStyleLoaded();
-    this.map.on('load', () => {
+    mapRef.current.isStyleLoaded();
+    mapRef.current.on('load', () => {
       new mapboxgl.Marker()
         .setLngLat([lonNum, latNum])
-        .addTo(this.map);
+        .addTo(mapRef.current);
+      mapRef.current.resize(); 
     });
-  }
 
-  componentWillUnmount() {
-    if (this.map) {
-      this.map.remove();
-    }
-  }
+    return () => {
+      if (mapRef.current) {
+        mapRef.current.remove();
+      }
+    };
 
-  render() {
-    return <div ref={this.mapContainerRef} className="map-container" />;
-  }
+  }, [lon, lat]);
+
+  return <div ref={mapContainerRef} className="map-container" />;
 }
 
 export default MapComponent;
