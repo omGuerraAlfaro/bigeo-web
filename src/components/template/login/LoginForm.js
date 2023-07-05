@@ -60,13 +60,13 @@ function LoginForm(props) {
     <div id="fondo">
       <div className="auth-form-container">
         <div id="logo"></div>
-        <h2>Inicio Sesión</h2>
+        <h2 className="mb-3 sombra">Inicio Sesión</h2>
         <form className="login-form" onSubmit={handleSubmit}>
           <label htmlFor="username">Usuario</label>
-          <input value={credentials.username} onChange={handleChange} type="text" placeholder="Ingresar usuario" id="username" name="username" />
+          <input value={credentials.username} onChange={handleChange} type="text" placeholder="Ingresar usuario" id="username" name="username" className="mb-3" />
           <label htmlFor="password">Contraseña</label>
           <input value={credentials.password} onChange={handleChange} type="password" placeholder="********" id="password" name="password" />
-          <button className="button" type="submit">Iniciar Sesión</button>
+          <button className="button2" type="submit">Iniciar Sesión</button>
         </form>
        {/*  <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Olvido su Contraseña? Click Aquí.</button> */}
       </div>
