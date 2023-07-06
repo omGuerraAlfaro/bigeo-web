@@ -161,7 +161,7 @@ export function ButtonStateTask({ data }) {
   //translate form name
   const getFormName = (properties) => {
     const translations = {
-      "formSprinkler": "Formulario de Riego",
+      "formSprinkler": "Formulario de Aspersor",
       "formDamage": "Formulario de Daños",
       "formHumidity": "Formulario de Humedad",
       "formPlague": "Formulario de Plagas",
