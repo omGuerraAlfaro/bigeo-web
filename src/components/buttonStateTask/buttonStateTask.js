@@ -158,6 +158,29 @@ export function ButtonStateTask({ data }) {
   //for mobile ********************
 
 
+  //translate form name
+  const getFormName = (properties) => {
+    const translations = {
+      "formSprinkler": "Formulario de Riego",
+      "formDamage": "Formulario de Daños",
+      "formHumidity": "Formulario de Humedad",
+      "formPlague": "Formulario de Plagas",
+      "formDiseases": "Formulario de Enfermedades",
+      "formFauna": "Formulario de Fauna",
+      "formGirdling": "Formulario de Anillado",
+      "formCount": "Formulario de Conteo",
+      "formCompaction": "Formulario de Compactación",
+    };
+
+    for (let key in properties) {
+      if (properties[key] !== null && key in translations) {
+        return translations[key];
+      }
+    }
+
+    return "Unknown Form";
+  };
+
   return (
     <div>
       <p className={`estado-${estado.toLowerCase().replace(' ', '-')}`}>Estado: {estado}</p>
@@ -319,14 +342,32 @@ export function ButtonStateTask({ data }) {
 
             <Tab eventKey="imagen" title="Imagen">
               {
-                formData?.__properties__ && Object.entries(formData.__properties__).map(([key, value]) => {
+                formData && [
+                  ...(formData.__properties__ ? Object.entries(formData.__properties__) : []),
+                  ...(formData.task ? Object.entries(formData.task) : []),
+                ].map(([key, value]) => {
                   if (value === null || !(key in formImageMap)) return null;
 
+                  let formName = getFormName(formData.__properties__);
+
+                  let status = formData.task && formData.task.status ? formData.task.status : "Sin Asignar";
+                  let assign = formData.task && formData.task.assigned_user ? formData.task.assigned_user : "";
+                  let limit = formData.task && formData.task.dateTimeLimit ? formData.task.dateTimeLimit : "";
+                  let obs = formData.task && formData.task.observation ? formData.task.observation : "";
+
                   return (
-                    <div key={key} className="text-center">
-                      <img style={{ width: "250px" }} src={formImageMap[key]} alt="Imagen del formulario" />
-                      <p>Nombre del formulario: {key}</p>
-                      <p>Estado: </p>
+                    <div key={key} className="row">
+                      <div className="col-6 text-center border">
+                        <img style={{ width: "250px" }} src={formImageMap[key]} alt="Imagen del formulario" />
+                        <div><small><i>Imagen Referencial</i></small></div>
+                      </div>
+                      <div className="col-6">
+                        <p className="text-capitalize"><strong>Tipo formulario:</strong> {formName}</p>
+                        <p className="text-capitalize"><strong>Estado:</strong> {status}</p>
+                        <p className="text-capitalize"><strong>Asignado a:</strong> {assign}</p>
+                        <p className="text-capitalize"><strong>Fecha limite:</strong> {limit ? new Date(limit).toLocaleDateString() : ''}</p>
+                        <p className="text-capitalize"><strong>Descripción:</strong> {obs}</p>
+                      </div>
                     </div>
                   );
                 })
