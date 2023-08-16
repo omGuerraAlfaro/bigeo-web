@@ -25,7 +25,6 @@ root.render(
           </AuthGuard>
         } />
       </Routes>
-      aksjdkajsdjka
     </Router>
   </React.StrictMode>
 );
